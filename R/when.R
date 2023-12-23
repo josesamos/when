@@ -152,6 +152,7 @@ when <- function(name = NULL,
       include_minute = include_minute,
       include_second = include_second,
       table_name = table_name,
+      attribute_names = NULL,
       table = NULL
     ),
     class = "when"

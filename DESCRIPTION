@@ -8,20 +8,26 @@ Authors@R:
 Description: From dates, times or other temporal elements, generate a When
     dimension that can be directly used by multidimensional systems.
 License: MIT + file LICENSE
-URL: https://josesamos.github.io/when/,
-    https://github.com/josesamos/when
+URL: https://josesamos.github.io/when/, https://github.com/josesamos/when
 BugReports: https://github.com/josesamos/when/issues
 Depends: 
     R (>= 2.10)
 Imports: 
+    DBI,
+    dm,
     hms,
     lubridate,
     rlang,
     snakecase,
-    tibble
+    tibble,
+    tools,
+    utils,
+    xlsx
 Suggests: 
+    dbplyr,
     knitr,
     rmarkdown,
+    RSQLite,
     testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr

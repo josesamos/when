@@ -1,14 +1,12 @@
 .onLoad <- function(libname, pkgname) {
-  utils::data(
-    "time_seconds",
-    package = pkgname,
-    envir = parent.env(environment())
-  )
+  utils::data("time_seconds",
+              package = pkgname,
+              envir = parent.env(environment()))
 }
 
-#' `timedimension` S3 class
+#' `when` S3 class
 #'
-#' Creates a `timedimension` object.
+#' Creates a `when` object.
 #'
 #' @param type A string, type of calendar (NULL, 'iso', 'epi' or 'time').
 #' @param locale A locale, to use for day and month names.
@@ -17,21 +15,21 @@
 #' @param values A vector of string.
 #' @param ... Rest of boolean configuration parameters.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension()
+#' td <- when()
 #'
 #' @export
-timedimension <- function(type = NULL,
-                          locale = Sys.getlocale("LC_TIME"),
-                          start = lubridate::today(),
-                          end = lubridate::today(),
-                          values = NULL,
-                          ...) {
+when <- function(type = NULL,
+                 locale = Sys.getlocale("LC_TIME"),
+                 start = lubridate::today(),
+                 end = lubridate::today(),
+                 values = NULL,
+                 ...) {
   surrogate_key <- TRUE
   week_starts_monday <- TRUE
   day_level <- TRUE
@@ -146,7 +144,7 @@ timedimension <- function(type = NULL,
       include_minute = include_minute,
       include_second = include_second
     ),
-    class = "timedimension"
+    class = "when"
   )
   td <- validate_type(td, type)
   td <- validate_start_end(td, start, end)
@@ -157,11 +155,11 @@ timedimension <- function(type = NULL,
 
 #' Validate start and end parameters
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param start A string, start of the period to be included in the dimension.
 #' @param end A string, end of the period to be included in the dimension.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @keywords internal
 validate_start_end <- function(td, start, end) {
@@ -188,10 +186,10 @@ validate_start_end <- function(td, start, end) {
 
 #' Validate values parameter
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param values A vector of string.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @keywords internal
 validate_values <- function(td, values) {

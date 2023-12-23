@@ -2,18 +2,18 @@
 #'
 #' Include week level.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param week_level A boolean, include week level.
 #' @param include_week A boolean, include the week number.
 #' @param include_year_week A boolean, include the year-week combination.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension() |>
+#' td <- when() |>
 #'   include_week_level()
 #'
 #' @export
@@ -24,7 +24,7 @@ include_week_level <-
 #' @rdname include_week_level
 #'
 #' @export
-include_week_level.timedimension <-
+include_week_level.when <-
   function(td,
            week_level = TRUE,
            include_week = TRUE,

@@ -2,16 +2,16 @@
 #'
 #' Include surrogate_key.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param surrogate_key A boolean, include a surrogate key in the table.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension() |>
+#' td <- when() |>
 #'   include_surrogate_key()
 #'
 #' @export
@@ -22,7 +22,7 @@ include_surrogate_key <-
 #' @rdname include_surrogate_key
 #'
 #' @export
-include_surrogate_key.timedimension <-
+include_surrogate_key.when <-
   function(td,
            surrogate_key = TRUE) {
     if (!is.null(surrogate_key)) {

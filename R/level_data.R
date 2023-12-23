@@ -2,7 +2,7 @@
 #'
 #' Obtain the table of the defined dimension.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #'
 #' @return A `tibble`, the table.
 #'
@@ -10,7 +10,7 @@
 #'
 #' @examples
 #'
-#' table <- timedimension() |>
+#' table <- when() |>
 #'   get_level_data()
 #'
 #' @importFrom rlang :=
@@ -23,7 +23,7 @@ get_level_data <-
 #' @rdname get_level_data
 #'
 #' @export
-get_level_data.timedimension <-
+get_level_data.when <-
   function(td) {
     fields <- get_fields(td)
     values <- get_values(td)
@@ -39,7 +39,7 @@ get_level_data.timedimension <-
 
 #' Get the fields according to the defined configuration
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #'
 #' @return A vector of string.
 #'
@@ -63,7 +63,7 @@ get_fields <- function(td) {
 
 #' Get the values according to the defined configuration
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #'
 #' @return A vector of string.
 #'
@@ -122,7 +122,7 @@ get_values <- function(td) {
 
 #' Get the data from values and fields
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param values A vector of strings.
 #' @param fields A vector of strings.
 #'

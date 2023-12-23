@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(timedimension)
+library(when)
 
-test_check("timedimension")
+test_check("when")

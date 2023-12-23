@@ -3,18 +3,18 @@
 #'
 #' Include year level.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param year_level A boolean, include year level.
 #' @param include_year A boolean, include the year field.
 #' @param include_decade A boolean, include the decade field.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension() |>
+#' td <- when() |>
 #'   include_year_level()
 #'
 #' @export
@@ -25,7 +25,7 @@ include_year_level <-
 #' @rdname include_year_level
 #'
 #' @export
-include_year_level.timedimension <-
+include_year_level.when <-
   function(td,
            year_level = TRUE,
            include_year = TRUE,

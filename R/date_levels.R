@@ -2,19 +2,19 @@
 #'
 #' Include date levels.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param day_level A boolean, include day level.
 #' @param week_level A boolean, include week level.
 #' @param month_level A boolean, include month level.
 #' @param year_level A boolean, include year level.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension() |>
+#' td <- when() |>
 #'   include_date_levels()
 #'
 #' @export
@@ -29,7 +29,7 @@ include_date_levels <-
 #' @rdname include_date_levels
 #'
 #' @export
-include_date_levels.timedimension <-
+include_date_levels.when <-
   function(td,
            day_level = TRUE,
            week_level = TRUE,

@@ -2,18 +2,18 @@
 #'
 #' Configure instances.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param start A string, start of the period to be included in the dimension.
 #' @param end A string, end of the period to be included in the dimension.
 #' @param values A vector of string.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension() |>
+#' td <- when() |>
 #'   configure_instances()
 #'
 #' @export
@@ -24,7 +24,7 @@ configure_instances <-
 #' @rdname configure_instances
 #'
 #' @export
-configure_instances.timedimension <-
+configure_instances.when <-
   function(td,
            start = NULL,
            end = NULL,

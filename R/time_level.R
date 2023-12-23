@@ -2,18 +2,18 @@
 #'
 #' Include time.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param include_time A boolean, include a field for the time.
 #' @param include_minute A boolean, include the minute level of detail.
 #' @param include_second A boolean, include the second level of detail.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension() |>
+#' td <- when() |>
 #'   include_time_level()
 #'
 #' @export
@@ -27,7 +27,7 @@ include_time_level <-
 #' @rdname include_time_level
 #'
 #' @export
-include_time_level.timedimension <-
+include_time_level.when <-
   function(td,
            include_time = TRUE,
            include_minute = TRUE,

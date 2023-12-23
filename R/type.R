@@ -2,18 +2,18 @@
 #'
 #' Configure type.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param type A string, type of calendar (NULL, 'iso', 'epi' or 'time').
 #' @param locale A locale, to use for day and month names.
 #' @param week_starts_monday A boolean.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension() |>
+#' td <- when() |>
 #'   configure_type()
 #'
 #' @export
@@ -24,7 +24,7 @@ configure_type <-
 #' @rdname configure_type
 #'
 #' @export
-configure_type.timedimension <- function(td,
+configure_type.when <- function(td,
                                          type = NULL,
                                          locale = Sys.getlocale("LC_TIME"),
                                          week_starts_monday = TRUE) {
@@ -37,10 +37,10 @@ configure_type.timedimension <- function(td,
 
 #' Validate type parameter
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param type A string, type of calendar (NULL, 'iso', 'epi' or 'time').
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @keywords internal
 validate_type <- function(td, type) {

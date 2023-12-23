@@ -2,7 +2,7 @@
 #'
 #' Include month level.
 #'
-#' @param td A `timedimension` object.
+#' @param td A `when` object.
 #' @param month_level A boolean, include month level.
 #' @param include_month A boolean, include the month number.
 #' @param include_year_month A boolean, include the year-month combination.
@@ -16,13 +16,13 @@
 #' @param include_semester A boolean, include the semester field.
 #' @param include_year_semester A boolean, include the semester field.
 #'
-#' @return A `timedimension` object.
+#' @return A `when` object.
 #'
 #' @family time definition
 #'
 #' @examples
 #'
-#' td <- timedimension() |>
+#' td <- when() |>
 #'   include_month_level()
 #'
 #' @export
@@ -44,7 +44,7 @@ include_month_level <-
 #' @rdname include_month_level
 #'
 #' @export
-include_month_level.timedimension <-
+include_month_level.when <-
   function(td,
            month_level = TRUE,
            include_month = TRUE,

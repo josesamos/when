@@ -1,0 +1,10 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  when: when.html
+last_built: 2023-12-23T20:07Z
+urls:
+  reference: https://josesamos.github.io/when/reference
+  article: https://josesamos.github.io/when/articles
+

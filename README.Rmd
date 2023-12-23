@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# when
+# when <a href="https://josesamos.github.io/when/"><img src="man/figures/logo.png" align="right" height="139" alt="when website" /></a>
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -33,10 +33,41 @@ devtools::install_github("josesamos/when")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+To obtain a table with dates we indicate the start date and the end date. We can select the level of detail, the attributes to include or the language of the literals for day and month names. In the following example we only indicate the language because it is different from the one we have in the computer's operating system.
 
 ```{r example}
 library(when)
-## basic example code
+
+date <-
+  when(
+    locale = Sys.setlocale("LC_TIME", "English"),
+    start = lubridate::today(),
+    end = lubridate::today() + 9
+  ) |>
+  generate_table() |>
+  get_table()
 ```
 
+The result obtained is shown below.
+
+```{r, results = "asis"}
+pander::pandoc.table(date, split.table = Inf)
+```
+
+If we want a table with time, we indicate the type using a parameter. By default we get all the seconds of a day but we can also configure a different period or level of detail.
+
+```{r}
+time <-
+  when(type = 'time') |>
+  generate_table() |>
+  get_table()
+```
+
+The start and end of the result table is shown below.
+
+```{r, results = "asis"}
+pander::pandoc.table(rbind(head(time, 5), tail(time, 5)),
+                     split.table = Inf)
+```
+
+In addition to obtaining them as `tibble`, we can export the tables to files in *csv* or *xlsx* format. They can also be exported directly to any Relational DBMS.

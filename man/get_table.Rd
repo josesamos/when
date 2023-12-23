@@ -24,8 +24,4 @@ table <- when() |>
   get_table()
 
 }
-\seealso{
-Other obtaining results: 
-\code{\link{generate_table}()}
-}
-\concept{obtaining results}
+\concept{exporting results}

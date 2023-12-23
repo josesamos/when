@@ -1,8 +1,9 @@
-#' Configure type
+#' Configure dimension
 #'
-#' Configure type.
+#' Configure dimension.
 #'
 #' @param td A `when` object.
+#' @param name A string, table name.
 #' @param type A string, type of calendar (NULL, 'iso', 'epi' or 'time').
 #' @param locale A locale, to use for day and month names.
 #' @param week_starts_monday A boolean.
@@ -14,20 +15,24 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_type()
+#'   configure_dimension()
 #'
 #' @export
-configure_type <-
-  function(td, type, locale, week_starts_monday)
-    UseMethod("configure_type")
+configure_dimension <-
+  function(td, name, type, locale, week_starts_monday)
+    UseMethod("configure_dimension")
 
-#' @rdname configure_type
+#' @rdname configure_dimension
 #'
 #' @export
-configure_type.when <- function(td,
-                                         type = NULL,
-                                         locale = Sys.getlocale("LC_TIME"),
-                                         week_starts_monday = TRUE) {
+configure_dimension.when <- function(td,
+                                name = NULL,
+                                type = NULL,
+                                locale = Sys.getlocale("LC_TIME"),
+                                week_starts_monday = TRUE) {
+  if (!is.null(name)) {
+    table_name = name
+  }
   td <- validate_type(td, type)
   stopifnot("'week_starts_monday' must be of logical type." = is.logical(week_starts_monday))
   td$locale <- locale

@@ -8,6 +8,7 @@
 #'
 #' Creates a `when` object.
 #'
+#' @param name A string, table name.
 #' @param type A string, type of calendar (NULL, 'iso', 'epi' or 'time').
 #' @param locale A locale, to use for day and month names.
 #' @param start A string, start of the period to be included in the dimension.
@@ -24,7 +25,8 @@
 #' td <- when()
 #'
 #' @export
-when <- function(type = NULL,
+when <- function(name = NULL,
+                 type = NULL,
                  locale = Sys.getlocale("LC_TIME"),
                  start = lubridate::today(),
                  end = lubridate::today(),
@@ -69,6 +71,12 @@ when <- function(type = NULL,
     assign(n, dots[[n]])
   }
   include_hour <- TRUE
+
+  if (is.null(name)) {
+    table_name = 'when'
+  } else {
+    table_name = name
+  }
 
   td <- structure(
     list(
@@ -143,6 +151,7 @@ when <- function(type = NULL,
       include_hour = include_hour,
       include_minute = include_minute,
       include_second = include_second,
+      table_name = table_name,
       table = NULL
     ),
     class = "when"

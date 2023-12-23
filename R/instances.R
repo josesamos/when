@@ -1,6 +1,6 @@
-#' Configure instances
+#' Define instances
 #'
-#' Configure instances.
+#' Define instances.
 #'
 #' @param td A `when` object.
 #' @param start A string, start of the period to be included in the dimension.
@@ -14,17 +14,17 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_instances()
+#'   define_instances()
 #'
 #' @export
-configure_instances <-
+define_instances <-
   function(td, start, end, values)
-    UseMethod("configure_instances")
+    UseMethod("define_instances")
 
-#' @rdname configure_instances
+#' @rdname define_instances
 #'
 #' @export
-configure_instances.when <-
+define_instances.when <-
   function(td,
            start = NULL,
            end = NULL,

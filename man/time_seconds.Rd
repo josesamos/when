@@ -15,8 +15,8 @@ Time in seconds of a day
 }
 \seealso{
 Other time definition: 
-\code{\link{configure_instances}()},
-\code{\link{configure_type}()},
+\code{\link{configure_dimension}()},
+\code{\link{define_instances}()},
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},
 \code{\link{include_month_level}()},

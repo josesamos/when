@@ -5,6 +5,7 @@
 \title{\code{when} S3 class}
 \usage{
 when(
+  name = NULL,
   type = NULL,
   locale = Sys.getlocale("LC_TIME"),
   start = lubridate::today(),
@@ -14,6 +15,8 @@ when(
 )
 }
 \arguments{
+\item{name}{A string, table name.}
+
 \item{type}{A string, type of calendar (NULL, 'iso', 'epi' or 'time').}
 
 \item{locale}{A locale, to use for day and month names.}
@@ -39,8 +42,8 @@ td <- when()
 }
 \seealso{
 Other time definition: 
-\code{\link{configure_instances}()},
-\code{\link{configure_type}()},
+\code{\link{configure_dimension}()},
+\code{\link{define_instances}()},
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},
 \code{\link{include_month_level}()},

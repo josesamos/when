@@ -18,9 +18,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The *When* dimension plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed events have occurred.
+The *When* dimension plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed focus of attention have occurred.
 
-The goal of the `when` package is to support the generation of tables associated with the *When* dimension in Multidimensional Systems. In particular, it supports the generation of tables for the implementation of ROLAP (*Relational On-Line Analytical Processing*) systems.
+The purpose of the `when` package is to assist in the implementation of the *When* dimension in multidimensional systems. In particular, it supports the generation of tables for the implementation of **date** and **time** in ROLAP (*Relational On-Line Analytical Processing*) systems.
 
 ## Installation
 
@@ -40,18 +40,3 @@ library(when)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-# plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

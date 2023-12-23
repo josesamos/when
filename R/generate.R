@@ -1,29 +1,29 @@
-#' Get the table of the dimension
+#' Generate table
 #'
-#' Obtain the table of the defined dimension.
+#' Generate the table of the defined dimension.
 #'
 #' @param td A `when` object.
 #'
-#' @return A `tibble`, the table.
+#' @return A `when` object.
 #'
 #' @family obtaining results
 #'
 #' @examples
 #'
 #' table <- when() |>
-#'   get_level_data()
+#'   generate_table()
 #'
 #' @importFrom rlang :=
 #'
 #' @export
-get_level_data <-
+generate_table <-
   function(td)
-    UseMethod("get_level_data")
+    UseMethod("generate_table")
 
-#' @rdname get_level_data
+#' @rdname generate_table
 #'
 #' @export
-get_level_data.when <-
+generate_table.when <-
   function(td) {
     fields <- get_fields(td)
     values <- get_values(td)
@@ -33,7 +33,8 @@ get_level_data.when <-
       data <-
         tibble::add_column(data, !!surrogate_key := 1:nrow(data), .before = 1)
     }
-    data
+    td$table <- data
+    td
   }
 
 

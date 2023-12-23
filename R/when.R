@@ -142,7 +142,8 @@ when <- function(type = NULL,
       include_time = include_time,
       include_hour = include_hour,
       include_minute = include_minute,
-      include_second = include_second
+      include_second = include_second,
+      table = NULL
     ),
     class = "when"
   )

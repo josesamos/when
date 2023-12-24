@@ -5,13 +5,20 @@
 \alias{include_time_level.when}
 \title{Include time}
 \usage{
-include_time_level(td, include_time, include_minute, include_second)
+include_time_level(
+  td,
+  include_time,
+  include_minute,
+  include_second,
+  include_day_part
+)
 
 \method{include_time_level}{when}(
   td,
   include_time = TRUE,
   include_minute = TRUE,
-  include_second = TRUE
+  include_second = TRUE,
+  include_day_part
 )
 }
 \arguments{
@@ -22,6 +29,8 @@ include_time_level(td, include_time, include_minute, include_second)
 \item{include_minute}{A boolean, include the minute level of detail.}
 
 \item{include_second}{A boolean, include the second level of detail.}
+
+\item{include_day_part}{A boolean, include the parts of the day.}
 }
 \value{
 A \code{when} object.

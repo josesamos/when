@@ -54,16 +54,16 @@ pander::pandoc.table(date, split.table = Inf)
 
 | id  |    date    | month_day | week_day | day_name  | day_num_name | year_week | week | year_month | month | month_name | month_num_name | year |
 |:---:|:----------:|:---------:|:--------:|:---------:|:------------:|:---------:|:----:|:----------:|:-----:|:----------:|:--------------:|:----:|
-|  1  | 2023-12-23 |    23     |    6     | Saturday  |  6-Saturday  |  2023-51  |  51  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  2  | 2023-12-24 |    24     |    7     |  Sunday   |   7-Sunday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  3  | 2023-12-25 |    25     |    1     |  Monday   |   1-Monday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  4  | 2023-12-26 |    26     |    2     |  Tuesday  |  2-Tuesday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  5  | 2023-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  6  | 2023-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  7  | 2023-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  8  | 2023-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  9  | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-| 10  | 2024-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  1  | 2023-12-24 |    24     |    7     |  Sunday   |   7-Sunday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  2  | 2023-12-25 |    25     |    1     |  Monday   |   1-Monday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  3  | 2023-12-26 |    26     |    2     |  Tuesday  |  2-Tuesday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  4  | 2023-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  5  | 2023-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  6  | 2023-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  7  | 2023-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  8  | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  9  | 2024-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+| 10  | 2024-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
 
 If we want a table with time, we indicate the type using a parameter. By
 default we get all the seconds of a day but we can also configure a
@@ -83,18 +83,18 @@ pander::pandoc.table(rbind(head(time, 5), tail(time, 5)),
                      split.table = Inf)
 ```
 
-|  id   |   time   | hour | minute | second |
-|:-----:|:--------:|:----:|:------:|:------:|
-|   1   | 00:00:00 |  00  |   00   |   00   |
-|   2   | 00:00:01 |  00  |   00   |   01   |
-|   3   | 00:00:02 |  00  |   00   |   02   |
-|   4   | 00:00:03 |  00  |   00   |   03   |
-|   5   | 00:00:04 |  00  |   00   |   04   |
-| 86396 | 23:59:55 |  23  |   59   |   55   |
-| 86397 | 23:59:56 |  23  |   59   |   56   |
-| 86398 | 23:59:57 |  23  |   59   |   57   |
-| 86399 | 23:59:58 |  23  |   59   |   58   |
-| 86400 | 23:59:59 |  23  |   59   |   59   |
+|  id   |   time   | hour | minute | second | day_part |
+|:-----:|:--------:|:----:|:------:|:------:|:--------:|
+|   1   | 00:00:00 |  00  |   00   |   00   |  Night   |
+|   2   | 00:00:01 |  00  |   00   |   01   |  Night   |
+|   3   | 00:00:02 |  00  |   00   |   02   |  Night   |
+|   4   | 00:00:03 |  00  |   00   |   03   |  Night   |
+|   5   | 00:00:04 |  00  |   00   |   04   |  Night   |
+| 86396 | 23:59:55 |  23  |   59   |   55   |  Night   |
+| 86397 | 23:59:56 |  23  |   59   |   56   |  Night   |
+| 86398 | 23:59:57 |  23  |   59   |   57   |  Night   |
+| 86399 | 23:59:58 |  23  |   59   |   58   |  Night   |
+| 86400 | 23:59:59 |  23  |   59   |   59   |  Night   |
 
 In addition to obtaining them as `tibble`, we can export the tables to
 files in *csv* or *xlsx* format. They can also be exported directly to

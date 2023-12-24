@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # when <a href="https://josesamos.github.io/when/"><img src="man/figures/logo.png" align="right" height="139" alt="when website" /></a>
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 The *When* dimension plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed focus of attention have occurred.

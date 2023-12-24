@@ -34,7 +34,7 @@ devtools::install_github("josesamos/when")
 
 ## Example
 
-To obtain a table with dates we indicate the start date and the end date. We can select the level of detail, the attributes to include or the language of the literals for day and month names. In the following example we only indicate the language because it is different from the one we have in the computer's operating system.
+To obtain a table with dates we indicate the start and end date. Alternatively we can indicate the set of dates to consider. We can select the level of detail, the attributes to include or the language of the literals for day and month names. In the following example we indicate the language because it is different from the one we have in the computer's operating system.
 
 ```{r example}
 library(when)
@@ -71,6 +71,6 @@ pander::pandoc.table(rbind(head(time, 5), tail(time, 5)),
                      split.table = Inf)
 ```
 
-`day_part` is predefined in English. Literals or hours can be changed using a configuration function.
+`day_part` is predefined in English. Literals or associated hours can be changed using a configuration function.
 
 In addition to obtaining them as `tibble`, we can export the tables to files in *csv* or *xlsx* format. They can also be exported directly to any Relational DBMS.

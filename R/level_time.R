@@ -3,8 +3,8 @@
 #' When the dimension is defined as a time type, using this function we can select
 #' its attributes to include in it: time, minute, second and day_part.
 #'
-#' The 'hour' attribute will always be included. If the 'second' attribute is
-#' included the 'minute' attribute will also be automatically included.
+#' The 'hour' attribute will always be included. If the 'minute' attribute is not
+#' included the 'second' attribute will not be included either.
 #'
 #' @param td A `when` object.
 #' @param include_time A boolean, include a field for the time.

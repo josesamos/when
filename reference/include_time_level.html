@@ -54,14 +54,21 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">include_time_level</span><span class="op">(</span><span class="va">td</span>, <span class="va">include_time</span>, <span class="va">include_minute</span>, <span class="va">include_second</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">include_time_level</span><span class="op">(</span></span>
+<span>  <span class="va">td</span>,</span>
+<span>  <span class="va">include_time</span>,</span>
+<span>  <span class="va">include_minute</span>,</span>
+<span>  <span class="va">include_second</span>,</span>
+<span>  <span class="va">include_day_part</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for when</span></span>
 <span><span class="fu">include_time_level</span><span class="op">(</span></span>
 <span>  <span class="va">td</span>,</span>
 <span>  include_time <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  include_minute <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_second <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  include_second <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">include_day_part</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -81,6 +88,10 @@
 
 <dt>include_second</dt>
 <dd><p>A boolean, include the second level of detail.</p></dd>
+
+
+<dt>include_day_part</dt>
+<dd><p>A boolean, include the parts of the day.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -109,6 +120,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">td</span> <span class="op">&lt;-</span> <span class="fu"><a href="when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">include_time_level</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in include_time_level.when(when()):</span> argument "include_day_part" is missing, with no default</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

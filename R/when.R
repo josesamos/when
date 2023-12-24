@@ -66,6 +66,7 @@ when <- function(name = NULL,
   include_time <- TRUE
   include_minute <- TRUE
   include_second <- TRUE
+  include_day_parts <- TRUE
   dots <- list(...)
   for (n in names(dots)) {
     stopifnot("The additional parameters must be of logical type." = is.logical(dots[[n]]))
@@ -78,6 +79,15 @@ when <- function(name = NULL,
   } else {
     table_name = name
   }
+  day_parts <- sprintf("%02d", 0:23)
+  names(day_parts) <-
+    c(
+      rep('Night', 5),
+      rep('Morning', 7),
+      rep('Afternoon', 5),
+      rep('Evening', 4),
+      rep('Night', 3)
+    )
 
   td <- structure(
     list(
@@ -148,11 +158,13 @@ when <- function(name = NULL,
       include_date = include_date,
 
       time_level = time_level,
-      time_level_names = c("time", "hour", "minute", "second"),
+      time_level_names = c("time", "hour", "minute", "second", "day_parts"),
       include_time = include_time,
       include_hour = include_hour,
       include_minute = include_minute,
       include_second = include_second,
+      include_day_parts = include_day_parts,
+      day_parts = day_parts,
       table_name = table_name,
       attribute_names = NULL,
       table = NULL

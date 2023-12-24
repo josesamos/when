@@ -34,7 +34,7 @@ include_time_level.when <-
            include_time = TRUE,
            include_minute = TRUE,
            include_second = TRUE,
-           include_day_part) {
+           include_day_part = TRUE) {
     stopifnot("'include_time' must be of logical type." = is.logical(include_time))
     stopifnot("'include_minute' must be of logical type." = is.logical(include_minute))
     stopifnot("'include_second' must be of logical type." = is.logical(include_second))

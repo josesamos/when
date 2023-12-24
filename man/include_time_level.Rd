@@ -18,7 +18,7 @@ include_time_level(
   include_time = TRUE,
   include_minute = TRUE,
   include_second = TRUE,
-  include_day_part
+  include_day_part = TRUE
 )
 }
 \arguments{

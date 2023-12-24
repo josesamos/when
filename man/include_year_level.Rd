@@ -27,25 +27,23 @@ include_year_level(td, year_level, include_year, include_decade)
 A \code{when} object.
 }
 \description{
-Include year level.
+When the dimension is defined as a date type, using this function we can select
+the year level and its attributes to include in it: year and decade.
 }
 \examples{
 
 td <- when() |>
-  include_year_level()
+  include_year_level(include_decade = FALSE)
 
 }
 \seealso{
-Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{define_instances}()},
+Other dimension definition: 
 \code{\link{get_day_part}()},
 \code{\link{include_date_levels}()},
-\code{\link{include_day_level}()},
-\code{\link{include_month_level}()},
+\code{\link{include_surrogate_key}()},
 \code{\link{include_time_level}()},
 \code{\link{include_week_level}()},
 \code{\link{set_day_part}()},
-\code{\link{time_seconds}}
+\code{\link{when}()}
 }
-\concept{time definition}
+\concept{dimension definition}

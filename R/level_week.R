@@ -1,6 +1,10 @@
 #' Include week level
 #'
-#' Include week level.
+#' When the dimension is defined as a date type, using this function we can select
+#' the week level and its attributes to include in it: week, year_week and week_date.
+#'
+#' For the first and last days of the year, the year associated with the week may
+#' be different from the year of the date, depending on the date type selected.
 #'
 #' @param td A `when` object.
 #' @param week_level A boolean, include week level.
@@ -11,12 +15,12 @@
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
 #' td <- when() |>
-#'   include_week_level()
+#'   include_week_level(include_week_date = FALSE)
 #'
 #' @export
 include_week_level <-

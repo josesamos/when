@@ -1,7 +1,7 @@
-
 #' Include year level
 #'
-#' Include year level.
+#' When the dimension is defined as a date type, using this function we can select
+#' the year level and its attributes to include in it: year and decade.
 #'
 #' @param td A `when` object.
 #' @param year_level A boolean, include year level.
@@ -10,16 +10,19 @@
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
 #' td <- when() |>
-#'   include_year_level()
+#'   include_year_level(include_decade = FALSE)
 #'
 #' @export
 include_year_level <-
-  function(td, year_level, include_year, include_decade)
+  function(td,
+           year_level,
+           include_year,
+           include_decade)
     UseMethod("include_year_level")
 
 #' @rdname include_year_level
@@ -38,4 +41,3 @@ include_year_level.when <-
     td$include_decade <- include_decade
     td
   }
-

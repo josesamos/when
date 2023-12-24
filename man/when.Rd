@@ -51,6 +51,12 @@ td_2 <- when(type = 'time')
 }
 \seealso{
 Other dimension definition: 
-\code{\link{include_surrogate_key}()}
+\code{\link{get_day_part}()},
+\code{\link{include_date_levels}()},
+\code{\link{include_surrogate_key}()},
+\code{\link{include_time_level}()},
+\code{\link{include_week_level}()},
+\code{\link{include_year_level}()},
+\code{\link{set_day_part}()}
 }
 \concept{dimension definition}

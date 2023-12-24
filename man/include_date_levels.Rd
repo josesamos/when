@@ -30,25 +30,23 @@ include_date_levels(td, day_level, week_level, month_level, year_level)
 A \code{when} object.
 }
 \description{
-Include date levels.
+When the dimension is defined as date type, using this function we can select
+the levels to include in it: day, week, month and year.
 }
 \examples{
 
 td <- when() |>
-  include_date_levels()
+  include_date_levels(week_level = FALSE)
 
 }
 \seealso{
-Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{define_instances}()},
+Other dimension definition: 
 \code{\link{get_day_part}()},
-\code{\link{include_day_level}()},
-\code{\link{include_month_level}()},
+\code{\link{include_surrogate_key}()},
 \code{\link{include_time_level}()},
 \code{\link{include_week_level}()},
 \code{\link{include_year_level}()},
 \code{\link{set_day_part}()},
-\code{\link{time_seconds}}
+\code{\link{when}()}
 }
-\concept{time definition}
+\concept{dimension definition}

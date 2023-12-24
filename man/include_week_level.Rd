@@ -37,25 +37,27 @@ obtained.}
 A \code{when} object.
 }
 \description{
-Include week level.
+When the dimension is defined as a date type, using this function we can select
+the week level and its attributes to include in it: week, year_week and week_date.
+}
+\details{
+For the first and last days of the year, the year associated with the week may
+be different from the year of the date, depending on the date type selected.
 }
 \examples{
 
 td <- when() |>
-  include_week_level()
+  include_week_level(include_week_date = FALSE)
 
 }
 \seealso{
-Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{define_instances}()},
+Other dimension definition: 
 \code{\link{get_day_part}()},
 \code{\link{include_date_levels}()},
-\code{\link{include_day_level}()},
-\code{\link{include_month_level}()},
+\code{\link{include_surrogate_key}()},
 \code{\link{include_time_level}()},
 \code{\link{include_year_level}()},
 \code{\link{set_day_part}()},
-\code{\link{time_seconds}}
+\code{\link{when}()}
 }
-\concept{time definition}
+\concept{dimension definition}

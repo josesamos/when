@@ -29,6 +29,12 @@ td <- when() |>
 }
 \seealso{
 Other dimension definition: 
+\code{\link{get_day_part}()},
+\code{\link{include_date_levels}()},
+\code{\link{include_time_level}()},
+\code{\link{include_week_level}()},
+\code{\link{include_year_level}()},
+\code{\link{set_day_part}()},
 \code{\link{when}()}
 }
 \concept{dimension definition}

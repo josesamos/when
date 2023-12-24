@@ -1,6 +1,10 @@
-#' Include time
+#' Include time level
 #'
-#' Include time.
+#' When the dimension is defined as a time type, using this function we can select
+#' its attributes to include in it: time, minute, second and day_part.
+#'
+#' The 'hour' attribute will always be included. If the 'second' attribute is
+#' included the 'minute' attribute will also be automatically included.
 #'
 #' @param td A `when` object.
 #' @param include_time A boolean, include a field for the time.
@@ -10,7 +14,7 @@
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
@@ -60,7 +64,7 @@ include_time_level.when <-
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
@@ -99,7 +103,7 @@ set_day_part.when <-
 #'
 #' @return A named vector.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'

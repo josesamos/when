@@ -1,6 +1,7 @@
 #' Include date levels
 #'
-#' Include date levels.
+#' When the dimension is defined as date type, using this function we can select
+#' the levels to include in it: day, week, month and year.
 #'
 #' @param td A `when` object.
 #' @param day_level A boolean, include day level.
@@ -10,12 +11,12 @@
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
 #' td <- when() |>
-#'   include_date_levels()
+#'   include_date_levels(week_level = FALSE)
 #'
 #' @export
 include_date_levels <-

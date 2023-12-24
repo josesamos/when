@@ -41,6 +41,7 @@ td <- when() |>
 \seealso{
 Other time definition: 
 \code{\link{configure_dimension}()},
+\code{\link{define_day_part}()},
 \code{\link{define_instances}()},
 \code{\link{include_day_level}()},
 \code{\link{include_month_level}()},

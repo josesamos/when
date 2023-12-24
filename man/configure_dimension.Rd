@@ -40,6 +40,7 @@ td <- when() |>
 }
 \seealso{
 Other time definition: 
+\code{\link{define_day_part}()},
 \code{\link{define_instances}()},
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},

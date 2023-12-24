@@ -71,4 +71,6 @@ pander::pandoc.table(rbind(head(time, 5), tail(time, 5)),
                      split.table = Inf)
 ```
 
+`day_part` is predefined in English. Literals or hours can be changed using a configuration function.
+
 In addition to obtaining them as `tibble`, we can export the tables to files in *csv* or *xlsx* format. They can also be exported directly to any Relational DBMS.

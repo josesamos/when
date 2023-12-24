@@ -48,3 +48,47 @@ include_time_level.when <-
     td$include_day_part <- include_day_part
     td
   }
+
+
+#' Define day part
+#'
+#' Define day part.
+#'
+#' @param td A `when` object.
+#' @param hour A number.
+#' @param name a string.
+#'
+#' @return A `when` object.
+#'
+#' @family time definition
+#'
+#' @examples
+#'
+#' td <- when() |>
+#'   define_day_part(hour = c(21:23, 0:4), name = "Night")
+#'
+#' @export
+define_day_part <-
+  function(td,
+           hour,
+           name)
+    UseMethod("define_day_part")
+
+#' @rdname define_day_part
+#'
+#' @export
+define_day_part.when <-
+  function(td,
+           hour = NULL,
+           name = NULL) {
+    stopifnot("'hour' is not defined." = !is.null(hour))
+    stopifnot("'hour' is out of bounds." = all(0 <= hour & hour <= 23))
+    stopifnot("'name' must have a single value." = length(name) == 1)
+
+    day_part <- sprintf("%02d", hour)
+    names <- names(td$day_part)
+    names(names) <- td$day_part
+    names[day_part] <- name
+    names(td$day_part) <- names
+    td
+  }

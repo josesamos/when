@@ -96,6 +96,9 @@ pander::pandoc.table(rbind(head(time, 5), tail(time, 5)),
 | 86399 | 23:59:58 |  23  |   59   |   58   |  Night   |
 | 86400 | 23:59:59 |  23  |   59   |   59   |  Night   |
 
+`day_part` is predefined in English. Literals or hours can be changed
+using a configuration function.
+
 In addition to obtaining them as `tibble`, we can export the tables to
 files in *csv* or *xlsx* format. They can also be exported directly to
 any Relational DBMS.

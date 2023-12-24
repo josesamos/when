@@ -48,15 +48,14 @@ td <- when() |>
 \seealso{
 Other time definition: 
 \code{\link{configure_dimension}()},
-\code{\link{define_day_part}()},
 \code{\link{define_instances}()},
+\code{\link{get_day_part}()},
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},
 \code{\link{include_month_level}()},
-\code{\link{include_surrogate_key}()},
 \code{\link{include_time_level}()},
 \code{\link{include_year_level}()},
-\code{\link{time_seconds}},
-\code{\link{when}()}
+\code{\link{set_day_part}()},
+\code{\link{time_seconds}}
 }
 \concept{time definition}

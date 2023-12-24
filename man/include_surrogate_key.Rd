@@ -12,13 +12,14 @@ include_surrogate_key(td, surrogate_key)
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{surrogate_key}{A boolean, include a surrogate key in the table.}
+\item{surrogate_key}{A boolean, include a surrogate key in the dimension table.}
 }
 \value{
 A \code{when} object.
 }
 \description{
-Include surrogate_key.
+Include a generated key in the dimension table. The default name is 'id'. Later
+we can rename all the fields in the dimension table.
 }
 \examples{
 
@@ -27,17 +28,7 @@ td <- when() |>
 
 }
 \seealso{
-Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{define_day_part}()},
-\code{\link{define_instances}()},
-\code{\link{include_date_levels}()},
-\code{\link{include_day_level}()},
-\code{\link{include_month_level}()},
-\code{\link{include_time_level}()},
-\code{\link{include_week_level}()},
-\code{\link{include_year_level}()},
-\code{\link{time_seconds}},
+Other dimension definition: 
 \code{\link{when}()}
 }
-\concept{time definition}
+\concept{dimension definition}

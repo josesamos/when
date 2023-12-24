@@ -50,9 +50,9 @@ include_time_level.when <-
   }
 
 
-#' Define day part
+#' Set day part
 #'
-#' Define day part.
+#' Set day part.
 #'
 #' @param td A `when` object.
 #' @param hour A number.
@@ -65,19 +65,19 @@ include_time_level.when <-
 #' @examples
 #'
 #' td <- when() |>
-#'   define_day_part(hour = c(21:23, 0:4), name = "Night")
+#'   set_day_part(hour = c(21:23, 0:4), name = "Night")
 #'
 #' @export
-define_day_part <-
+set_day_part <-
   function(td,
            hour,
            name)
-    UseMethod("define_day_part")
+    UseMethod("set_day_part")
 
-#' @rdname define_day_part
+#' @rdname set_day_part
 #'
 #' @export
-define_day_part.when <-
+set_day_part.when <-
   function(td,
            hour = NULL,
            name = NULL) {
@@ -85,10 +85,36 @@ define_day_part.when <-
     stopifnot("'hour' is out of bounds." = all(0 <= hour & hour <= 23))
     stopifnot("'name' must have a single value." = length(name) == 1)
 
-    day_part <- sprintf("%02d", hour)
-    names <- names(td$day_part)
-    names(names) <- td$day_part
-    names[day_part] <- name
-    names(td$day_part) <- names
+    hour <- sprintf("%02d", hour)
+    td$day_part[hour]<- name
     td
+  }
+
+
+#' Get day part
+#'
+#' Get day part.
+#'
+#' @param td A `when` object.
+#'
+#' @return A named vector.
+#'
+#' @family time definition
+#'
+#' @examples
+#'
+#' dp <- when() |>
+#'   get_day_part()
+#'
+#' @export
+get_day_part <-
+  function(td)
+    UseMethod("get_day_part")
+
+#' @rdname get_day_part
+#'
+#' @export
+get_day_part.when <-
+  function(td) {
+    td$day_part
   }

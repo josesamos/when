@@ -8,6 +8,12 @@
 #'
 #' Creates a `when` object.
 #'
+#' Using the parameters of this function we can configure practically  all the
+#' elements of the dimension. Alternatively, we can use the configuration functions
+#' to define the available options.
+#'
+#' We discuss the parameters in each of the specific configuration functions.
+#'
 #' @param name A string, table name.
 #' @param type A string, type of calendar (NULL, 'iso', 'epi' or 'time').
 #' @param locale A locale, to use for day and month names.
@@ -18,11 +24,13 @@
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
-#' td <- when()
+#' td_1 <- when()
+#'
+#' td_2 <- when(type = 'time')
 #'
 #' @export
 when <- function(name = NULL,
@@ -79,8 +87,9 @@ when <- function(name = NULL,
   } else {
     table_name = name
   }
-  day_part <- sprintf("%02d", 0:23)
-  names(day_part) <-
+  stopifnot("'name' must have a single value." = length(table_name) == 1)
+
+  day_part <-
     c(
       rep('Night', 5),
       rep('Morning', 7),
@@ -88,6 +97,7 @@ when <- function(name = NULL,
       rep('Evening', 4),
       rep('Night', 3)
     )
+  names(day_part) <- sprintf("%02d", 0:23)
 
   td <- structure(
     list(

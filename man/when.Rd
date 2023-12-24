@@ -35,23 +35,22 @@ A \code{when} object.
 \description{
 Creates a \code{when} object.
 }
+\details{
+Using the parameters of this function we can configure practically  all the
+elements of the dimension. Alternatively, we can use the configuration functions
+to define the available options.
+
+We discuss the parameters in each of the specific configuration functions.
+}
 \examples{
 
-td <- when()
+td_1 <- when()
+
+td_2 <- when(type = 'time')
 
 }
 \seealso{
-Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{define_day_part}()},
-\code{\link{define_instances}()},
-\code{\link{include_date_levels}()},
-\code{\link{include_day_level}()},
-\code{\link{include_month_level}()},
-\code{\link{include_surrogate_key}()},
-\code{\link{include_time_level}()},
-\code{\link{include_week_level}()},
-\code{\link{include_year_level}()},
-\code{\link{time_seconds}}
+Other dimension definition: 
+\code{\link{include_surrogate_key}()}
 }
-\concept{time definition}
+\concept{dimension definition}

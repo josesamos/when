@@ -358,10 +358,8 @@ get_data <- function(td, values, fields) {
         data[[f]] <- substr(values, 7, 8)
       },
       day_part = {
-        day_part <- names(td$day_part)
-        names(day_part) <- td$day_part
         h <- substr(values, 1, 2)
-        data[[f]] <- day_part[h]
+        data[[f]] <- td$day_part[h]
       },
       {
         stop(sprintf("Field '%s' is not considered.", f))

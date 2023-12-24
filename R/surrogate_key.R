@@ -1,13 +1,14 @@
 #' Include surrogate_key
 #'
-#' Include surrogate_key.
+#' Include a generated key in the dimension table. The default name is 'id'. Later
+#' we can rename all the fields in the dimension table.
 #'
 #' @param td A `when` object.
-#' @param surrogate_key A boolean, include a surrogate key in the table.
+#' @param surrogate_key A boolean, include a surrogate key in the dimension table.
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'

@@ -60,9 +60,9 @@ validate_type <- function(td, type) {
     td$week_level <- FALSE
     td$month_level <- FALSE
     td$year_level <- FALSE
-    td$hour_level <- TRUE
+    td$time_level <- TRUE
   } else {
-    td$hour_level <- FALSE
+    td$time_level <- FALSE
   }
   td$type <- type
   td

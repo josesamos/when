@@ -38,9 +38,10 @@ when <- function(name = NULL,
   week_level <- TRUE
   month_level <- TRUE
   year_level <- TRUE
-  hour_level <- FALSE
+  time_level <- FALSE
   include_year <- TRUE
   include_decade <- FALSE
+  include_week_date <- FALSE
   include_week <- TRUE
   include_year_week <- TRUE
   include_month <- TRUE
@@ -87,7 +88,7 @@ when <- function(name = NULL,
       values = values,
       surrogate_key = surrogate_key,
       week_starts_monday = week_starts_monday,
-      levels = c("hour", "day", "week", "month", "year"),
+      levels = c("time", "day", "week", "month", "year"),
 
       year_level = year_level,
       year_level_names = c("year", "decade"),
@@ -95,7 +96,8 @@ when <- function(name = NULL,
       include_decade = include_decade,
 
       week_level = week_level,
-      week_level_names = c("year_week", "week"),
+      week_level_names = c("year_week", "week", "week_date"),
+      include_week_date = include_week_date,
       include_week = include_week,
       include_year_week = include_year_week,
 
@@ -145,8 +147,8 @@ when <- function(name = NULL,
       include_year_day = include_year_day,
       include_date = include_date,
 
-      hour_level = hour_level,
-      hour_level_names = c("time", "hour", "minute", "second"),
+      time_level = time_level,
+      time_level_names = c("time", "hour", "minute", "second"),
       include_time = include_time,
       include_hour = include_hour,
       include_minute = include_minute,

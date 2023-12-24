@@ -46,6 +46,11 @@ generate_table.when <-
 #'
 #' @keywords internal
 get_fields <- function(td) {
+  if (!td$day_level &
+      td$week_level &
+      (td$month_level | td$year_level)) {
+    td$include_week_date <- TRUE
+  }
   fields <- NULL
   for (level in td$levels) {
     if (td[[paste0(level, '_level')]]) {
@@ -102,7 +107,8 @@ get_values <- function(td) {
       }
       if (inc == 1) {
         values <-
-          time_seconds[time_seconds >= td$start & time_seconds <= td$end]
+          time_seconds[time_seconds >= td$start &
+                         time_seconds <= td$end]
       } else {
         while (val < end) {
           values <- c(values, as.character(val))
@@ -111,9 +117,28 @@ get_values <- function(td) {
         values <- c(values, as.character(end))
       }
     } else {
+      if (td$day_level) {
+        inc <- lubridate::days(1)
+      } else if (td$week_level) {
+        inc <- lubridate::weeks(1)
+      } else if (td$month_level) {
+        inc <- base::months(1)
+        val <-
+          lubridate::ymd(paste0(
+            lubridate::year(val),
+            "-",
+            lubridate::month(val),
+            "-",
+            "01"
+          ))
+      } else if (td$year_level) {
+        inc <- lubridate::years(1)
+        val <-
+          lubridate::ymd(paste0(lubridate::year(val), "-", "01", "-", "01"))
+      }
       while (val <= end) {
         values <- c(values, as.character(val))
-        val <- lubridate::ymd(val) + 1
+        val <- lubridate::ymd(val) + inc
       }
     }
   }
@@ -241,6 +266,9 @@ get_data <- function(td, values, fields) {
                  week <- lubridate::week(values)
                })
         data[[f]] <- sprintf("%02d", week)
+      },
+      week_date = {
+        data[[f]] <- values
       },
       year_semester = {
         data[[f]] <-

@@ -97,7 +97,7 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>To obtain a table with dates we indicate the start date and the end date. We can select the level of detail, the attributes to include or the language of the literals for day and month names. In the following example we only indicate the language because it is different from the one we have in the computer’s operating system.</p>
+<p>To obtain a table with dates we indicate the start and end date. Alternatively we can indicate the set of dates to consider. We can select the level of detail, the attributes to include or the language of the literals for day and month names. In the following example we indicate the language because it is different from the one we have in the computer’s operating system.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://josesamos.github.io/when/">when</a></span><span class="op">)</span></span>
 <span></span>
@@ -398,7 +398,7 @@
 </tr>
 </tbody>
 </table>
-<p><code>day_part</code> is predefined in English. Literals or hours can be changed using a configuration function.</p>
+<p><code>day_part</code> is predefined in English. Literals or associated hours can be changed using a configuration function.</p>
 <p>In addition to obtaining them as <code>tibble</code>, we can export the tables to files in <em>csv</em> or <em>xlsx</em> format. They can also be exported directly to any Relational DBMS.</p>
 </div>
 </div>

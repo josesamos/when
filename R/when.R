@@ -81,6 +81,9 @@ when <- function(name = NULL,
     assign(n, dots[[n]])
   }
   include_hour <- TRUE
+  if (!include_minute) {
+    include_second <- FALSE
+  }
 
   if (is.null(name)) {
     table_name = 'when'

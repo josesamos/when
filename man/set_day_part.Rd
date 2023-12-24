@@ -12,15 +12,16 @@ set_day_part(td, hour, name)
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{hour}{A number.}
+\item{hour}{A number, hour number (between 0 and 23).}
 
-\item{name}{a string.}
+\item{name}{a string, name of the part of the day.}
 }
 \value{
 A \code{when} object.
 }
 \description{
-Set day part.
+Using this function we can change the name assigned to the hours of the day to
+designate the parts of the day.
 }
 \examples{
 

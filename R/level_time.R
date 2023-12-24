@@ -19,7 +19,7 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   include_time_level()
+#'   include_time_level(include_day_part = FALSE)
 #'
 #' @export
 include_time_level <-
@@ -46,8 +46,8 @@ include_time_level.when <-
     td$include_time <- include_time
     td$include_minute <- include_minute
     td$include_second <- include_second
-    if (td$include_second) {
-      td$include_minute <- TRUE
+    if (!td$include_minute) {
+      td$include_second <- FALSE
     }
     td$include_day_part <- include_day_part
     td
@@ -56,11 +56,12 @@ include_time_level.when <-
 
 #' Set day part
 #'
-#' Set day part.
+#' Using this function we can change the name assigned to the hours of the day to
+#' designate the parts of the day.
 #'
 #' @param td A `when` object.
-#' @param hour A number.
-#' @param name a string.
+#' @param hour A number, hour number (between 0 and 23).
+#' @param name a string, name of the part of the day.
 #'
 #' @return A `when` object.
 #'

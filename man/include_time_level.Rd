@@ -46,7 +46,7 @@ included the 'minute' attribute will also be automatically included.
 \examples{
 
 td <- when() |>
-  include_time_level()
+  include_time_level(include_day_part = FALSE)
 
 }
 \seealso{

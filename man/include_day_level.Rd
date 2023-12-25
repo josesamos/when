@@ -63,19 +63,32 @@ of the week in abbreviated version.}
 A \code{when} object.
 }
 \description{
-Include day level.
+When the dimension is defined as a date type, using this function we can select
+the day level and its attributes to include in it: date, month_day, week_day,
+quarter_day and year_day.
+}
+\details{
+For the week_day we have the day number, its name and the name abbreviation.
+So that the order of the names corresponds to the alphabetical order, the
+combination of day number and name and/or abbreviation is included.
 }
 \examples{
 
 td <- when() |>
-  include_day_level()
+  include_day_level(include_day_abbr = FALSE,
+                    include_day_num_abbr = FALSE)
 
 }
 \seealso{
-Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{define_instances}()},
+Other dimension definition: 
+\code{\link{get_day_part}()},
+\code{\link{include_date_levels}()},
 \code{\link{include_month_level}()},
-\code{\link{time_seconds}}
+\code{\link{include_surrogate_key}()},
+\code{\link{include_time_level}()},
+\code{\link{include_week_level}()},
+\code{\link{include_year_level}()},
+\code{\link{set_day_part}()},
+\code{\link{when}()}
 }
-\concept{time definition}
+\concept{dimension definition}

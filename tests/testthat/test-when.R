@@ -18,7 +18,7 @@ test_that("when", {
   td_6 <-
     when(values = c("2023-12-24", "2024-01-02", "2023-12-24", "2024-01-02"))
 
-  expect_equal(when(),
+  expect_equal(when(start = "2023-12-24", end = "2023-12-24"),
                structure(
                  list(
                    type = "std",

@@ -1,6 +1,12 @@
 #' Include day level
 #'
-#' Include day level.
+#' When the dimension is defined as a date type, using this function we can select
+#' the day level and its attributes to include in it: date, month_day, week_day,
+#' quarter_day and year_day.
+#'
+#' For the week_day we have the day number, its name and the name abbreviation.
+#' So that the order of the names corresponds to the alphabetical order, the
+#' combination of day number and name and/or abbreviation is included.
 #'
 #' @param td A `when` object.
 #' @param day_level A boolean, include day level.
@@ -19,40 +25,42 @@
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
 #' td <- when() |>
-#'   include_day_level()
+#'   include_day_level(include_day_abbr = FALSE,
+#'                     include_day_num_abbr = FALSE)
 #'
 #' @export
 include_day_level <- function(td,
-                                day_level,
-                                include_date,
-                                include_month_day,
-                                include_week_day,
-                                include_day_name,
-                                include_day_abbr,
-                                include_day_num_name,
-                                include_day_num_abbr,
-                                include_quarter_day,
-                                include_year_day) UseMethod("include_day_level")
+                              day_level,
+                              include_date,
+                              include_month_day,
+                              include_week_day,
+                              include_day_name,
+                              include_day_abbr,
+                              include_day_num_name,
+                              include_day_num_abbr,
+                              include_quarter_day,
+                              include_year_day)
+  UseMethod("include_day_level")
 
 #' @rdname include_day_level
 #'
 #' @export
 include_day_level.when <- function(td,
-                                              day_level = TRUE,
-                                              include_date = TRUE,
-                                              include_month_day = TRUE,
-                                              include_week_day = TRUE,
-                                              include_day_name = TRUE,
-                                              include_day_abbr = TRUE,
-                                              include_day_num_name = TRUE,
-                                              include_day_num_abbr = TRUE,
-                                              include_quarter_day = TRUE,
-                                              include_year_day = TRUE) {
+                                   day_level = TRUE,
+                                   include_date = TRUE,
+                                   include_month_day = TRUE,
+                                   include_week_day = TRUE,
+                                   include_day_name = TRUE,
+                                   include_day_abbr = TRUE,
+                                   include_day_num_name = TRUE,
+                                   include_day_num_abbr = TRUE,
+                                   include_quarter_day = TRUE,
+                                   include_year_day = TRUE) {
   stopifnot("'day_level' must be of logical type." = is.logical(day_level))
   stopifnot("'include_date' must be of logical type." = is.logical(include_date))
   stopifnot("'include_month_day' must be of logical type." = is.logical(include_month_day))
@@ -75,4 +83,3 @@ include_day_level.when <- function(td,
   td$include_year_day <- include_year_day
   td
 }
-

@@ -26,13 +26,13 @@ include_month_level(
   include_month = TRUE,
   include_year_month = TRUE,
   include_month_name = TRUE,
-  include_month_abbr = FALSE,
+  include_month_abbr = TRUE,
   include_month_num_name = TRUE,
-  include_month_num_abbr = FALSE,
-  include_quarter = FALSE,
-  include_year_quarter = FALSE,
-  include_semester = FALSE,
-  include_year_semester = FALSE
+  include_month_num_abbr = TRUE,
+  include_quarter = TRUE,
+  include_year_quarter = TRUE,
+  include_semester = TRUE,
+  include_year_semester = TRUE
 )
 }
 \arguments{
@@ -65,19 +65,33 @@ abbreviated version.}
 A \code{when} object.
 }
 \description{
-Include month level.
+When the dimension is defined as a date type, using this function we can select
+the month level and its attributes to include in it: month, quarter and semester.
+}
+\details{
+We can also obtain the combination of the year with the mentioned attributes.
+
+For the month we have the month number in the year, its name and the abbreviation
+of the name. So that the order of the names corresponds to the alphabetical order,
+the combination of month number and name and/or abbreviation is included.
 }
 \examples{
 
 td <- when() |>
-  include_month_level()
+  include_month_level(include_month_abbr = FALSE,
+                      include_month_num_abbr = FALSE)
 
 }
 \seealso{
-Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{define_instances}()},
+Other dimension definition: 
+\code{\link{get_day_part}()},
+\code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},
-\code{\link{time_seconds}}
+\code{\link{include_surrogate_key}()},
+\code{\link{include_time_level}()},
+\code{\link{include_week_level}()},
+\code{\link{include_year_level}()},
+\code{\link{set_day_part}()},
+\code{\link{when}()}
 }
-\concept{time definition}
+\concept{dimension definition}

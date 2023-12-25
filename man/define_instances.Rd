@@ -33,8 +33,6 @@ td <- when() |>
 \seealso{
 Other time definition: 
 \code{\link{configure_dimension}()},
-\code{\link{include_day_level}()},
-\code{\link{include_month_level}()},
 \code{\link{time_seconds}}
 }
 \concept{time definition}

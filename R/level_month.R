@@ -1,6 +1,13 @@
 #' Include month level
 #'
-#' Include month level.
+#' When the dimension is defined as a date type, using this function we can select
+#' the month level and its attributes to include in it: month, quarter and semester.
+#'
+#' We can also obtain the combination of the year with the mentioned attributes.
+#'
+#' For the month we have the month number in the year, its name and the abbreviation
+#' of the name. So that the order of the names corresponds to the alphabetical order,
+#' the combination of month number and name and/or abbreviation is included.
 #'
 #' @param td A `when` object.
 #' @param month_level A boolean, include month level.
@@ -18,12 +25,13 @@
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
 #' td <- when() |>
-#'   include_month_level()
+#'   include_month_level(include_month_abbr = FALSE,
+#'                       include_month_num_abbr = FALSE)
 #'
 #' @export
 include_month_level <-
@@ -39,7 +47,7 @@ include_month_level <-
            include_year_quarter,
            include_semester,
            include_year_semester)
-    UseMethod("include_month_level")
+UseMethod("include_month_level")
 
 #' @rdname include_month_level
 #'
@@ -50,13 +58,13 @@ include_month_level.when <-
            include_month = TRUE,
            include_year_month = TRUE,
            include_month_name = TRUE,
-           include_month_abbr = FALSE,
+           include_month_abbr = TRUE,
            include_month_num_name = TRUE,
-           include_month_num_abbr = FALSE,
-           include_quarter = FALSE,
-           include_year_quarter = FALSE,
-           include_semester = FALSE,
-           include_year_semester = FALSE) {
+           include_month_num_abbr = TRUE,
+           include_quarter = TRUE,
+           include_year_quarter = TRUE,
+           include_semester = TRUE,
+           include_year_semester = TRUE) {
     stopifnot("'month_level' must be of logical type." = is.logical(month_level))
     stopifnot("'include_month' must be of logical type." = is.logical(include_month))
     stopifnot("'include_year_month' must be of logical type." = is.logical(include_year_month))

@@ -22,17 +22,30 @@ define_instances(td, start, end, values)
 A \code{when} object.
 }
 \description{
-Define instances.
+Using this function we can define the instances from which the dimension will
+be generated according to the rest of its defined characteristics.
+}
+\details{
+We must indicate dates or date components in ISO 8601 format (yyyy-mm-dd). The
+times in hh:mm:ss format.
 }
 \examples{
 
 td <- when() |>
-  define_instances()
+  define_instances(start = "2020", end = "2030")
 
 }
 \seealso{
-Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{time_seconds}}
+Other dimension definition: 
+\code{\link{get_day_part}()},
+\code{\link{include_date_levels}()},
+\code{\link{include_day_level}()},
+\code{\link{include_month_level}()},
+\code{\link{include_surrogate_key}()},
+\code{\link{include_time_level}()},
+\code{\link{include_week_level}()},
+\code{\link{include_year_level}()},
+\code{\link{set_day_part}()},
+\code{\link{when}()}
 }
-\concept{time definition}
+\concept{dimension definition}

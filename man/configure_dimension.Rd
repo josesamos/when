@@ -40,7 +40,6 @@ td <- when() |>
 }
 \seealso{
 Other time definition: 
-\code{\link{define_instances}()},
 \code{\link{time_seconds}}
 }
 \concept{time definition}

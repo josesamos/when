@@ -15,8 +15,7 @@ Time in seconds of a day
 }
 \seealso{
 Other time definition: 
-\code{\link{configure_dimension}()},
-\code{\link{define_instances}()}
+\code{\link{configure_dimension}()}
 }
 \concept{time definition}
 \keyword{datasets}

@@ -51,6 +51,7 @@ td_2 <- when(type = 'time')
 }
 \seealso{
 Other dimension definition: 
+\code{\link{define_instances}()},
 \code{\link{get_day_part}()},
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},

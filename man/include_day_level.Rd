@@ -81,6 +81,7 @@ td <- when() |>
 }
 \seealso{
 Other dimension definition: 
+\code{\link{define_instances}()},
 \code{\link{get_day_part}()},
 \code{\link{include_date_levels}()},
 \code{\link{include_month_level}()},

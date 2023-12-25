@@ -204,6 +204,8 @@ validate_start_end <- function(td, start, end) {
   if ((!is.null(start)) & (!is.null(end))) {
     if (td$type == 'time') {
       if (start != end) {
+        start <- complete_times(start)
+        end <- complete_times(end)
         start <- hms::as_hms(start)
         end <- hms::as_hms(end)
       } else {
@@ -211,6 +213,8 @@ validate_start_end <- function(td, start, end) {
         end <- hms::as_hms("23:59:59")
       }
     } else {
+      start <- complete_dates(start)
+      end <- complete_dates(end)
       start <- lubridate::ymd(start)
       end <- lubridate::ymd(end)
     }
@@ -233,11 +237,47 @@ validate_start_end <- function(td, start, end) {
 validate_values <- function(td, values) {
   if (!is.null(values)) {
     if (td$type == 'time') {
+      values <- complete_times(values)
       values <- hms::as_hms(values)
     } else {
+      values <- complete_dates(values)
       values <- lubridate::ymd(values)
     }
     td$values <- sort(unique(values))
   }
   td
+}
+
+
+#' Complete time values
+#'
+#' @param values A vector of string.
+#'
+#' @return A vector of string.
+#'
+#' @keywords internal
+complete_times <- function(values) {
+  values <- as.character(values)
+  len <- nchar(values)
+  values[len == 1] <- sprintf("%02d", as.integer(values[len == 1]))
+  len <- nchar(values)
+  values[len == 2] <- paste0(values[len == 2], ":00:00")
+  values[len == 5] <- paste0(values[len == 5], ":00")
+  values
+}
+
+
+#' Complete date values
+#'
+#' @param values A vector of string.
+#'
+#' @return A vector of string.
+#'
+#' @keywords internal
+complete_dates <- function(values) {
+  values <- as.character(values)
+  len <- nchar(values)
+  values[len == 4] <- paste0(values[len == 4], "-01-01")
+  values[len == 7] <- paste0(values[len == 7], "-01")
+  values
 }

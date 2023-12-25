@@ -31,12 +31,19 @@ times in hh:mm:ss format.
 }
 \examples{
 
-td <- when() |>
+td_1 <- when() |>
   define_instances(start = "2020", end = "2030")
+
+td_1 <- when() |>
+  define_instances(start = "2020-01-01", end = "2030-01-01")
+
+td_2 <- when(type = 'time') |>
+  define_instances(values = 1:5)
 
 }
 \seealso{
 Other dimension definition: 
+\code{\link{configure_dimension}()},
 \code{\link{get_day_part}()},
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},

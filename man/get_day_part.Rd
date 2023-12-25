@@ -26,6 +26,7 @@ dp <- when() |>
 }
 \seealso{
 Other dimension definition: 
+\code{\link{configure_dimension}()},
 \code{\link{define_instances}()},
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},

@@ -26,6 +26,8 @@ table <- when() |>
 
 }
 \seealso{
+\code{\link{when}}, \code{\link{generate_table}}
+
 Other exporting results: 
 \code{\link{get_table_csv}()},
 \code{\link{get_table_rdb}()},

@@ -25,6 +25,7 @@
 #' @return A `when` object.
 #'
 #' @family dimension definition
+#' @seealso \code{\link{generate_table}}, \code{\link{get_table}}
 #'
 #' @examples
 #'
@@ -33,7 +34,7 @@
 #' td_2 <- when(type = 'time')
 #'
 #' @export
-when <- function(name = NULL,
+when <- function(name = 'when',
                  type = NULL,
                  locale = Sys.getlocale("LC_TIME"),
                  start = lubridate::today(),

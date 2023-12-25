@@ -5,7 +5,7 @@
 \title{\code{when} S3 class}
 \usage{
 when(
-  name = NULL,
+  name = "when",
   type = NULL,
   locale = Sys.getlocale("LC_TIME"),
   start = lubridate::today(),
@@ -50,7 +50,10 @@ td_2 <- when(type = 'time')
 
 }
 \seealso{
+\code{\link{generate_table}}, \code{\link{get_table}}
+
 Other dimension definition: 
+\code{\link{configure_dimension}()},
 \code{\link{define_instances}()},
 \code{\link{get_day_part}()},
 \code{\link{include_date_levels}()},

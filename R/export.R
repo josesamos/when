@@ -7,6 +7,7 @@
 #' @return A `tibble`, the table.
 #'
 #' @family exporting results
+#' @seealso \code{\link{when}}, \code{\link{generate_table}}
 #'
 #' @examples
 #'

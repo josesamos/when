@@ -9,7 +9,7 @@ configure_dimension(td, name, type, locale, week_starts_monday)
 
 \method{configure_dimension}{when}(
   td,
-  name = NULL,
+  name = "when",
   type = NULL,
   locale = Sys.getlocale("LC_TIME"),
   week_starts_monday = TRUE
@@ -30,16 +30,28 @@ configure_dimension(td, name, type, locale, week_starts_monday)
 A \code{when} object.
 }
 \description{
-Configure dimension.
+With this function we can define the characteristics of the dimension that do
+not depend on the levels it includes, such as the name, type, location or the
+day the week begins.
 }
 \examples{
 
 td <- when() |>
-  configure_dimension()
+  configure_dimension(name = 'when', type = 'time')
 
 }
 \seealso{
-Other time definition: 
-\code{\link{time_seconds}}
+Other dimension definition: 
+\code{\link{define_instances}()},
+\code{\link{get_day_part}()},
+\code{\link{include_date_levels}()},
+\code{\link{include_day_level}()},
+\code{\link{include_month_level}()},
+\code{\link{include_surrogate_key}()},
+\code{\link{include_time_level}()},
+\code{\link{include_week_level}()},
+\code{\link{include_year_level}()},
+\code{\link{set_day_part}()},
+\code{\link{when}()}
 }
-\concept{time definition}
+\concept{dimension definition}

@@ -13,9 +13,5 @@ time_seconds
 \description{
 Time in seconds of a day
 }
-\seealso{
-Other time definition: 
-\code{\link{configure_dimension}()}
-}
 \concept{time definition}
 \keyword{datasets}

@@ -7,6 +7,7 @@
 #' @return A `when` object.
 #'
 #' @family obtaining results
+#' @seealso \code{\link{when}}, \code{\link{get_table}}
 #'
 #' @examples
 #'

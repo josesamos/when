@@ -1,6 +1,8 @@
 #' Configure dimension
 #'
-#' Configure dimension.
+#' With this function we can define the characteristics of the dimension that do
+#' not depend on the levels it includes, such as the name, type, location or the
+#' day the week begins.
 #'
 #' @param td A `when` object.
 #' @param name A string, table name.
@@ -10,12 +12,12 @@
 #'
 #' @return A `when` object.
 #'
-#' @family time definition
+#' @family dimension definition
 #'
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_dimension()
+#'   configure_dimension(name = 'when', type = 'time')
 #'
 #' @export
 configure_dimension <-
@@ -26,17 +28,20 @@ configure_dimension <-
 #'
 #' @export
 configure_dimension.when <- function(td,
-                                name = NULL,
+                                name = 'when',
                                 type = NULL,
                                 locale = Sys.getlocale("LC_TIME"),
                                 week_starts_monday = TRUE) {
-  if (!is.null(name)) {
-    table_name = name
+  if (is.null(name) & is.null(td$table_name)) {
+    td$table_name = 'when'
+  } else {
+    stopifnot("'name' must have a single value." = length(name) == 1)
+    td$table_name = name
   }
   td <- validate_type(td, type)
   stopifnot("'week_starts_monday' must be of logical type." = is.logical(week_starts_monday))
-  td$locale <- locale
   td$week_starts_monday <- week_starts_monday
+  td$locale <- locale
   td
 }
 

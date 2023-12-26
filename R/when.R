@@ -127,16 +127,16 @@ when <- function(name = 'when',
 
       month_level = month_level,
       month_level_names = c(
-        "year_semester",
-        "semester",
-        "year_quarter",
-        "quarter",
         "year_month",
         "month",
         "month_name",
         "month_num_name",
         "month_abbr",
-        "month_num_abbr"
+        "month_num_abbr",
+        "year_quarter",
+        "quarter",
+        "year_semester",
+        "semester"
       ),
       include_month = include_month,
       include_year_month = include_year_month,

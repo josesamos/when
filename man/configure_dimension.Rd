@@ -34,6 +34,21 @@ With this function we can define the characteristics of the dimension that do
 not depend on the levels it includes, such as the name, type, location or the
 day the week begins.
 }
+\details{
+The \code{week_starts_monday} parameter only affects the numbering of days, not weeks.
+
+The week number associated with each date depends on the type of date dimension
+selected: standard (NULL), ISO 8601 ('iso') or epidemiological ('epi').
+
+The standard week numbers blocks of 7 days beginning on January 1. The last week
+of the year can be less than 7 days long.
+
+The ISO 8601 week numbers blocks of 7 days from Monday to Sunday. The first and
+last week of the year can contain days from the previous or next year.
+
+The epidemiological week is like ISO 8601 only that it considers that the week
+begins on Sunday, it numbers blocks from Sunday to Monday.
+}
 \examples{
 
 td <- when() |>

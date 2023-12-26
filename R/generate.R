@@ -1,6 +1,7 @@
 #' Generate table
 #'
-#' Generate the table of the defined dimension.
+#' Once all the characteristics of the dimension have been defined, we can generate
+#' its table according to them using this function.
 #'
 #' @param td A `when` object.
 #'
@@ -11,7 +12,7 @@
 #'
 #' @examples
 #'
-#' table <- when() |>
+#' td <- when() |>
 #'   generate_table()
 #'
 #' @importFrom rlang :=
@@ -108,8 +109,8 @@ get_values <- function(td) {
       }
       if (inc == 1) {
         values <-
-          time_seconds[time_seconds >= td$start &
-                         time_seconds <= td$end]
+          time_seconds[time_seconds >= as.character(td$start) &
+                         time_seconds <= as.character(td$end)]
       } else {
         while (val < end) {
           values <- c(values, as.character(val))

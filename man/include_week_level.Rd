@@ -43,6 +43,18 @@ the week level and its attributes to include in it: week, year_week and week_dat
 \details{
 For the first and last days of the year, the year associated with the week may
 be different from the year of the date, depending on the date type selected.
+
+The week number associated with each date depends on the type of date dimension
+selected: standard (NULL), ISO 8601 ('iso') or epidemiological ('epi').
+
+The standard week numbers blocks of 7 days beginning on January 1. The last week
+of the year can be less than 7 days long.
+
+The ISO 8601 week numbers blocks of 7 days from Monday to Sunday. The first and
+last week of the year can contain days from the previous or next year.
+
+The epidemiological week is like ISO 8601 only that it considers that the week
+begins on Sunday, it numbers blocks from Sunday to Monday.
 }
 \examples{
 

@@ -16,11 +16,12 @@ generate_table(td)
 A \code{when} object.
 }
 \description{
-Generate the table of the defined dimension.
+Once all the characteristics of the dimension have been defined, we can generate
+its table according to them using this function.
 }
 \examples{
 
-table <- when() |>
+td <- when() |>
   generate_table()
 
 }

@@ -52,6 +52,9 @@
     <loc>https://josesamos.github.io/when/reference/get_table.html</loc>
   </url>
   <url>
+    <loc>https://josesamos.github.io/when/reference/get_table_attribute_names.html</loc>
+  </url>
+  <url>
     <loc>https://josesamos.github.io/when/reference/get_table_csv.html</loc>
   </url>
   <url>
@@ -88,10 +91,10 @@
     <loc>https://josesamos.github.io/when/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://josesamos.github.io/when/reference/set_attribute_names.html</loc>
+    <loc>https://josesamos.github.io/when/reference/set_day_part.html</loc>
   </url>
   <url>
-    <loc>https://josesamos.github.io/when/reference/set_day_part.html</loc>
+    <loc>https://josesamos.github.io/when/reference/set_table_attribute_names.html</loc>
   </url>
   <url>
     <loc>https://josesamos.github.io/when/reference/time_seconds.html</loc>

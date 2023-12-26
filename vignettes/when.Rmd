@@ -1,8 +1,10 @@
 ---
-title: "when"
+title: "Generating the *When Dimension*"
+date: "2023-12-26"
 output: rmarkdown::html_vignette
+bibliography: bibliography.bib
 vignette: >
-  %\VignetteIndexEntry{when}
+  %\VignetteIndexEntry{Generating the *When Dimension*}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,6 +16,37 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
+
+The *When Dimension* plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed focus of attention have occurred.
+
+In @kimball1996data, the term "Time Dimension" was used to call this dimension, regardless of its granularity. In @kimball2013data it is indicated that for 10 years the term "Date Dimension" has been used to call this dimension at the date level and "Time Dimension" or "Time-of-day Dimension" is used when the granularity is the time. However, the term "Time Dimension" has continued to be used regardless of granularity, as it is in @adamson2010star. For this reason here we refer to this dimension as "When Dimension", a term independent of granularity.
+
+Although conceptually the date and time can be represented together in a single dimension, in ROLAP (*Relational On-Line Analytical Processing*) systems, it is common to implement these concepts separately, sometimes in separate tables "to avoid a row count explosion in the date dimension" [@kimball2013data].
+
+Likewise, in @kimball2013data these dimensions are considered *static dimensions*: they are built at the beginning of the project for the period under consideration and are referenced when adding the instances to the fact table. As mentioned there: "Typically, these dimensions are built in an afternoon with a spreadsheet."
+
+The purpose of the `when` package is to assist in the implementation of the ***When Dimension*** regardless of its granularity. In particular, it supports the generation of tables with the granularity needed (second, minute, hour, date, week, month or year) in Multidimensional Systems implemented on a ROLAP star database. We consider separate tables for time data and data obtained from date.
+
+It can be used to generate tables *statically*, indicating a period, or *dynamically*, indicating data series, from which other attributes are generated to facilitate query operations.
+
+The rest of this document is structured as follows: First, . The following is an illustrative example of how the package works, to show usage of features it offers. Finally, the document ends with conclusions and bibliography.
+
+
+
 ```{r setup}
 library(when)
 ```
+
+
+
+# Conclusions
+
+`rolap` package offers a set of operations that allow us to transform tables into star databases.  From several star databases you can define a constellation with conformed dimensions.
+
+Operations have been designed to be intuitive and easy to use. The result greatly facilitates the data transformation process for the exposed situation.
+
+The implementation of the multidimensional database obtained can be exported to work with multidimensional analysis tools on spreadsheets or RDBMS.
+
+# Bibliography
+

@@ -6,14 +6,15 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The *When* dimension plays a fundamental role in *Multidimensional
+The *When Dimension*[^1] plays a fundamental role in *Multidimensional
 Systems*, it allows us to express **when** the analysed focus of
 attention have occurred.
 
 The purpose of the `when` package is to assist in the implementation of
-the *When* dimension in multidimensional systems. In particular, it
-supports the generation of tables for the implementation of **date** and
-**time** in ROLAP (*Relational On-Line Analytical Processing*) systems.
+the When Dimension. In particular, it supports the generation of tables
+with the granularity needed (second, minute, hour, date, week, month or
+year) in Multidimensional Systems implemented on a ROLAP (*Relational
+On-Line Analytical Processing*) star database.
 
 ## Installation
 
@@ -55,16 +56,16 @@ pander::pandoc.table(date, split.table = Inf)
 
 | id  |    date    | month_day | week_day | day_name  | day_num_name | year_week | week | year_month | month | month_name | month_num_name | year |
 |:---:|:----------:|:---------:|:--------:|:---------:|:------------:|:---------:|:----:|:----------:|:-----:|:----------:|:--------------:|:----:|
-|  1  | 2023-12-24 |    24     |    7     |  Sunday   |   7-Sunday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  2  | 2023-12-25 |    25     |    1     |  Monday   |   1-Monday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  3  | 2023-12-26 |    26     |    2     |  Tuesday  |  2-Tuesday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  4  | 2023-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  5  | 2023-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  6  | 2023-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  7  | 2023-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  8  | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  9  | 2024-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-| 10  | 2024-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  1  | 2023-12-26 |    26     |    2     |  Tuesday  |  2-Tuesday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  2  | 2023-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  3  | 2023-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  4  | 2023-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  5  | 2023-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  6  | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  7  | 2024-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  8  | 2024-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  9  | 2024-01-03 |    03     |    3     | Wednesday | 3-Wednesday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+| 10  | 2024-01-04 |    04     |    4     | Thursday  |  4-Thursday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
 
 If we want a table with time, we indicate the type using a parameter. By
 default we get all the seconds of a day but we can also configure a
@@ -72,7 +73,7 @@ different period or level of detail.
 
 ``` r
 time <-
-  when(type = 'time') |>
+  when(type = 'time', start = 8, end = 17) |>
   generate_table() |>
   get_table()
 ```
@@ -84,18 +85,18 @@ pander::pandoc.table(rbind(head(time, 5), tail(time, 5)),
                      split.table = Inf)
 ```
 
-|  id   |   time   | hour | minute | second | day_part |
-|:-----:|:--------:|:----:|:------:|:------:|:--------:|
-|   1   | 00:00:00 |  00  |   00   |   00   |  Night   |
-|   2   | 00:00:01 |  00  |   00   |   01   |  Night   |
-|   3   | 00:00:02 |  00  |   00   |   02   |  Night   |
-|   4   | 00:00:03 |  00  |   00   |   03   |  Night   |
-|   5   | 00:00:04 |  00  |   00   |   04   |  Night   |
-| 86396 | 23:59:55 |  23  |   59   |   55   |  Night   |
-| 86397 | 23:59:56 |  23  |   59   |   56   |  Night   |
-| 86398 | 23:59:57 |  23  |   59   |   57   |  Night   |
-| 86399 | 23:59:58 |  23  |   59   |   58   |  Night   |
-| 86400 | 23:59:59 |  23  |   59   |   59   |  Night   |
+|  id   |   time   | hour | minute | second | day_part  |
+|:-----:|:--------:|:----:|:------:|:------:|:---------:|
+|   1   | 08:00:00 |  08  |   00   |   00   |  Morning  |
+|   2   | 08:00:01 |  08  |   00   |   01   |  Morning  |
+|   3   | 08:00:02 |  08  |   00   |   02   |  Morning  |
+|   4   | 08:00:03 |  08  |   00   |   03   |  Morning  |
+|   5   | 08:00:04 |  08  |   00   |   04   |  Morning  |
+| 32397 | 16:59:56 |  16  |   59   |   56   | Afternoon |
+| 32398 | 16:59:57 |  16  |   59   |   57   | Afternoon |
+| 32399 | 16:59:58 |  16  |   59   |   58   | Afternoon |
+| 32400 | 16:59:59 |  16  |   59   |   59   | Afternoon |
+| 32401 | 17:00:00 |  17  |   00   |   00   |  Evening  |
 
 `day_part` is predefined in English. Literals or associated hours can be
 changed using a configuration function.
@@ -103,3 +104,5 @@ changed using a configuration function.
 In addition to obtaining them as `tibble`, we can export the tables to
 files in *csv* or *xlsx* format. They can also be exported directly to
 any Relational DBMS.
+
+[^1]: Often called “Time Dimension” or “Date Dimension”.

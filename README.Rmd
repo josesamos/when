@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-The *When* dimension plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed focus of attention have occurred.
+The *When Dimension*^[Often called "Time Dimension" or "Date Dimension".] plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed focus of attention have occurred.
 
-The purpose of the `when` package is to assist in the implementation of the *When* dimension in multidimensional systems. In particular, it supports the generation of tables for the implementation of **date** and **time** in ROLAP (*Relational On-Line Analytical Processing*) systems.
+The purpose of the `when` package is to assist in the implementation of the When Dimension. In particular, it supports the generation of tables with the granularity needed (second, minute, hour, date, week, month or year)  in Multidimensional Systems implemented on a ROLAP (*Relational On-Line Analytical Processing*) star database.
 
 ## Installation
 
@@ -59,7 +59,7 @@ If we want a table with time, we indicate the type using a parameter. By default
 
 ```{r}
 time <-
-  when(type = 'time') |>
+  when(type = 'time', start = 8, end = 17) |>
   generate_table() |>
   get_table()
 ```

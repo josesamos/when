@@ -26,9 +26,15 @@ Although conceptually the date and time can be represented together in a single 
 
 Likewise, in @kimball2013data these dimensions are considered *static dimensions*: they are built at the beginning of the project for the period under consideration and are referenced when adding the instances to the fact table. As mentioned there: "Typically, these dimensions are built in an afternoon with a spreadsheet."
 
-The purpose of the `when` package is to assist in the implementation of the ***When Dimension*** regardless of its granularity. In particular, it supports the generation of tables with the granularity needed (second, minute, hour, date, week, month or year) in Multidimensional Systems implemented on a ROLAP star database. We consider separate tables for time data and data obtained from date.
+The purpose of the `when` package is to assist in the implementation of the ***When Dimension*** in Multidimensional Systems implemented on a ROLAP star database, regardless of its granularity, with the following features:
 
-It can be used to generate tables *statically*, indicating a period, or *dynamically*, indicating data series, from which other attributes are generated to facilitate query operations.
+- It supports the generation of tables with the granularity needed (second, minute, hour, date, week, month or year). 
+
+- We consider separate tables for **time** data and data obtained from **date** to avoid a row count explosion if a single table were used. 
+
+- It can be used to generate tables **statically**, indicating a period, or **dynamically**, indicating data series. 
+
+- In addition to attributes at the selected granularity, other attributes can be added at coarser granularity to facilitate querying.
 
 The rest of this document is structured as follows: First, . The following is an illustrative example of how the package works, to show usage of features it offers. Finally, the document ends with conclusions and bibliography.
 

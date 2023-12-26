@@ -40,16 +40,16 @@ test_that("when", {
                    include_year_week = TRUE,
                    month_level = TRUE,
                    month_level_names = c(
-                     "year_semester",
-                     "semester",
-                     "year_quarter",
-                     "quarter",
                      "year_month",
                      "month",
                      "month_name",
                      "month_num_name",
                      "month_abbr",
-                     "month_num_abbr"
+                     "month_num_abbr",
+                     "year_quarter",
+                     "quarter",
+                     "year_semester",
+                     "semester"
                    ),
                    include_month = TRUE,
                    include_year_month = TRUE,

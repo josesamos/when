@@ -40,6 +40,85 @@ generate_table.when <-
   }
 
 
+#' Set table attribute names
+#'
+#' Rename the attributes of the dimension table. It is especially useful if we want
+#' to export the table, for example, to a database.
+#'
+#' @param td A `when` object.
+#' @param names A string vector.
+#'
+#' @return A `when` object.
+#'
+#' @family obtaining results
+#'
+#' @examples
+#'
+#' table <- when() |>
+#'   set_table_attribute_names()
+#'
+#' @export
+set_table_attribute_names <-
+  function(td, names)
+    UseMethod("set_table_attribute_names")
+
+#' @rdname set_table_attribute_names
+#'
+#' @export
+set_table_attribute_names.when <-
+  function(td, names = NULL) {
+    stopifnot("There are repeated attribute names." = length(names) == length(unique(names)))
+    stopifnot("The table has a different number of attributes." = length(names(td$table)) == length(names))
+    td$attribute_names <- names
+    td
+  }
+
+
+#' Get table attribute names
+#'
+#' Returns the names of the dimension table attributes in string form, so we can
+#' easily use it to rename them if deemed necessary.
+#'
+#' @param td A `when` object.
+#'
+#' @return A string.
+#'
+#' @family obtaining results
+#'
+#' @examples
+#'
+#' names <- when() |>
+#'   get_table_attribute_names()
+#'
+#' @export
+get_table_attribute_names <-
+  function(td)
+    UseMethod("get_table_attribute_names")
+
+#' @rdname get_table_attribute_names
+#'
+#' @export
+get_table_attribute_names.when <-
+  function(td) {
+    if (length(names(td$table)) == length(td$attribute_names)) {
+      names <- td$attribute_names
+    } else {
+      names <- names(td$table)
+    }
+    dt <- "c("
+    for (j in seq_along(names)) {
+      if (j == 1) {
+        sep = ""
+      } else {
+        sep = ", "
+      }
+      dt <- paste(dt, sprintf("'%s'", names[j]), sep = sep)
+    }
+    dt <- paste(dt, ")", sep = "")
+    dt
+  }
+
+
 #' Get the fields according to the defined configuration
 #'
 #' @param td A `when` object.

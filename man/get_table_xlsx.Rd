@@ -18,7 +18,8 @@ get_table_xlsx(td, file)
 A string, name of a file.
 }
 \description{
-Store the table in a xlsx file
+Once all the configuration elements have been defined and the dimension table
+has been generated, using this function we can obtain it in xlsx format.
 }
 \examples{
 
@@ -31,7 +32,6 @@ file <- when() |>
 Other exporting results: 
 \code{\link{get_table_csv}()},
 \code{\link{get_table_rdb}()},
-\code{\link{get_table}()},
-\code{\link{set_attribute_names}()}
+\code{\link{get_table}()}
 }
 \concept{exporting results}

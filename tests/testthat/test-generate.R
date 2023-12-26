@@ -2,6 +2,15 @@ test_that("generate", {
   td_1 <- when(type = 'time') |>
     generate_table()
 
+  names <- td_1 |>
+    get_table_attribute_names()
+
+  td_1_1 <- td_1 |>
+    set_table_attribute_names(c('id1', 'time1', 'hour1', 'minute1', 'second1', 'day_part1'))
+
+  names1 <- td_1_1 |>
+    get_table_attribute_names()
+
   td_2 <- when() |>
     generate_table()
 
@@ -85,6 +94,12 @@ test_that("generate", {
 
   expect_equal(names(td_1$table),
                c("id", "time", "hour", "minute", "second", "day_part"))
+
+  expect_equal(names,
+               "c('id', 'time', 'hour', 'minute', 'second', 'day_part')")
+
+  expect_equal(names1,
+               "c('id1', 'time1', 'hour1', 'minute1', 'second1', 'day_part1')")
 
   expect_equal(nrow(td_2$table),
                1)

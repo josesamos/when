@@ -27,5 +27,9 @@ td <- when() |>
 }
 \seealso{
 \code{\link{when}}, \code{\link{get_table}}
+
+Other obtaining results: 
+\code{\link{get_table_attribute_names}()},
+\code{\link{set_table_attribute_names}()}
 }
 \concept{obtaining results}

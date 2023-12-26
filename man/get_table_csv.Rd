@@ -22,7 +22,8 @@ separator.}
 A string, name of a file.
 }
 \description{
-Store the table in a csv files
+Once all the configuration elements have been defined and the dimension table
+has been generated, using this function we can obtain it in csv format.
 }
 \examples{
 
@@ -35,7 +36,6 @@ file <- when() |>
 Other exporting results: 
 \code{\link{get_table_rdb}()},
 \code{\link{get_table_xlsx}()},
-\code{\link{get_table}()},
-\code{\link{set_attribute_names}()}
+\code{\link{get_table}()}
 }
 \concept{exporting results}

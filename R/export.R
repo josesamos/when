@@ -1,6 +1,7 @@
 #' Get the table of the dimension
 #'
-#' Obtain the table of the defined dimension.
+#' Once all the configuration elements have been defined and the dimension table
+#' has been generated, using this function we can obtain it in `tibble` format.
 #'
 #' @param td A `when` object.
 #'
@@ -27,44 +28,18 @@ get_table.when <-
   function(td) {
     stopifnot("The table must be previously generated using the `generate_table()` function." = !is.null(td$table))
     table <- td$table
-    if (!is.null(td$attribute_names)) {
+    if (length(names(table)) == length(td$attribute_names)) {
       names(table) <- td$attribute_names
     }
     table
   }
 
 
-#' Set attribute names
-#'
-#' @param td A `when` object.
-#' @param names A string vector.
-#'
-#' @return A `when` object.
-#'
-#' @family exporting results
-#'
-#' @examples
-#'
-#' table <- when() |>
-#'   set_attribute_names()
-#'
-#' @export
-set_attribute_names <-
-  function(td, names)
-    UseMethod("set_attribute_names")
-
-#' @rdname set_attribute_names
-#'
-#' @export
-set_attribute_names.when <-
-  function(td, names = NULL) {
-    stopifnot("There are repeated attribute names." = length(names) == length(unique(names)))
-    td$td$attribute_names <- names
-    td
-  }
-
-
 #' Store the table in a relational database
+#'
+#' Once all the configuration elements have been defined and the dimension table
+#' has been generated, using this function we can obtain it in table format in a
+#' Relational DBMS.
 #'
 #' @param td A `when` object.
 #' @param con A `DBI::DBIConnection` object.
@@ -117,6 +92,9 @@ get_table_rdb.when <- function(td, con, overwrite = FALSE) {
 
 #' Store the table in a xlsx file
 #'
+#' Once all the configuration elements have been defined and the dimension table
+#' has been generated, using this function we can obtain it in xlsx format.
+#'
 #' @param td A `when` object.
 #' @param file A string, name of a file.
 #'
@@ -157,6 +135,9 @@ get_table_xlsx.when <- function(td, file = NULL) {
 
 
 #' Store the table in a csv files
+#'
+#' Once all the configuration elements have been defined and the dimension table
+#' has been generated, using this function we can obtain it in csv format.
 #'
 #' @param td A `when` object.
 #' @param file A string, name of a file.

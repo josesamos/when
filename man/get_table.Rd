@@ -16,7 +16,8 @@ get_table(td)
 A \code{tibble}, the table.
 }
 \description{
-Obtain the table of the defined dimension.
+Once all the configuration elements have been defined and the dimension table
+has been generated, using this function we can obtain it in \code{tibble} format.
 }
 \examples{
 
@@ -31,7 +32,6 @@ table <- when() |>
 Other exporting results: 
 \code{\link{get_table_csv}()},
 \code{\link{get_table_rdb}()},
-\code{\link{get_table_xlsx}()},
-\code{\link{set_attribute_names}()}
+\code{\link{get_table_xlsx}()}
 }
 \concept{exporting results}

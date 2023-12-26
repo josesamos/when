@@ -101,6 +101,18 @@ day the week begins.</p>
 <p>A <code>when</code> object.</p>
     </div>
     <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>The <code>week_starts_monday</code> parameter only affects the numbering of days, not weeks.</p>
+<p>The week number associated with each date depends on the type of date dimension
+selected: standard (NULL), ISO 8601 ('iso') or epidemiological ('epi').</p>
+<p>The standard week numbers blocks of 7 days beginning on January 1. The last week
+of the year can be less than 7 days long.</p>
+<p>The ISO 8601 week numbers blocks of 7 days from Monday to Sunday. The first and
+last week of the year can contain days from the previous or next year.</p>
+<p>The epidemiological week is like ISO 8601 only that it considers that the week
+begins on Sunday, it numbers blocks from Sunday to Monday.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other dimension definition: 
 <code><a href="define_instances.html">define_instances</a>()</code>,

@@ -114,15 +114,22 @@ and are referenced when adding the instances to the fact table. As
 mentioned there: “Typically, these dimensions are built in an afternoon
 with a spreadsheet.”</p>
 <p>The purpose of the <code>when</code> package is to assist in the
-implementation of the <strong><em>When Dimension</em></strong>
-regardless of its granularity. In particular, it supports the generation
-of tables with the granularity needed (second, minute, hour, date, week,
-month or year) in Multidimensional Systems implemented on a ROLAP star
-database. We consider separate tables for time data and data obtained
-from date.</p>
-<p>It can be used to generate tables <em>statically</em>, indicating a
-period, or <em>dynamically</em>, indicating data series, from which
-other attributes are generated to facilitate query operations.</p>
+implementation of the <strong><em>When Dimension</em></strong> in
+Multidimensional Systems implemented on a ROLAP star database,
+regardless of its granularity, with the following features:</p>
+<ul>
+<li><p>It supports the generation of tables with the granularity needed
+(second, minute, hour, date, week, month or year).</p></li>
+<li><p>We consider separate tables for <strong>time</strong> data and
+data obtained from <strong>date</strong> to avoid a row count explosion
+if a single table were used.</p></li>
+<li><p>It can be used to generate tables <strong>statically</strong>,
+indicating a period, or <strong>dynamically</strong>, indicating data
+series.</p></li>
+<li><p>In addition to attributes at the selected granularity, other
+attributes can be added at coarser granularity to facilitate
+querying.</p></li>
+</ul>
 <p>The rest of this document is structured as follows: First, . The
 following is an illustrative example of how the package works, to show
 usage of features it offers. Finally, the document ends with conclusions

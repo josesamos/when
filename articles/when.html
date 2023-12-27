@@ -128,15 +128,49 @@ querying.</p></li>
 <p>The rest of this document is structured as follows: First, the
 general process of defining dimensions is presented. Next, a section is
 dedicated to the definition of dimensions based on time and another to
-dimensions based on date. We continue explaining the export of the
-generated tables in various formats. Finally, the document ends with
-conclusions and bibliography.</p>
+dimensions based on date. Finally, the document ends with conclusions
+and bibliography.</p>
 </div>
 <div class="section level2">
 <h2 id="definition-process">Definition process<a class="anchor" aria-label="anchor" href="#definition-process"></a>
 </h2>
+<p>The definition process begins by creating an object of the
+<code>when</code> class.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://josesamos.github.io/when/">when</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://josesamos.github.io/when/">when</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>By default, an object is created based on date, but we can also
+create it based on time by indicating it using the <code>type</code>
+parameter.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span></code></pre></div>
+<p>Virtually all configuration options can be defined using the object
+creation function. They can also be defined later using specific
+functions. For example, using the following combination of functions we
+obtain the same result.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wt_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/configure_dimension.html">configure_dimension</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">wt_2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="definition-of-instances">Definition of instances<a class="anchor" aria-label="anchor" href="#definition-of-instances"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="definition-of-levels">Definition of levels<a class="anchor" aria-label="anchor" href="#definition-of-levels"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="generation-of-the-result">Generation of the result<a class="anchor" aria-label="anchor" href="#generation-of-the-result"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="table-export">Table export<a class="anchor" aria-label="anchor" href="#table-export"></a>
+</h3>
+</div>
 </div>
 <div class="section level2">
 <h2 id="time-based-dimension">Time based dimension<a class="anchor" aria-label="anchor" href="#time-based-dimension"></a>
@@ -144,10 +178,6 @@ conclusions and bibliography.</p>
 </div>
 <div class="section level2">
 <h2 id="date-based-dimension">Date based dimension<a class="anchor" aria-label="anchor" href="#date-based-dimension"></a>
-</h2>
-</div>
-<div class="section level2">
-<h2 id="table-export">Table export<a class="anchor" aria-label="anchor" href="#table-export"></a>
 </h2>
 </div>
 <div class="section level2">

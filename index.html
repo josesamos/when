@@ -302,7 +302,7 @@
 <p>If we want a table with time, we indicate the type using a parameter. By default we get all the seconds of a day but we can also configure a different period or level of detail.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">time</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="reference/when.html">when</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span>, start <span class="op">=</span> <span class="fl">8</span>, end <span class="op">=</span> <span class="fl">17</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/when.html">when</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span>, start <span class="op">=</span> <span class="st">"08:00"</span>, end <span class="op">=</span> <span class="st">"17:00"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/get_table.html">get_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>The start and end of the result table is shown below.</p>

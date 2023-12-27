@@ -45,28 +45,96 @@ The definition process begins by creating an object of the `when` class.
 ```{r setup}
 library(when)
 
-wd <- when()
+w_date <- when()
 ```
 
 By default, an object is created based on date, but we can also create it based on time by indicating it using the `type` parameter.
 
 ```{r}
-wt <- when(type = 'time')
+w_time <- when(type = 'time')
 ```
 
 Virtually all configuration options can be defined using the object creation function. They can also be defined later using specific functions. For example, using the following combination of functions we obtain the same result.
 
 ```{r}
-wt_2 <- when() |>
+w_time_2 <- when() |>
   configure_dimension(type = 'time')
 
-identical(wt, wt_2)
+identical(w_time, w_time_2)
 ```
+
+As with the date, we can indicate specific time periods or a vector of times to consider.
 
 
 ## Definition of instances
 
-## Definition of levels
+We can define the instances by giving a range of values or by indicating the specific instances. The values in both cases will depend on the type of dimension (date-based or time-based).
+
+We can indicate these values at the time of creating the class object or through the `define_instances()` configuration function.
+
+- In the case of date, we can indicate a year, year and month (with the format `yyyy-mm`), or year month and day (`yyyy-mm-dd`).
+
+- In the case of time, we can indicate an hour, hour and minute (with the format `hh:mm`), or hour, minute and second (`hh:mm:ss`).
+
+In both cases we can use the string format, the one provided by the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package or, when it is a single number (year or hour) we can use an integer value. Then it will be transformed appropriately.
+
+```{r}
+w_date <- w_date |>
+  define_instances(start = lubridate::today(),
+                   end = lubridate::today() + lubridate::years(5))
+```
+
+The following definition will be appropriate if we want to obtain the dimension at the year level, because we are indicating the specific values to consider.
+
+```{r}
+w_date_2 <- w_date |>
+  define_instances(values = 2020:2030)
+```
+
+The following definition will be appropriate at any level of detail because we are giving the range of values to consider (dates between those two years).
+
+```{r}
+w_date_3 <- w_date |>
+  define_instances(start = 2020, end = 2030)
+```
+
+When only the year is indicated, it is considered its first day. Therefore the previous definition is equivalent to the following one.
+
+```{r}
+w_date_4 <- w_date |>
+  define_instances(start = "2020-01-01", end = "2030-01-01")
+
+identical(w_date_3, w_date_4)
+```
+
+In the case of time, by default, it is considered at the second level and all seconds of the day.
+
+```{r}
+w_time_3 <- w_time |>
+  define_instances(start = "00:00:00", end = "23:59:59")
+
+identical(w_time, w_time_3)
+```
+
+
+## Selection and definition of levels
+
+In the definition, by default, the attributes that we have considered to be most frequently used have been included. We can consult them using the `get_table_attribute_names()` function.
+
+```{r}
+w_date |>
+  get_table_attribute_names(as_string = FALSE)
+
+w_time |>
+  get_table_attribute_names(as_string = FALSE)
+
+w_time |>
+  get_table_attribute_names()
+```
+
+Although we have not yet generated the dimension table, this function returns the names of the attributes it will contain. They can be obtained as a string or as a vector of strings.
+
+This function is very useful when we already know the attributes. If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function.
 
 ## Generation of the result
 

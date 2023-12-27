@@ -8,6 +8,7 @@
 include_month_level(
   td,
   month_level,
+  include_all,
   include_month,
   include_year_month,
   include_month_name,
@@ -23,22 +24,25 @@ include_month_level(
 \method{include_month_level}{when}(
   td,
   month_level = TRUE,
+  include_all = FALSE,
   include_month = TRUE,
   include_year_month = TRUE,
   include_month_name = TRUE,
-  include_month_abbr = TRUE,
+  include_month_abbr = FALSE,
   include_month_num_name = TRUE,
-  include_month_num_abbr = TRUE,
-  include_quarter = TRUE,
-  include_year_quarter = TRUE,
-  include_semester = TRUE,
-  include_year_semester = TRUE
+  include_month_num_abbr = FALSE,
+  include_quarter = FALSE,
+  include_year_quarter = FALSE,
+  include_semester = FALSE,
+  include_year_semester = FALSE
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
 \item{month_level}{A boolean, include month level.}
+
+\item{include_all}{A boolean, include all fields of the level.}
 
 \item{include_month}{A boolean, include the month number.}
 

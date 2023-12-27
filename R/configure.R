@@ -80,6 +80,10 @@ validate_type <- function(td, type) {
     td$month_level <- FALSE
     td$year_level <- FALSE
     td$time_level <- TRUE
+    if (td$type != 'time') {
+      td$start = lubridate::today()
+      td$end = lubridate::today()
+    }
   } else {
     td$time_level <- FALSE
     if (!(td$day_level | td$week_level | td$month_level | td$year_level)) {

@@ -8,6 +8,7 @@
 include_week_level(
   td,
   week_level,
+  include_all,
   include_week,
   include_year_week,
   include_week_date
@@ -16,15 +17,18 @@ include_week_level(
 \method{include_week_level}{when}(
   td,
   week_level = TRUE,
+  include_all = FALSE,
   include_week = TRUE,
   include_year_week = TRUE,
-  include_week_date = TRUE
+  include_week_date = FALSE
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
 \item{week_level}{A boolean, include week level.}
+
+\item{include_all}{A boolean, include all fields of the level.}
 
 \item{include_week}{A boolean, include the week number.}
 

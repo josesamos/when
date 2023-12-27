@@ -39,11 +39,11 @@ define_instances.when <-
            start = NULL,
            end = NULL,
            values = NULL) {
-    if (is.null(start) & is.null(end)) {
+    if (is.null(start) & is.null(end) & !is.null(td$start) & !is.null(td$end)) {
       td$start <- NULL
       td$end <- NULL
     }
-    if (is.null(values)) {
+    if (is.null(values) & !is.null(td$values)) {
       td$values <- NULL
     }
     td <- validate_start_end(td, start, end)

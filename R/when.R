@@ -51,9 +51,6 @@ when <- function(name = NULL,
   time_level <- FALSE
   include_year <- TRUE
   include_decade <- FALSE
-  include_week_date <- FALSE
-  include_week <- TRUE
-  include_year_week <- TRUE
   include_month <- TRUE
   include_year_month <- TRUE
   include_month_name <- TRUE
@@ -64,6 +61,10 @@ when <- function(name = NULL,
   include_year_quarter <- FALSE
   include_semester <- FALSE
   include_year_semester <- FALSE
+  include_week <- TRUE
+  include_year_week <- TRUE
+  include_week_date <- FALSE
+  include_date <- TRUE
   include_month_day <- TRUE
   include_week_day <- TRUE
   include_day_name <- TRUE
@@ -72,7 +73,6 @@ when <- function(name = NULL,
   include_day_num_abbr <- FALSE
   include_quarter_day <- FALSE
   include_year_day <- FALSE
-  include_date <- TRUE
   include_time <- TRUE
   include_minute <- TRUE
   include_second <- TRUE

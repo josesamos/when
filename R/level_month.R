@@ -11,6 +11,7 @@
 #'
 #' @param td A `when` object.
 #' @param month_level A boolean, include month level.
+#' @param include_all A boolean, include all fields of the level.
 #' @param include_month A boolean, include the month number.
 #' @param include_year_month A boolean, include the year-month combination.
 #' @param include_month_name A boolean, include the month name.
@@ -37,6 +38,7 @@
 include_month_level <-
   function(td,
            month_level,
+           include_all,
            include_month,
            include_year_month,
            include_month_name,
@@ -55,17 +57,19 @@ UseMethod("include_month_level")
 include_month_level.when <-
   function(td,
            month_level = TRUE,
+           include_all = FALSE,
            include_month = TRUE,
            include_year_month = TRUE,
            include_month_name = TRUE,
-           include_month_abbr = TRUE,
+           include_month_abbr = FALSE,
            include_month_num_name = TRUE,
-           include_month_num_abbr = TRUE,
-           include_quarter = TRUE,
-           include_year_quarter = TRUE,
-           include_semester = TRUE,
-           include_year_semester = TRUE) {
+           include_month_num_abbr = FALSE,
+           include_quarter = FALSE,
+           include_year_quarter = FALSE,
+           include_semester = FALSE,
+           include_year_semester = FALSE) {
     stopifnot("'month_level' must be of logical type." = is.logical(month_level))
+    stopifnot("'include_all' must be of logical type." = is.logical(include_all))
     stopifnot("'include_month' must be of logical type." = is.logical(include_month))
     stopifnot("'include_year_month' must be of logical type." = is.logical(include_year_month))
     stopifnot("'include_month_name' must be of logical type." = is.logical(include_month_name))
@@ -77,15 +81,28 @@ include_month_level.when <-
     stopifnot("'include_semester' must be of logical type." = is.logical(include_semester))
     stopifnot("'include_year_semester' must be of logical type." = is.logical(include_year_semester))
     td$month_level <- month_level
-    td$include_month <- include_month
-    td$include_year_month <- include_year_month
-    td$include_month_name <- include_month_name
-    td$include_month_abbr <- include_month_abbr
-    td$include_month_num_name <- include_month_num_name
-    td$include_month_num_abbr <- include_month_num_abbr
-    td$include_quarter <- include_quarter
-    td$include_year_quarter <- include_year_quarter
-    td$include_semester <- include_semester
-    td$include_year_semester <- include_year_semester
+    if (include_all) {
+      td$include_month <- TRUE
+      td$include_year_month <- TRUE
+      td$include_month_name <- TRUE
+      td$include_month_abbr <- TRUE
+      td$include_month_num_name <- TRUE
+      td$include_month_num_abbr <- TRUE
+      td$include_quarter <- TRUE
+      td$include_year_quarter <- TRUE
+      td$include_semester <- TRUE
+      td$include_year_semester <- TRUE
+    } else {
+      td$include_month <- include_month
+      td$include_year_month <- include_year_month
+      td$include_month_name <- include_month_name
+      td$include_month_abbr <- include_month_abbr
+      td$include_month_num_name <- include_month_num_name
+      td$include_month_num_abbr <- include_month_num_abbr
+      td$include_quarter <- include_quarter
+      td$include_year_quarter <- include_year_quarter
+      td$include_semester <- include_semester
+      td$include_year_semester <- include_year_semester
+    }
     td
   }

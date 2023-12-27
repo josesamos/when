@@ -8,6 +8,7 @@
 include_day_level(
   td,
   day_level,
+  include_all,
   include_date,
   include_month_day,
   include_week_day,
@@ -22,21 +23,24 @@ include_day_level(
 \method{include_day_level}{when}(
   td,
   day_level = TRUE,
+  include_all = FALSE,
   include_date = TRUE,
   include_month_day = TRUE,
   include_week_day = TRUE,
   include_day_name = TRUE,
-  include_day_abbr = TRUE,
+  include_day_abbr = FALSE,
   include_day_num_name = TRUE,
-  include_day_num_abbr = TRUE,
-  include_quarter_day = TRUE,
-  include_year_day = TRUE
+  include_day_num_abbr = FALSE,
+  include_quarter_day = FALSE,
+  include_year_day = FALSE
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
 \item{day_level}{A boolean, include day level.}
+
+\item{include_all}{A boolean, include all fields of the level.}
 
 \item{include_date}{A boolean, include the date.}
 

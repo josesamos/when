@@ -1,6 +1,11 @@
 test_that("generate", {
+  td <- when(type = 'time')
+
   td_1 <- when(type = 'time') |>
     generate_table()
+
+  names0 <- td |>
+    get_table_attribute_names()
 
   names <- td_1 |>
     get_table_attribute_names()
@@ -97,6 +102,9 @@ test_that("generate", {
 
   expect_equal(names,
                "c('id', 'time', 'hour', 'minute', 'second', 'day_part')")
+
+  expect_equal(names0,
+               names)
 
   expect_equal(names1,
                "c('id1', 'time1', 'hour1', 'minute1', 'second1', 'day_part1')")

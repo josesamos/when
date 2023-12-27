@@ -74,7 +74,7 @@ different period or level of detail.
 
 ``` r
 time <-
-  when(type = 'time', start = 8, end = 17) |>
+  when(type = 'time', start = "08:00", end = "17:00") |>
   generate_table() |>
   get_table()
 ```

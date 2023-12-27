@@ -83,10 +83,14 @@ set_table_attribute_names.when <-
 
 #' Get table attribute names
 #'
-#' Returns the names of the dimension table attributes in string form, so we can
-#' easily use it to rename them if deemed necessary.
+#' Returns the names of the dimension table attributes as a string vector or in
+#' string form, so we can easily use it to rename them if deemed necessary.
+#'
+#' If the table has not been generated yet, returns the attributes it will contain
+#' when it is generated.
 #'
 #' @param td A `when` object.
+#' @param as_string A boolean.
 #'
 #' @return A string.
 #'
@@ -99,30 +103,39 @@ set_table_attribute_names.when <-
 #'
 #' @export
 get_table_attribute_names <-
-  function(td)
+  function(td, as_string)
     UseMethod("get_table_attribute_names")
 
 #' @rdname get_table_attribute_names
 #'
 #' @export
 get_table_attribute_names.when <-
-  function(td) {
+  function(td, as_string = TRUE) {
     if (length(names(td$table)) == length(td$attribute_names)) {
       names <- td$attribute_names
     } else {
       names <- names(td$table)
     }
-    dt <- "c("
-    for (j in seq_along(names)) {
-      if (j == 1) {
-        sep = ""
-      } else {
-        sep = ", "
+    if (length(names) == 0) {
+      names <- get_fields(td)
+      if (td$surrogate_key) {
+        names <- c('id', names)
       }
-      dt <- paste(dt, sprintf("'%s'", names[j]), sep = sep)
     }
-    dt <- paste(dt, ")", sep = "")
-    dt
+    if (as_string) {
+      dt <- "c("
+      for (j in seq_along(names)) {
+        if (j == 1) {
+          sep = ""
+        } else {
+          sep = ", "
+        }
+        dt <- paste(dt, sprintf("'%s'", names[j]), sep = sep)
+      }
+      dt <- paste(dt, ")", sep = "")
+      names <- dt
+    }
+    names
   }
 
 

@@ -10,6 +10,10 @@ test_that("configure", {
   td_3 <- when() |>
     configure_dimension()
 
+  wt <- when(type = 'time')
+  wt_2 <- when() |>
+    configure_dimension(type = 'time')
+
   expect_equal(
     c(
       td_1$day_level,
@@ -29,5 +33,7 @@ test_that("configure", {
 
   expect_equal(td_3$time_level,
                FALSE)
+
+  expect_equal(wt, wt_2)
 
 })

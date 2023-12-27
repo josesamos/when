@@ -36,20 +36,45 @@ The purpose of the `when` package is to assist in the implementation of the ***W
 
 - In addition to attributes at the selected granularity, other attributes can be added at coarser granularity to facilitate querying.
 
-The rest of this document is structured as follows: First, the general process of defining dimensions is presented. Next, a section is dedicated to the definition of dimensions based on time and another to dimensions based on date. We continue explaining the export of the generated tables in various formats. Finally, the document ends with conclusions and bibliography.
+The rest of this document is structured as follows: First, the general process of defining dimensions is presented. Next, a section is dedicated to the definition of dimensions based on time and another to dimensions based on date. Finally, the document ends with conclusions and bibliography.
 
 # Definition process
 
+The definition process begins by creating an object of the `when` class.
+
 ```{r setup}
 library(when)
+
+wd <- when()
 ```
 
+By default, an object is created based on date, but we can also create it based on time by indicating it using the `type` parameter.
+
+```{r}
+wt <- when(type = 'time')
+```
+
+Virtually all configuration options can be defined using the object creation function. They can also be defined later using specific functions. For example, using the following combination of functions we obtain the same result.
+
+```{r}
+wt_2 <- when() |>
+  configure_dimension(type = 'time')
+
+identical(wt, wt_2)
+```
+
+
+## Definition of instances
+
+## Definition of levels
+
+## Generation of the result
+
+## Table export
 
 # Time based dimension
 
 # Date based dimension
-
-# Table export
 
 # Conclusions
 

@@ -5,19 +5,25 @@
 \alias{get_table_attribute_names.when}
 \title{Get table attribute names}
 \usage{
-get_table_attribute_names(td)
+get_table_attribute_names(td, as_string)
 
-\method{get_table_attribute_names}{when}(td)
+\method{get_table_attribute_names}{when}(td, as_string = TRUE)
 }
 \arguments{
 \item{td}{A \code{when} object.}
+
+\item{as_string}{A boolean.}
 }
 \value{
 A string.
 }
 \description{
-Returns the names of the dimension table attributes in string form, so we can
-easily use it to rename them if deemed necessary.
+Returns the names of the dimension table attributes as a string vector or in
+string form, so we can easily use it to rename them if deemed necessary.
+}
+\details{
+If the table has not been generated yet, returns the attributes it will contain
+when it is generated.
 }
 \examples{
 

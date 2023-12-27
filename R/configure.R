@@ -49,14 +49,10 @@ configure_dimension.when <- function(td,
   if (!is.null(name)) {
     stopifnot("'name' must have a single value." = length(name) == 1)
     td$table_name = name
-  } else if (is.null(td$table_name)) {
-    if (td$time_level) {
-      td$table_name = 'time'
-    } else {
-      td$table_name = 'date'
-    }
   }
   td <- validate_type(td, type)
+  td <- validate_start_end(td, td$start, td$end)
+  td <- validate_values(td, td$values)
   stopifnot("'week_starts_monday' must be of logical type." = is.logical(week_starts_monday))
   td$week_starts_monday <- week_starts_monday
   td$locale <- locale

@@ -236,11 +236,18 @@ the <code><a href="../reference/get_table_attribute_names.html">get_table_attrib
 <p>Although we have not yet generated the dimension table, this function
 returns the names of the attributes it will contain. They can be
 obtained as a string or as a vector of strings.</p>
-<p>This function is very useful when we already know the attributes. If
-it is generated in the form of a string (<code>as_string = TRUE</code>,
-default option), the result can be used to easily change the name of the
-attributes, when the table is generated, using the
-<code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code> function.</p>
+<p>If it is generated in the form of a string
+(<code>as_string = TRUE</code>, default option), the result can be used
+to easily change the name of the attributes, when the table is
+generated, using the <code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code>
+function.</p>
+<p>We have a function to configure each level: the attributes defined by
+default are configured there. We can select or deselect each attribute
+individually using the parameter named “include_” and the attribute
+name. We can also select all attributes defined at the level using the
+special <code>include_all</code> parameter. We can also include or
+uninclude a level using the <code>include_level</code> parameter of each
+function.</p>
 </div>
 <div class="section level3">
 <h3 id="generation-of-the-result">Generation of the result<a class="anchor" aria-label="anchor" href="#generation-of-the-result"></a>

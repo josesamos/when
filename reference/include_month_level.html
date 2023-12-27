@@ -59,35 +59,35 @@ the month level and its attributes to include in it: month, quarter and semester
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">include_month_level</span><span class="op">(</span></span>
 <span>  <span class="va">td</span>,</span>
-<span>  <span class="va">month_level</span>,</span>
+<span>  <span class="va">level</span>,</span>
 <span>  <span class="va">include_all</span>,</span>
-<span>  <span class="va">include_month</span>,</span>
-<span>  <span class="va">include_year_month</span>,</span>
-<span>  <span class="va">include_month_name</span>,</span>
-<span>  <span class="va">include_month_abbr</span>,</span>
-<span>  <span class="va">include_month_num_name</span>,</span>
-<span>  <span class="va">include_month_num_abbr</span>,</span>
-<span>  <span class="va">include_quarter</span>,</span>
-<span>  <span class="va">include_year_quarter</span>,</span>
-<span>  <span class="va">include_semester</span>,</span>
-<span>  <span class="va">include_year_semester</span></span>
+<span>  <span class="va">month</span>,</span>
+<span>  <span class="va">year_month</span>,</span>
+<span>  <span class="va">month_name</span>,</span>
+<span>  <span class="va">month_abbr</span>,</span>
+<span>  <span class="va">month_num_name</span>,</span>
+<span>  <span class="va">month_num_abbr</span>,</span>
+<span>  <span class="va">quarter</span>,</span>
+<span>  <span class="va">year_quarter</span>,</span>
+<span>  <span class="va">semester</span>,</span>
+<span>  <span class="va">year_semester</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for when</span></span>
 <span><span class="fu">include_month_level</span><span class="op">(</span></span>
 <span>  <span class="va">td</span>,</span>
-<span>  month_level <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  level <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  include_all <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  include_month <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_year_month <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_month_name <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_month_abbr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  include_month_num_name <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_month_num_abbr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  include_quarter <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  include_year_quarter <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  include_semester <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  include_year_semester <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  month <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  year_month <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  month_name <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  month_abbr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  month_num_name <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  month_num_abbr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  quarter <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  year_quarter <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  semester <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  year_semester <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -97,7 +97,7 @@ the month level and its attributes to include in it: month, quarter and semester
 <dd><p>A <code>when</code> object.</p></dd>
 
 
-<dt>month_level</dt>
+<dt>level</dt>
 <dd><p>A boolean, include month level.</p></dd>
 
 
@@ -105,44 +105,44 @@ the month level and its attributes to include in it: month, quarter and semester
 <dd><p>A boolean, include all fields of the level.</p></dd>
 
 
-<dt>include_month</dt>
+<dt>month</dt>
 <dd><p>A boolean, include the month number.</p></dd>
 
 
-<dt>include_year_month</dt>
+<dt>year_month</dt>
 <dd><p>A boolean, include the year-month combination.</p></dd>
 
 
-<dt>include_month_name</dt>
+<dt>month_name</dt>
 <dd><p>A boolean, include the month name.</p></dd>
 
 
-<dt>include_month_abbr</dt>
+<dt>month_abbr</dt>
 <dd><p>A boolean, include the month name abbreviated version.</p></dd>
 
 
-<dt>include_month_num_name</dt>
+<dt>month_num_name</dt>
 <dd><p>A boolean, include the month number and name.</p></dd>
 
 
-<dt>include_month_num_abbr</dt>
+<dt>month_num_abbr</dt>
 <dd><p>A boolean, include the month number and name
 abbreviated version.</p></dd>
 
 
-<dt>include_quarter</dt>
+<dt>quarter</dt>
 <dd><p>A boolean, include the quarter field.</p></dd>
 
 
-<dt>include_year_quarter</dt>
+<dt>year_quarter</dt>
 <dd><p>A boolean, include the quarter field.</p></dd>
 
 
-<dt>include_semester</dt>
+<dt>semester</dt>
 <dd><p>A boolean, include the semester field.</p></dd>
 
 
-<dt>include_year_semester</dt>
+<dt>year_semester</dt>
 <dd><p>A boolean, include the semester field.</p></dd>
 
 </dl></div>
@@ -179,8 +179,8 @@ the combination of month number and name and/or abbreviation is included.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">td</span> <span class="op">&lt;-</span> <span class="fu"><a href="when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">include_month_level</span><span class="op">(</span>include_month_abbr <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>                      include_month_num_abbr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">include_month_level</span><span class="op">(</span>month_abbr <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                      month_num_abbr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

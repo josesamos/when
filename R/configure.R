@@ -82,6 +82,12 @@ validate_type <- function(td, type) {
     td$time_level <- TRUE
   } else {
     td$time_level <- FALSE
+    if (!(td$day_level | td$week_level | td$month_level | td$year_level)) {
+      td$day_level <- TRUE
+      td$week_level <- TRUE
+      td$month_level <- TRUE
+      td$year_level <- TRUE
+    }
   }
   td$type <- type
   td

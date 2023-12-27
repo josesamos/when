@@ -42,6 +42,16 @@ when <- function(name = NULL,
                  end = lubridate::today(),
                  values = NULL,
                  ...) {
+  param <-
+    c(
+      'surrogate_key',
+      'week_starts_monday',
+      'day_level',
+      'week_level',
+      'month_level',
+      'year_level',
+      'time_level'
+    )
   surrogate_key <- TRUE
   week_starts_monday <- TRUE
   day_level <- TRUE
@@ -80,7 +90,11 @@ when <- function(name = NULL,
   dots <- list(...)
   for (n in names(dots)) {
     stopifnot("The additional parameters must be of logical type." = is.logical(dots[[n]]))
-    assign(n, dots[[n]])
+    nom <- n
+    if (!(n %in% param)) {
+      nom <- paste0('include_', n)
+    }
+    assign(nom, dots[[n]])
   }
   include_hour <- TRUE
   if (!include_minute) {

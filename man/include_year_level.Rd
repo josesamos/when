@@ -5,26 +5,26 @@
 \alias{include_year_level.when}
 \title{Include year level}
 \usage{
-include_year_level(td, year_level, include_all, include_year, include_decade)
+include_year_level(td, level, include_all, year, decade)
 
 \method{include_year_level}{when}(
   td,
-  year_level = TRUE,
+  level = TRUE,
   include_all = FALSE,
-  include_year = TRUE,
-  include_decade = FALSE
+  year = TRUE,
+  decade = FALSE
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{year_level}{A boolean, include year level.}
+\item{level}{A boolean, include year level.}
 
 \item{include_all}{A boolean, include all fields of the level.}
 
-\item{include_year}{A boolean, include the year field.}
+\item{year}{A boolean, include the year field.}
 
-\item{include_decade}{A boolean, include the decade field.}
+\item{decade}{A boolean, include the decade field.}
 }
 \value{
 A \code{when} object.

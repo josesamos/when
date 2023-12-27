@@ -1,7 +1,7 @@
 test_that("level_month", {
   td_1 <- when() |>
-    include_month_level(include_month_abbr = FALSE,
-                        include_month_num_abbr = FALSE)
+    include_month_level(month_abbr = FALSE,
+                        month_num_abbr = FALSE)
   td_2 <- td_1 |>
     include_month_level(include_all = TRUE)
 

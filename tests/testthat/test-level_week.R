@@ -1,6 +1,6 @@
 test_that("level_week", {
   td_1 <- when() |>
-    include_week_level(include_week_date = FALSE)
+    include_week_level(week_date = FALSE)
   td_2 <- td_1 |>
     include_week_level(include_all = TRUE)
   td_3 <- td_1 |>

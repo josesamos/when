@@ -7,61 +7,61 @@
 \usage{
 include_day_level(
   td,
-  day_level,
+  level,
   include_all,
-  include_date,
-  include_month_day,
-  include_week_day,
-  include_day_name,
-  include_day_abbr,
-  include_day_num_name,
-  include_day_num_abbr,
-  include_quarter_day,
-  include_year_day
+  date,
+  month_day,
+  week_day,
+  day_name,
+  day_abbr,
+  day_num_name,
+  day_num_abbr,
+  quarter_day,
+  year_day
 )
 
 \method{include_day_level}{when}(
   td,
-  day_level = TRUE,
+  level = TRUE,
   include_all = FALSE,
-  include_date = TRUE,
-  include_month_day = TRUE,
-  include_week_day = TRUE,
-  include_day_name = TRUE,
-  include_day_abbr = FALSE,
-  include_day_num_name = TRUE,
-  include_day_num_abbr = FALSE,
-  include_quarter_day = FALSE,
-  include_year_day = FALSE
+  date = TRUE,
+  month_day = TRUE,
+  week_day = TRUE,
+  day_name = TRUE,
+  day_abbr = FALSE,
+  day_num_name = TRUE,
+  day_num_abbr = FALSE,
+  quarter_day = FALSE,
+  year_day = FALSE
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{day_level}{A boolean, include day level.}
+\item{level}{A boolean, include day level.}
 
 \item{include_all}{A boolean, include all fields of the level.}
 
-\item{include_date}{A boolean, include the date.}
+\item{date}{A boolean, include the date.}
 
-\item{include_month_day}{A boolean, include the day number in the month.}
+\item{month_day}{A boolean, include the day number in the month.}
 
-\item{include_week_day}{A boolean, the day number in the week.}
+\item{week_day}{A boolean, the day number in the week.}
 
-\item{include_day_name}{A boolean, include the name of the day of the week.}
+\item{day_name}{A boolean, include the name of the day of the week.}
 
-\item{include_day_abbr}{A boolean, include the name of the day of the week in
+\item{day_abbr}{A boolean, include the name of the day of the week in
 abbreviated version.}
 
-\item{include_day_num_name}{A boolean, include the number and name of the day
+\item{day_num_name}{A boolean, include the number and name of the day
 of the week.}
 
-\item{include_day_num_abbr}{A boolean, include the number and name of the day
+\item{day_num_abbr}{A boolean, include the number and name of the day
 of the week in abbreviated version.}
 
-\item{include_quarter_day}{A boolean, include the number of the day in the quarter.}
+\item{quarter_day}{A boolean, include the number of the day in the quarter.}
 
-\item{include_year_day}{A boolean, include the number of the day in the year.}
+\item{year_day}{A boolean, include the number of the day in the year.}
 }
 \value{
 A \code{when} object.
@@ -79,8 +79,8 @@ combination of day number and name and/or abbreviation is included.
 \examples{
 
 td <- when() |>
-  include_day_level(include_day_abbr = FALSE,
-                    include_day_num_abbr = FALSE)
+  include_day_level(day_abbr = FALSE,
+                    day_num_abbr = FALSE)
 
 }
 \seealso{

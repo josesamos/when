@@ -5,36 +5,29 @@
 \alias{include_week_level.when}
 \title{Include week level}
 \usage{
-include_week_level(
-  td,
-  week_level,
-  include_all,
-  include_week,
-  include_year_week,
-  include_week_date
-)
+include_week_level(td, level, include_all, week, year_week, week_date)
 
 \method{include_week_level}{when}(
   td,
-  week_level = TRUE,
+  level = TRUE,
   include_all = FALSE,
-  include_week = TRUE,
-  include_year_week = TRUE,
-  include_week_date = FALSE
+  week = TRUE,
+  year_week = TRUE,
+  week_date = FALSE
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{week_level}{A boolean, include week level.}
+\item{level}{A boolean, include week level.}
 
 \item{include_all}{A boolean, include all fields of the level.}
 
-\item{include_week}{A boolean, include the week number.}
+\item{week}{A boolean, include the week number.}
 
-\item{include_year_week}{A boolean, include the year-week combination.}
+\item{year_week}{A boolean, include the year-week combination.}
 
-\item{include_week_date}{A boolean, include the date from which the week is
+\item{week_date}{A boolean, include the date from which the week is
 obtained.}
 }
 \value{
@@ -63,7 +56,7 @@ begins on Sunday, it numbers blocks from Sunday to Monday.
 \examples{
 
 td <- when() |>
-  include_week_level(include_week_date = FALSE)
+  include_week_level(week_date = FALSE)
 
 }
 \seealso{

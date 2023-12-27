@@ -1,7 +1,7 @@
 test_that("level_day", {
   td_1 <- when() |>
-    include_day_level(include_day_abbr = TRUE,
-                      include_day_num_abbr = FALSE)
+    include_day_level(day_abbr = TRUE,
+                      day_num_abbr = FALSE)
   td_2 <- td_1 |>
     include_day_level(include_all = TRUE)
 

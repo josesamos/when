@@ -19,11 +19,11 @@
 #' begins on Sunday, it numbers blocks from Sunday to Monday.
 #'
 #' @param td A `when` object.
-#' @param week_level A boolean, include week level.
+#' @param level A boolean, include week level.
 #' @param include_all A boolean, include all fields of the level.
-#' @param include_week A boolean, include the week number.
-#' @param include_year_week A boolean, include the year-week combination.
-#' @param include_week_date A boolean, include the date from which the week is
+#' @param week A boolean, include the week number.
+#' @param year_week A boolean, include the year-week combination.
+#' @param week_date A boolean, include the date from which the week is
 #' obtained.
 #'
 #' @return A `when` object.
@@ -33,16 +33,16 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   include_week_level(include_week_date = FALSE)
+#'   include_week_level(week_date = FALSE)
 #'
 #' @export
 include_week_level <-
   function(td,
-           week_level,
+           level,
            include_all,
-           include_week,
-           include_year_week,
-           include_week_date)
+           week,
+           year_week,
+           week_date)
     UseMethod("include_week_level")
 
 #' @rdname include_week_level
@@ -50,25 +50,25 @@ include_week_level <-
 #' @export
 include_week_level.when <-
   function(td,
-           week_level = TRUE,
+           level = TRUE,
            include_all = FALSE,
-           include_week = TRUE,
-           include_year_week = TRUE,
-           include_week_date = FALSE) {
-    stopifnot("'week_level' must be of logical type." = is.logical(week_level))
+           week = TRUE,
+           year_week = TRUE,
+           week_date = FALSE) {
+    stopifnot("'level' must be of logical type." = is.logical(level))
     stopifnot("'include_all' must be of logical type." = is.logical(include_all))
-    stopifnot("'include_week' must be of logical type." = is.logical(include_week))
-    stopifnot("'include_year_week' must be of logical type." = is.logical(include_year_week))
-    stopifnot("'include_week_date' must be of logical type." = is.logical(include_week_date))
-    td$week_level <- week_level
+    stopifnot("'week' must be of logical type." = is.logical(week))
+    stopifnot("'year_week' must be of logical type." = is.logical(year_week))
+    stopifnot("'week_date' must be of logical type." = is.logical(week_date))
+    td$week_level <- level
     if (include_all) {
       td$include_week <- TRUE
       td$include_year_week <- TRUE
       td$include_week_date <- TRUE
     } else {
-      td$include_week <- include_week
-      td$include_year_week <- include_year_week
-      td$include_week_date <- include_week_date
+      td$include_week <- week
+      td$include_year_week <- year_week
+      td$include_week_date <- week_date
     }
     td
   }

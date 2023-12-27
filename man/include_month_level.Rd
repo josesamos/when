@@ -7,63 +7,63 @@
 \usage{
 include_month_level(
   td,
-  month_level,
+  level,
   include_all,
-  include_month,
-  include_year_month,
-  include_month_name,
-  include_month_abbr,
-  include_month_num_name,
-  include_month_num_abbr,
-  include_quarter,
-  include_year_quarter,
-  include_semester,
-  include_year_semester
+  month,
+  year_month,
+  month_name,
+  month_abbr,
+  month_num_name,
+  month_num_abbr,
+  quarter,
+  year_quarter,
+  semester,
+  year_semester
 )
 
 \method{include_month_level}{when}(
   td,
-  month_level = TRUE,
+  level = TRUE,
   include_all = FALSE,
-  include_month = TRUE,
-  include_year_month = TRUE,
-  include_month_name = TRUE,
-  include_month_abbr = FALSE,
-  include_month_num_name = TRUE,
-  include_month_num_abbr = FALSE,
-  include_quarter = FALSE,
-  include_year_quarter = FALSE,
-  include_semester = FALSE,
-  include_year_semester = FALSE
+  month = TRUE,
+  year_month = TRUE,
+  month_name = TRUE,
+  month_abbr = FALSE,
+  month_num_name = TRUE,
+  month_num_abbr = FALSE,
+  quarter = FALSE,
+  year_quarter = FALSE,
+  semester = FALSE,
+  year_semester = FALSE
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{month_level}{A boolean, include month level.}
+\item{level}{A boolean, include month level.}
 
 \item{include_all}{A boolean, include all fields of the level.}
 
-\item{include_month}{A boolean, include the month number.}
+\item{month}{A boolean, include the month number.}
 
-\item{include_year_month}{A boolean, include the year-month combination.}
+\item{year_month}{A boolean, include the year-month combination.}
 
-\item{include_month_name}{A boolean, include the month name.}
+\item{month_name}{A boolean, include the month name.}
 
-\item{include_month_abbr}{A boolean, include the month name abbreviated version.}
+\item{month_abbr}{A boolean, include the month name abbreviated version.}
 
-\item{include_month_num_name}{A boolean, include the month number and name.}
+\item{month_num_name}{A boolean, include the month number and name.}
 
-\item{include_month_num_abbr}{A boolean, include the month number and name
+\item{month_num_abbr}{A boolean, include the month number and name
 abbreviated version.}
 
-\item{include_quarter}{A boolean, include the quarter field.}
+\item{quarter}{A boolean, include the quarter field.}
 
-\item{include_year_quarter}{A boolean, include the quarter field.}
+\item{year_quarter}{A boolean, include the quarter field.}
 
-\item{include_semester}{A boolean, include the semester field.}
+\item{semester}{A boolean, include the semester field.}
 
-\item{include_year_semester}{A boolean, include the semester field.}
+\item{year_semester}{A boolean, include the semester field.}
 }
 \value{
 A \code{when} object.
@@ -82,8 +82,8 @@ the combination of month number and name and/or abbreviation is included.
 \examples{
 
 td <- when() |>
-  include_month_level(include_month_abbr = FALSE,
-                      include_month_num_abbr = FALSE)
+  include_month_level(month_abbr = FALSE,
+                      month_num_abbr = FALSE)
 
 }
 \seealso{

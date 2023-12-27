@@ -26,7 +26,7 @@ test_that("generate", {
     include_year_level(include_all = TRUE) |>
     generate_table()
 
-  td_4 <- when(type = 'time', include_minute = FALSE) |>
+  td_4 <- when(type = 'time', minute = FALSE) |>
     generate_table()
 
   td_5 <- when(day_level = FALSE) |>
@@ -42,7 +42,7 @@ test_that("generate", {
       type = 'time',
       start = 1,
       end = 3,
-      include_second = FALSE
+      second = FALSE
     ) |>
     generate_table()
 
@@ -51,7 +51,7 @@ test_that("generate", {
       type = 'time',
       start = 1,
       end = 3,
-      include_minute = FALSE
+      minute = FALSE
     ) |>
     generate_table()
 

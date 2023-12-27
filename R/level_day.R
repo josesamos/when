@@ -9,20 +9,20 @@
 #' combination of day number and name and/or abbreviation is included.
 #'
 #' @param td A `when` object.
-#' @param day_level A boolean, include day level.
+#' @param level A boolean, include day level.
 #' @param include_all A boolean, include all fields of the level.
-#' @param include_date A boolean, include the date.
-#' @param include_month_day A boolean, include the day number in the month.
-#' @param include_week_day A boolean, the day number in the week.
-#' @param include_day_name A boolean, include the name of the day of the week.
-#' @param include_day_abbr A boolean, include the name of the day of the week in
+#' @param date A boolean, include the date.
+#' @param month_day A boolean, include the day number in the month.
+#' @param week_day A boolean, the day number in the week.
+#' @param day_name A boolean, include the name of the day of the week.
+#' @param day_abbr A boolean, include the name of the day of the week in
 #' abbreviated version.
-#' @param include_day_num_name A boolean, include the number and name of the day
+#' @param day_num_name A boolean, include the number and name of the day
 #' of the week.
-#' @param include_day_num_abbr A boolean, include the number and name of the day
+#' @param day_num_abbr A boolean, include the number and name of the day
 #' of the week in abbreviated version.
-#' @param include_quarter_day A boolean, include the number of the day in the quarter.
-#' @param include_year_day A boolean, include the number of the day in the year.
+#' @param quarter_day A boolean, include the number of the day in the quarter.
+#' @param year_day A boolean, include the number of the day in the year.
 #'
 #' @return A `when` object.
 #'
@@ -31,51 +31,51 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   include_day_level(include_day_abbr = FALSE,
-#'                     include_day_num_abbr = FALSE)
+#'   include_day_level(day_abbr = FALSE,
+#'                     day_num_abbr = FALSE)
 #'
 #' @export
 include_day_level <- function(td,
-                              day_level,
+                              level,
                               include_all,
-                              include_date,
-                              include_month_day,
-                              include_week_day,
-                              include_day_name,
-                              include_day_abbr,
-                              include_day_num_name,
-                              include_day_num_abbr,
-                              include_quarter_day,
-                              include_year_day)
+                              date,
+                              month_day,
+                              week_day,
+                              day_name,
+                              day_abbr,
+                              day_num_name,
+                              day_num_abbr,
+                              quarter_day,
+                              year_day)
   UseMethod("include_day_level")
 
 #' @rdname include_day_level
 #'
 #' @export
 include_day_level.when <- function(td,
-                                   day_level = TRUE,
+                                   level = TRUE,
                                    include_all = FALSE,
-                                   include_date = TRUE,
-                                   include_month_day = TRUE,
-                                   include_week_day = TRUE,
-                                   include_day_name = TRUE,
-                                   include_day_abbr = FALSE,
-                                   include_day_num_name = TRUE,
-                                   include_day_num_abbr = FALSE,
-                                   include_quarter_day = FALSE,
-                                   include_year_day = FALSE) {
-  stopifnot("'day_level' must be of logical type." = is.logical(day_level))
+                                   date = TRUE,
+                                   month_day = TRUE,
+                                   week_day = TRUE,
+                                   day_name = TRUE,
+                                   day_abbr = FALSE,
+                                   day_num_name = TRUE,
+                                   day_num_abbr = FALSE,
+                                   quarter_day = FALSE,
+                                   year_day = FALSE) {
+  stopifnot("'level' must be of logical type." = is.logical(level))
   stopifnot("'include_all' must be of logical type." = is.logical(include_all))
-  stopifnot("'include_date' must be of logical type." = is.logical(include_date))
-  stopifnot("'include_month_day' must be of logical type." = is.logical(include_month_day))
-  stopifnot("'include_week_day' must be of logical type." = is.logical(include_week_day))
-  stopifnot("'include_day_name' must be of logical type." = is.logical(include_day_name))
-  stopifnot("'include_day_abbr' must be of logical type." = is.logical(include_day_abbr))
-  stopifnot("'include_day_num_name' must be of logical type." = is.logical(include_day_num_name))
-  stopifnot("'include_day_num_abbr' must be of logical type." = is.logical(include_day_num_abbr))
-  stopifnot("'include_quarter_day' must be of logical type." = is.logical(include_quarter_day))
-  stopifnot("'include_year_day' must be of logical type." = is.logical(include_year_day))
-  td$day_level <- day_level
+  stopifnot("'date' must be of logical type." = is.logical(date))
+  stopifnot("'month_day' must be of logical type." = is.logical(month_day))
+  stopifnot("'week_day' must be of logical type." = is.logical(week_day))
+  stopifnot("'day_name' must be of logical type." = is.logical(day_name))
+  stopifnot("'day_abbr' must be of logical type." = is.logical(day_abbr))
+  stopifnot("'day_num_name' must be of logical type." = is.logical(day_num_name))
+  stopifnot("'day_num_abbr' must be of logical type." = is.logical(day_num_abbr))
+  stopifnot("'quarter_day' must be of logical type." = is.logical(quarter_day))
+  stopifnot("'year_day' must be of logical type." = is.logical(year_day))
+  td$day_level <- level
   if (include_all) {
     td$include_date <- TRUE
     td$include_month_day <- TRUE
@@ -87,15 +87,15 @@ include_day_level.when <- function(td,
     td$include_quarter_day <- TRUE
     td$include_year_day <- TRUE
   } else {
-    td$include_date <- include_date
-    td$include_month_day <- include_month_day
-    td$include_week_day <- include_week_day
-    td$include_day_name <- include_day_name
-    td$include_day_abbr <- include_day_abbr
-    td$include_day_num_name <- include_day_num_name
-    td$include_day_num_abbr <- include_day_num_abbr
-    td$include_quarter_day <- include_quarter_day
-    td$include_year_day <- include_year_day
+    td$include_date <- date
+    td$include_month_day <- month_day
+    td$include_week_day <- week_day
+    td$include_day_name <- day_name
+    td$include_day_abbr <- day_abbr
+    td$include_day_num_name <- day_num_name
+    td$include_day_num_abbr <- day_num_abbr
+    td$include_quarter_day <- quarter_day
+    td$include_year_day <- year_day
   }
   td
 }

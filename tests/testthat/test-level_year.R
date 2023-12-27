@@ -1,6 +1,6 @@
 test_that("level_year", {
   td_1 <- when() |>
-    include_year_level(include_year = FALSE)
+    include_year_level(year = FALSE)
 
   td_2 <- td_1 |>
     include_year_level(include_all = TRUE)

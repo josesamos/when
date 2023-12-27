@@ -43,16 +43,17 @@ date <-
   when(
     locale = Sys.setlocale("LC_TIME", "English"),
     start = lubridate::today(),
-    end = lubridate::today() + 9
+    end = lubridate::today() + lubridate::years(5)
   ) |>
   generate_table() |>
   get_table()
 ```
 
-The result obtained is shown below.
+The first and last rows of the obtained result are shown below.
 
 ```{r, results = "asis"}
-pander::pandoc.table(date, split.table = Inf)
+pander::pandoc.table(rbind(head(date, 5), tail(date, 5)),
+                     split.table = Inf)
 ```
 
 If we want a table with time, we indicate the type using a parameter. By default we get all the seconds of a day but we can also configure a different period or level of detail.

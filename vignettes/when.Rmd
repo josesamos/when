@@ -1,10 +1,10 @@
 ---
-title: "Generating the *When Dimension*"
+title: "Generating the *When Dimension* based on date and time tables"
 date: "2023-12-26"
 output: rmarkdown::html_vignette
 bibliography: bibliography.bib
 vignette: >
-  %\VignetteIndexEntry{Generating the *When Dimension*}
+  %\VignetteIndexEntry{Generating the *When Dimension* based on date and time tables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,11 +20,11 @@ knitr::opts_chunk$set(
 
 The *When Dimension* plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed focus of attention have occurred.
 
-In @kimball1996data, the term "Time Dimension" was used to call this dimension, regardless of its granularity. In @kimball2013data it is indicated that for 10 years the term "Date Dimension" has been used to call this dimension at the date level and "Time Dimension" or "Time-of-day Dimension" is used when the granularity is the time. However, the term "Time Dimension" has continued to be used regardless of granularity, as it is in @adamson2010star. For this reason here we refer to this dimension as "When Dimension", a term independent of granularity.
+This dimension corresponds to the generically called “Time Dimension”, as named in @kimball1996data and @adamson2010star. Later it has also been called "Date Dimension" or "Time Dimension" to express granularity [@kimball2013data]. We prefer to call it "When Dimension" because granularity is not involved in that term.
 
-Although conceptually the date and time can be represented together in a single dimension, in ROLAP (*Relational On-Line Analytical Processing*) systems, it is common to implement these concepts separately, sometimes in separate tables "to avoid a row count explosion in the date dimension" [@kimball2013data].
+Although conceptually the date and time can be represented together in a single dimension, in ROLAP (*Relational On-Line Analytical Processing*) systems, it is common to implement these concepts separately, sometimes in separate tables "to avoid a row count explosion in the date dimension" [@kimball2013data] by adding the time for each day.
 
-Likewise, in @kimball2013data these dimensions are considered *static dimensions*: they are built at the beginning of the project for the period under consideration and are referenced when adding the instances to the fact table. As mentioned there: "Typically, these dimensions are built in an afternoon with a spreadsheet."
+In @kimball2013data these dimensions are considered *static dimensions*: they are built at the beginning of the project for the period under consideration and are referenced when adding the instances to the fact table. As mentioned there: "Typically, these dimensions are built in an afternoon with a spreadsheet."
 
 The purpose of the `when` package is to assist in the implementation of the ***When Dimension*** in Multidimensional Systems implemented on a ROLAP star database, regardless of its granularity, with the following features:
 
@@ -36,19 +36,24 @@ The purpose of the `when` package is to assist in the implementation of the ***W
 
 - In addition to attributes at the selected granularity, other attributes can be added at coarser granularity to facilitate querying.
 
-The rest of this document is structured as follows: First, . The following is an illustrative example of how the package works, to show usage of features it offers. Finally, the document ends with conclusions and bibliography.
+The rest of this document is structured as follows: First, the general process of defining dimensions is presented. Next, a section is dedicated to the definition of dimensions based on time and another to dimensions based on date. We continue explaining the export of the generated tables in various formats. Finally, the document ends with conclusions and bibliography.
 
-
+# Definition process
 
 ```{r setup}
 library(when)
 ```
 
 
+# Time based dimension
+
+# Date based dimension
+
+# Table export
 
 # Conclusions
 
-`rolap` package offers a set of operations that allow us to transform tables into star databases.  From several star databases you can define a constellation with conformed dimensions.
+`when` package offers a set of operations that allow us to transform tables into star databases.  From several star databases you can define a constellation with conformed dimensions.
 
 Operations have been designed to be intuitive and easy to use. The result greatly facilitates the data transformation process for the exposed situation.
 

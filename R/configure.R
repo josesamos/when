@@ -31,7 +31,7 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_dimension(name = 'when', type = 'time')
+#'   configure_dimension(name = 'time', type = 'time')
 #'
 #' @export
 configure_dimension <-
@@ -42,15 +42,19 @@ configure_dimension <-
 #'
 #' @export
 configure_dimension.when <- function(td,
-                                name = 'when',
+                                name = NULL,
                                 type = NULL,
                                 locale = Sys.getlocale("LC_TIME"),
                                 week_starts_monday = TRUE) {
-  if (is.null(name) & is.null(td$table_name)) {
-    td$table_name = 'when'
-  } else {
+  if (!is.null(name)) {
     stopifnot("'name' must have a single value." = length(name) == 1)
     td$table_name = name
+  } else if (is.null(td$table_name)) {
+    if (td$time_level) {
+      td$table_name = 'time'
+    } else {
+      td$table_name = 'date'
+    }
   }
   td <- validate_type(td, type)
   stopifnot("'week_starts_monday' must be of logical type." = is.logical(week_starts_monday))

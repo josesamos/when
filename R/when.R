@@ -1,5 +1,6 @@
 .onLoad <- function(libname, pkgname) {
   utils::data("time_seconds",
+              "date_days",
               package = pkgname,
               envir = parent.env(environment()))
 }
@@ -34,7 +35,7 @@
 #' td_2 <- when(type = 'time')
 #'
 #' @export
-when <- function(name = 'when',
+when <- function(name = NULL,
                  type = NULL,
                  locale = Sys.getlocale("LC_TIME"),
                  start = lubridate::today(),
@@ -86,12 +87,9 @@ when <- function(name = 'when',
     include_second <- FALSE
   }
 
-  if (is.null(name)) {
-    table_name = 'when'
-  } else {
-    table_name = name
+  if (!is.null(name)) {
+    stopifnot("'name' must have a single value." = length(name) == 1)
   }
-  stopifnot("'name' must have a single value." = length(table_name) == 1)
 
   day_part <-
     c(
@@ -179,7 +177,7 @@ when <- function(name = 'when',
       include_second = include_second,
       include_day_part = include_day_part,
       day_part = day_part,
-      table_name = table_name,
+      table_name = name,
       attribute_names = NULL,
       table = NULL
     ),

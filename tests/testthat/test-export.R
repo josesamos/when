@@ -42,22 +42,22 @@ test_that("export", {
 
   expect_equal(
     tables,
-    "when"
+    "date"
   )
 
   expect_equal(
     basename(file_1),
-    "when.xlsx"
+    "date.xlsx"
   )
 
   expect_equal(
     basename(file_2),
-    "when.csv"
+    "date.csv"
   )
 
   expect_equal(
     basename(file_3),
-    "when.csv"
+    "date.csv"
   )
 
 

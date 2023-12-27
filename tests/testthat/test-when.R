@@ -1,7 +1,7 @@
 test_that("when", {
   td <- when()
 
-  td_2 <- when(name = "when", include_date = TRUE)
+  td_2 <- when(include_date = TRUE)
 
   td_3 <- when(type = 'time')
 
@@ -116,7 +116,7 @@ test_that("when", {
                      `22` = "Night",
                      `23` = "Night"
                    ),
-                   table_name = "when",
+                   table_name = NULL,
                    attribute_names = NULL,
                    table = NULL
                  ),

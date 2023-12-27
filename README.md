@@ -42,30 +42,31 @@ date <-
   when(
     locale = Sys.setlocale("LC_TIME", "English"),
     start = lubridate::today(),
-    end = lubridate::today() + 9
+    end = lubridate::today() + lubridate::years(5)
   ) |>
   generate_table() |>
   get_table()
 ```
 
-The result obtained is shown below.
+The first and last rows of the obtained result are shown below.
 
 ``` r
-pander::pandoc.table(date, split.table = Inf)
+pander::pandoc.table(rbind(head(date, 5), tail(date, 5)),
+                     split.table = Inf)
 ```
 
-| id  |    date    | month_day | week_day | day_name  | day_num_name | year_week | week | year_month | month | month_name | month_num_name | year |
-|:---:|:----------:|:---------:|:--------:|:---------:|:------------:|:---------:|:----:|:----------:|:-----:|:----------:|:--------------:|:----:|
-|  1  | 2023-12-26 |    26     |    2     |  Tuesday  |  2-Tuesday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  2  | 2023-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  3  | 2023-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  4  | 2023-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  5  | 2023-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  6  | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  7  | 2024-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  8  | 2024-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  9  | 2024-01-03 |    03     |    3     | Wednesday | 3-Wednesday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-| 10  | 2024-01-04 |    04     |    4     | Thursday  |  4-Thursday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  id  |    date    | month_day | week_day | day_name  | day_num_name | year_week | week | year_month | month | month_name | month_num_name | year |
+|:----:|:----------:|:---------:|:--------:|:---------:|:------------:|:---------:|:----:|:----------:|:-----:|:----------:|:--------------:|:----:|
+|  1   | 2023-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  2   | 2023-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  3   | 2023-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  4   | 2023-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  5   | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+| 1824 | 2028-12-23 |    23     |    6     | Saturday  |  6-Saturday  |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1825 | 2028-12-24 |    24     |    7     |  Sunday   |   7-Sunday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1826 | 2028-12-25 |    25     |    1     |  Monday   |   1-Monday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1827 | 2028-12-26 |    26     |    2     |  Tuesday  |  2-Tuesday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1828 | 2028-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
 
 If we want a table with time, we indicate the type using a parameter. By
 default we get all the seconds of a day but we can also configure a

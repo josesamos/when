@@ -5,10 +5,11 @@ Version: 0.1.0
 Authors@R: 
     person("Jose", "Samos", , "jsamos@ugr.es", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-4457-3439"))
-Description: In Multidimensional Systems the When dimension allows us to express 
-    when the analysed facts have occurred. The purpose of this package is to 
-    provide support for implementing this dimension in the form of date and time 
-    tables for ROLAP (Relational On-Line Analytical Processing) systems.
+Description: In Multidimensional Systems the When dimension allows us to
+    express when the analysed facts have occurred. The purpose of this
+    package is to provide support for implementing this dimension in the
+    form of date and time tables for ROLAP (Relational On-Line Analytical
+    Processing) systems.
 License: MIT + file LICENSE
 URL: https://josesamos.github.io/when/, https://github.com/josesamos/when
 BugReports: https://github.com/josesamos/when/issues

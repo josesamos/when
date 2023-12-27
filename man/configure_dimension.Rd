@@ -9,7 +9,7 @@ configure_dimension(td, name, type, locale, week_starts_monday)
 
 \method{configure_dimension}{when}(
   td,
-  name = "when",
+  name = NULL,
   type = NULL,
   locale = Sys.getlocale("LC_TIME"),
   week_starts_monday = TRUE
@@ -52,7 +52,7 @@ begins on Sunday, it numbers blocks from Sunday to Monday.
 \examples{
 
 td <- when() |>
-  configure_dimension(name = 'when', type = 'time')
+  configure_dimension(name = 'time', type = 'time')
 
 }
 \seealso{

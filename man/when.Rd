@@ -5,7 +5,7 @@
 \title{\code{when} S3 class}
 \usage{
 when(
-  name = "when",
+  name = NULL,
   type = NULL,
   locale = Sys.getlocale("LC_TIME"),
   start = lubridate::today(),

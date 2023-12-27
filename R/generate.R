@@ -27,6 +27,13 @@ generate_table <-
 #' @export
 generate_table.when <-
   function(td) {
+    if (is.null(td$table_name)) {
+      if (td$time_level) {
+        td$table_name = 'time'
+      } else {
+        td$table_name = 'date'
+      }
+    }
     fields <- get_fields(td)
     values <- get_values(td)
     data <- get_data(td, values, fields)
@@ -217,9 +224,17 @@ get_values <- function(td) {
         val <-
           lubridate::ymd(paste0(lubridate::year(val), "-", "01", "-", "01"))
       }
-      while (val <= end) {
-        values <- c(values, as.character(val))
-        val <- lubridate::ymd(val) + inc
+      if (inc == lubridate::days(1) &
+          as.character(td$start) >= date_days[1] &
+          as.character(td$end) <= date_days[length(date_days)]) {
+        values <-
+          date_days[date_days >= as.character(td$start) &
+                      date_days <= as.character(td$end)]
+      } else {
+        while (val <= end) {
+          values <- c(values, as.character(val))
+          val <- lubridate::ymd(val) + inc
+        }
       }
     }
   }
@@ -447,5 +462,6 @@ get_data <- function(td, values, fields) {
       }
     )
   }
-  tibble::as_tibble(as.data.frame(data))
+  data <- tibble::as_tibble(as.data.frame(data))
+  unique(data)
 }

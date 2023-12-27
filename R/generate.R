@@ -47,6 +47,89 @@ generate_table.when <-
   }
 
 
+#' Get level names
+#'
+#' Returns the names of the levels. We can obtain all the available ones or only
+#' the selected ones.
+#'
+#' @param td A `when` object.
+#' @param selected A boolean.
+#'
+#' @return A string vector.
+#'
+#' @family obtaining results
+#'
+#' @examples
+#'
+#' names <- when() |>
+#'   get_level_names()
+#'
+#' @export
+get_level_names <-
+  function(td, selected)
+    UseMethod("get_level_names")
+
+#' @rdname get_level_names
+#'
+#' @export
+get_level_names.when <-
+  function(td, selected = FALSE) {
+    if (td$type == 'time') {
+      names <- 'time'
+    } else {
+      names <- setdiff(td$levels, 'time')
+      if (selected) {
+        res <- NULL
+        for (n in names) {
+          if (td[paste0(n, '_level')]) {
+            res <- c(res, n)
+          }
+        }
+        names <- res
+      }
+    }
+    names
+  }
+
+
+
+#' Get level attribute names
+#'
+#' Returns the names of the level attributes. We can obtain all the available ones
+#' or only the selected ones.
+#'
+#' @param td A `when` object.
+#' @param level A string.
+#' @param selected A boolean.
+#'
+#' @return A string vector.
+#'
+#' @family obtaining results
+#'
+#' @examples
+#'
+#' names <- when() |>
+#'   get_level_attribute_names()
+#'
+#' @export
+get_level_attribute_names <-
+  function(td, level, selected)
+    UseMethod("get_level_attribute_names")
+
+#' @rdname get_level_attribute_names
+#'
+#' @export
+get_level_attribute_names.when <-
+  function(td, level = NULL, selected = FALSE) {
+
+
+
+
+
+    names
+  }
+
+
 #' Set table attribute names
 #'
 #' Rename the attributes of the dimension table. It is especially useful if we want

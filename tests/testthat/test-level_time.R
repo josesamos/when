@@ -1,6 +1,6 @@
 test_that("level_time", {
   td_1 <- when() |>
-    include_time_level(include_minute = FALSE)
+    include_time_level(minute = FALSE)
   td_2 <- td_1 |>
     include_time_level()
 

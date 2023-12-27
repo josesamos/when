@@ -136,7 +136,26 @@ Although we have not yet generated the dimension table, this function returns th
 
 If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function.
 
-We have a function to configure each level: the attributes defined by default are configured there. We can select or deselect each attribute individually using the parameter named "include_" and the attribute name. We can also select all attributes defined at the level using the special `include_all` parameter. We can also include or uninclude a level using the `include_level` parameter of each function.
+There is a function to configure each level: the attributes defined by default are configured there. We can select or deselect each attribute individually using the attribute name as a boolean parameter of the function. For the levels associated with the date, we can also select all attributes defined at the level using the special `include_all` parameter; we can also include or uninclude a level using the `level` parameter of each function.
+
+For example, if we do not want to include the name of the month, we can configure it using the `include_month_level()` function or at the time of object creation with a parameter of the same name, as shown below.
+
+```{r}
+w_date_5 <- w_date |>
+  include_month_level(month_name = FALSE)
+
+w_date_6 <- when(
+  start = lubridate::today(),
+  end = lubridate::today() + lubridate::years(5),
+  month_name = FALSE
+)
+
+identical(w_date_5, w_date_6)
+```
+
+There is available a similar function for each level: `include_time_level()`, `include_day_level()`, `include_week_level()`, `include_month_level()` and `include_year_level()`.
+
+For date-based levels, we can include or exclude them using the `level` parameter of each of those functions or using the `include_date_levels()` function.
 
 
 ## Generation of the result

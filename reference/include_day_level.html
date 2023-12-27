@@ -63,6 +63,7 @@ quarter_day and year_day.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">include_day_level</span><span class="op">(</span></span>
 <span>  <span class="va">td</span>,</span>
 <span>  <span class="va">day_level</span>,</span>
+<span>  <span class="va">include_all</span>,</span>
 <span>  <span class="va">include_date</span>,</span>
 <span>  <span class="va">include_month_day</span>,</span>
 <span>  <span class="va">include_week_day</span>,</span>
@@ -78,15 +79,16 @@ quarter_day and year_day.</p>
 <span><span class="fu">include_day_level</span><span class="op">(</span></span>
 <span>  <span class="va">td</span>,</span>
 <span>  day_level <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  include_all <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  include_date <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  include_month_day <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  include_week_day <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  include_day_name <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_day_abbr <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  include_day_abbr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  include_day_num_name <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_day_num_abbr <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_quarter_day <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_year_day <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  include_day_num_abbr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  include_quarter_day <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  include_year_day <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -98,6 +100,10 @@ quarter_day and year_day.</p>
 
 <dt>day_level</dt>
 <dd><p>A boolean, include day level.</p></dd>
+
+
+<dt>include_all</dt>
+<dd><p>A boolean, include all fields of the level.</p></dd>
 
 
 <dt>include_date</dt>

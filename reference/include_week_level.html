@@ -60,6 +60,7 @@ the week level and its attributes to include in it: week, year_week and week_dat
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">include_week_level</span><span class="op">(</span></span>
 <span>  <span class="va">td</span>,</span>
 <span>  <span class="va">week_level</span>,</span>
+<span>  <span class="va">include_all</span>,</span>
 <span>  <span class="va">include_week</span>,</span>
 <span>  <span class="va">include_year_week</span>,</span>
 <span>  <span class="va">include_week_date</span></span>
@@ -69,9 +70,10 @@ the week level and its attributes to include in it: week, year_week and week_dat
 <span><span class="fu">include_week_level</span><span class="op">(</span></span>
 <span>  <span class="va">td</span>,</span>
 <span>  week_level <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  include_all <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  include_week <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  include_year_week <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include_week_date <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  include_week_date <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -83,6 +85,10 @@ the week level and its attributes to include in it: week, year_week and week_dat
 
 <dt>week_level</dt>
 <dd><p>A boolean, include week level.</p></dd>
+
+
+<dt>include_all</dt>
+<dd><p>A boolean, include all fields of the level.</p></dd>
 
 
 <dt>include_week</dt>

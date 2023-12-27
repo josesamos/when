@@ -139,29 +139,108 @@ and bibliography.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://josesamos.github.io/when/">when</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">w_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>By default, an object is created based on date, but we can also
 create it based on time by indicating it using the <code>type</code>
 parameter.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">w_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span></code></pre></div>
 <p>Virtually all configuration options can be defined using the object
 creation function. They can also be defined later using specific
 functions. For example, using the following combination of functions we
 obtain the same result.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wt_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">w_time_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/configure_dimension.html">configure_dimension</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">wt_2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_time</span>, <span class="va">w_time_2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>As with the date, we can indicate specific time periods or a vector
+of times to consider.</p>
 <div class="section level3">
 <h3 id="definition-of-instances">Definition of instances<a class="anchor" aria-label="anchor" href="#definition-of-instances"></a>
 </h3>
+<p>We can define the instances by giving a range of values or by
+indicating the specific instances. The values in both cases will depend
+on the type of dimension (date-based or time-based).</p>
+<p>We can indicate these values at the time of creating the class object
+or through the <code><a href="../reference/define_instances.html">define_instances()</a></code> configuration
+function.</p>
+<ul>
+<li><p>In the case of date, we can indicate a year, year and month (with
+the format <code>yyyy-mm</code>), or year month and day
+(<code>yyyy-mm-dd</code>).</p></li>
+<li><p>In the case of time, we can indicate an hour, hour and minute
+(with the format <code>hh:mm</code>), or hour, minute and second
+(<code>hh:mm:ss</code>).</p></li>
+</ul>
+<p>In both cases we can use the string format, the one provided by the
+<a href="https://CRAN.R-project.org/package=lubridate" class="external-link"><code>lubridate</code></a>
+package or, when it is a single number (year or hour) we can use an
+integer value. Then it will be transformed appropriately.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                   end <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">years</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The following definition will be appropriate if we want to obtain the
+dimension at the year level, because we are indicating the specific
+values to consider.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_2</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2030</span><span class="op">)</span></span></code></pre></div>
+<p>The following definition will be appropriate at any level of detail
+because we are giving the range of values to consider (dates between
+those two years).</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_3</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fl">2020</span>, end <span class="op">=</span> <span class="fl">2030</span><span class="op">)</span></span></code></pre></div>
+<p>When only the year is indicated, it is considered its first day.
+Therefore the previous definition is equivalent to the following
+one.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_4</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"2020-01-01"</span>, end <span class="op">=</span> <span class="st">"2030-01-01"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_date_3</span>, <span class="va">w_date_4</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>In the case of time, by default, it is considered at the second level
+and all seconds of the day.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_time_3</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"00:00:00"</span>, end <span class="op">=</span> <span class="st">"23:59:59"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_time</span>, <span class="va">w_time_3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="definition-of-levels">Definition of levels<a class="anchor" aria-label="anchor" href="#definition-of-levels"></a>
+<h3 id="selection-and-definition-of-levels">Selection and definition of levels<a class="anchor" aria-label="anchor" href="#selection-and-definition-of-levels"></a>
 </h3>
+<p>In the definition, by default, the attributes that we have considered
+to be most frequently used have been included. We can consult them using
+the <code><a href="../reference/get_table_attribute_names.html">get_table_attribute_names()</a></code> function.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "id"             "date"           "month_day"      "week_day"      </span></span>
+<span><span class="co">#&gt;  [5] "day_name"       "day_num_name"   "year_week"      "week"          </span></span>
+<span><span class="co">#&gt;  [9] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
+<span><span class="co">#&gt; [13] "year"</span></span>
+<span></span>
+<span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "id"       "time"     "hour"     "minute"   "second"   "day_part"</span></span>
+<span></span>
+<span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "c('id', 'time', 'hour', 'minute', 'second', 'day_part')"</span></span></code></pre></div>
+<p>Although we have not yet generated the dimension table, this function
+returns the names of the attributes it will contain. They can be
+obtained as a string or as a vector of strings.</p>
+<p>This function is very useful when we already know the attributes. If
+it is generated in the form of a string (<code>as_string = TRUE</code>,
+default option), the result can be used to easily change the name of the
+attributes, when the table is generated, using the
+<code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code> function.</p>
 </div>
 <div class="section level3">
 <h3 id="generation-of-the-result">Generation of the result<a class="anchor" aria-label="anchor" href="#generation-of-the-result"></a>

@@ -241,13 +241,36 @@ obtained as a string or as a vector of strings.</p>
 to easily change the name of the attributes, when the table is
 generated, using the <code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code>
 function.</p>
-<p>We have a function to configure each level: the attributes defined by
-default are configured there. We can select or deselect each attribute
-individually using the parameter named “include_” and the attribute
-name. We can also select all attributes defined at the level using the
-special <code>include_all</code> parameter. We can also include or
-uninclude a level using the <code>include_level</code> parameter of each
-function.</p>
+<p>There is a function to configure each level: the attributes defined
+by default are configured there. We can select or deselect each
+attribute individually using the attribute name as a boolean parameter
+of the function. For the levels associated with the date, we can also
+select all attributes defined at the level using the special
+<code>include_all</code> parameter; we can also include or uninclude a
+level using the <code>level</code> parameter of each function.</p>
+<p>For example, if we do not want to include the name of the month, we
+can configure it using the <code><a href="../reference/include_month_level.html">include_month_level()</a></code> function
+or at the time of object creation with a parameter of the same name, as
+shown below.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_5</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/include_month_level.html">include_month_level</a></span><span class="op">(</span>month_name <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_date_6</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span></span>
+<span>  start <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  end <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">years</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span>
+<span>  month_name <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_date_5</span>, <span class="va">w_date_6</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>There is available a similar function for each level:
+<code><a href="../reference/include_time_level.html">include_time_level()</a></code>, <code><a href="../reference/include_day_level.html">include_day_level()</a></code>,
+<code><a href="../reference/include_week_level.html">include_week_level()</a></code>, <code><a href="../reference/include_month_level.html">include_month_level()</a></code>
+and <code><a href="../reference/include_year_level.html">include_year_level()</a></code>.</p>
+<p>For date-based levels, we can include or exclude them using the
+<code>level</code> parameter of each of those functions or using the
+<code><a href="../reference/include_date_levels.html">include_date_levels()</a></code> function.</p>
 </div>
 <div class="section level3">
 <h3 id="generation-of-the-result">Generation of the result<a class="anchor" aria-label="anchor" href="#generation-of-the-result"></a>

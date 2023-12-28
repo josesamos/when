@@ -29,9 +29,9 @@ table <- when() |>
 \seealso{
 \code{\link{when}}, \code{\link{generate_table}}
 
-Other exporting results: 
+Other getting results: 
 \code{\link{get_table_csv}()},
 \code{\link{get_table_rdb}()},
 \code{\link{get_table_xlsx}()}
 }
-\concept{exporting results}
+\concept{getting results}

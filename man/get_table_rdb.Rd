@@ -36,9 +36,9 @@ DBI::dbDisconnect(my_db)
 
 }
 \seealso{
-Other exporting results: 
+Other getting results: 
 \code{\link{get_table_csv}()},
 \code{\link{get_table_xlsx}()},
 \code{\link{get_table}()}
 }
-\concept{exporting results}
+\concept{getting results}

@@ -7,7 +7,7 @@
 #'
 #' @return A `tibble`, the table.
 #'
-#' @family exporting results
+#' @family getting results
 #' @seealso \code{\link{when}}, \code{\link{generate_table}}
 #'
 #' @examples
@@ -47,7 +47,7 @@ get_table.when <-
 #'
 #' @return Invisible NULL.
 #'
-#' @family exporting results
+#' @family getting results
 #'
 #' @examples
 #'
@@ -102,7 +102,7 @@ get_table_rdb.when <- function(td, con, overwrite = FALSE) {
 #'
 #' @return A string, name of a file.
 #'
-#' @family exporting results
+#' @family getting results
 #'
 #' @examples
 #'
@@ -151,7 +151,7 @@ get_table_xlsx.when <- function(td, file = NULL) {
 #'
 #' @return A string, name of a file.
 #'
-#' @family exporting results
+#' @family getting results
 #'
 #' @examples
 #'

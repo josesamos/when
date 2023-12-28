@@ -32,9 +32,9 @@ file <- when() |>
 
 }
 \seealso{
-Other exporting results: 
+Other getting results: 
 \code{\link{get_table_csv}()},
 \code{\link{get_table_rdb}()},
 \code{\link{get_table}()}
 }
-\concept{exporting results}
+\concept{getting results}

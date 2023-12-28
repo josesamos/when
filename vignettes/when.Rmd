@@ -47,7 +47,7 @@ The definition process consists of the following steps:
 1. Definition of instances.
 1. Selection and definition of levels.
 1. Generation of the result.
-1. Table export.
+1. Getting the table.
 
 Steps 2, 3 and 4 can be done in any order, they can even be included in step 1.
 
@@ -242,7 +242,7 @@ Once the table is generated, we can export it. If we want to access the table an
 
 If we make changes to the configuration, it is our responsibility to generate the table again.
 
-## Table export
+## Getting the table
 
 We can access the dimension table to work with it in R (for example using the [`rolap`](https://CRAN.R-project.org/package=rolap) package), or export it in the format that is most convenient for us to work with other tools.
 

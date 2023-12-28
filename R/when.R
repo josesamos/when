@@ -110,6 +110,12 @@ when <- function(name = NULL,
   names(level_type) <- levels
   level_type[levels_t] <- "time"
 
+  att_function <- vector("list", length = length(att))
+  names(att_function) <- att
+  for (n in att) {
+    att_function[[n]] <- eval(parse(text = paste0("get_data_", n)))
+  }
+
   surrogate_key <- TRUE
   week_starts_monday <- TRUE
   att_include_conf <- att_include
@@ -162,6 +168,7 @@ when <- function(name = NULL,
       level_type = level_type,
       att_include_conf = att_include_conf,
       level_include_conf = level_include_conf,
+      att_function = att_function,
 
       day_part = day_part,
       table_name = name,
@@ -267,3 +274,4 @@ complete_dates <- function(values) {
   values[len == 7] <- paste0(values[len == 7], "-01")
   values
 }
+

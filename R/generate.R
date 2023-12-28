@@ -125,6 +125,8 @@ get_level_attribute_names.when <-
     }
     if (selected) {
       names <- names[td$att_include_conf[names]]
+      table_names <- get_fields(td)
+      names <- intersect(names, table_names)
     }
     names
   }

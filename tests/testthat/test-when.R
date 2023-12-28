@@ -25,7 +25,7 @@ test_that("when", {
   },
   structure(
     list(
-      type = "std",
+      type = "date",
       locale = "Spanish_Spain.utf8",
       start = structure(19715, class = "Date"),
       end = structure(19715, class = "Date"),

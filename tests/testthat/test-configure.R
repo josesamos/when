@@ -28,7 +28,7 @@ test_that("configure", {
                c(td_2$type, td_2$name))
 
   expect_equal(td_3$type,
-               "std")
+               "date")
 
   expect_equal(
     td_3$level_include_conf,

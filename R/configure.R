@@ -7,7 +7,7 @@
 #' The `week_starts_monday` parameter only affects the numbering of days, not weeks.
 #'
 #' The week number associated with each date depends on the type of date dimension
-#' selected: standard (NULL), ISO 8601 ('iso') or epidemiological ('epi').
+#' selected: standard ('date'), ISO 8601 ('iso') or epidemiological ('epi').
 #'
 #' The standard week numbers blocks of 7 days beginning on January 1. The last week
 #' of the year can be less than 7 days long.
@@ -125,24 +125,26 @@ define_instances.when <-
 validate_type <- function(td, type) {
   if (!is.null(type)) {
     type <- snakecase::to_snake_case(type)
-    stopifnot("'type' does not have one of the allowed values." = type %in% c('iso', 'epi', 'time'))
-  } else {
-    type <- 'std'
-  }
-  if (type == 'time') {
-    td$level_include_conf[names(td$level_type[td$level_type == 'date'])] <- FALSE
-    td$level_include_conf[names(td$level_type[td$level_type == 'time'])] <- TRUE
-    if (td$type != 'time') {
-      td$start = lubridate::today()
-      td$end = lubridate::today()
+    stopifnot("'type' does not have one of the allowed values." = type %in% c('date', 'iso', 'epi', 'time'))
+    if (type == 'time') {
+      td$level_include_conf[names(td$level_type[td$level_type == 'date'])] <-
+        FALSE
+      td$level_include_conf[names(td$level_type[td$level_type == 'time'])] <-
+        TRUE
+      if (td$type != 'time') {
+        td$start = lubridate::today()
+        td$end = lubridate::today()
+      }
+    } else {
+      td$level_include_conf[names(td$level_type[td$level_type == 'time'])] <-
+        FALSE
+      if (!any(td$level_include_conf[names(td$level_type[td$level_type == 'date'])])) {
+        td$level_include_conf[names(td$level_type[td$level_type == 'date'])] <-
+          TRUE
+      }
     }
-  } else {
-    td$level_include_conf[names(td$level_type[td$level_type == 'time'])] <- FALSE
-    if (!any(td$level_include_conf[names(td$level_type[td$level_type == 'date'])])) {
-      td$level_include_conf[names(td$level_type[td$level_type == 'date'])] <- TRUE
-    }
+    td$type <- type
   }
-  td$type <- type
   td
 }
 

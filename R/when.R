@@ -144,6 +144,10 @@ when <- function(name = NULL,
     stopifnot("'name' must have a single value." = length(name) == 1)
   }
 
+  if (is.null(type)) {
+    type = 'date'
+  }
+
   day_part <-
     c(
       rep('Night', 5),

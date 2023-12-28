@@ -36,9 +36,24 @@ The purpose of the `when` package is to assist in the implementation of the ***W
 
 - In addition to attributes at the selected granularity, other attributes can be added at coarser granularity to facilitate querying.
 
-The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, a section is dedicated to the definition of dimensions based on time and another to dimensions based on date. Finally, the document ends with conclusions and bibliography.
+The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, a section is dedicated to showing examples of dimension definitions, time-based and date-based. Finally, the document ends with conclusions and bibliography.
 
 # Definition process
+
+The definition process consists of the following steps:
+
+1. Creating an object.
+1. Configuration of general aspects.
+1. Definition of instances.
+1. Selection and definition of levels.
+1. Generation of the result.
+1. Table export.
+
+Steps 2, 3 and 4 can be done in any order, they can even be included in step 1.
+
+Below we discuss each of them.
+
+## Creating an object
 
 The definition process begins by creating an object of the `when` class.
 
@@ -54,6 +69,9 @@ By default, an object is created based on date, but we can also create it based 
 w_time <- when(type = 'time')
 ```
 
+
+## Configuration of general aspects
+
 Virtually all configuration options can be defined using the object creation function. They can also be defined later using specific functions. For example, using the following combination of functions we obtain the same result.
 
 ```{r}
@@ -62,6 +80,9 @@ w_time_2 <- when() |>
 
 identical(w_time, w_time_2)
 ```
+
+
+
 
 Next we have to select and configure the levels and define the instances. These operations can be carried out in any order.
 
@@ -160,19 +181,61 @@ There is available a similar function for each level: `include_time_level()`, `i
 
 For date-based levels, we can include or exclude them using the `level` parameter of each of those functions or using the `include_date_levels()` function.
 
+```{r}
+w_date_7 <- w_date |>
+  include_month_level(level = FALSE)
+
+w_date_8 <- w_date |>
+  include_date_levels(month_level = FALSE)
+
+identical(w_date_7, w_date_8)
+
+w_date_7 |>
+  get_level_attribute_names(name = 'month', selected = TRUE)
+```
+
+If we want to include the level with the default attributes again, just use the `include_month_level()` function again with the default values of the parameters.
+
+```{r}
+w_date_9 <- w_date_7 |>
+  include_month_level()
+
+w_date_9 |>
+  get_level_attribute_names(name = 'month', selected = TRUE)
+```
+
 
 ## Generation of the result
 
+Once the characteristics of the dimension are defined, we can generate its table.
 
-Although we have not yet generated the dimension table, this function returns the names of the attributes it will contain. They can be obtained as a string or as a vector of strings.
+Although we have not yet generated the dimension table, the following function returns the names of the attributes it will contain. They can be obtained as a string or as a vector of strings.
 
-If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function.
+```{r}
+w_date |>
+  get_table_attribute_names(as_string = FALSE)
+```
+
+If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function, if deemed necessary.
+
+When we consider that the dimension is already properly defined, we can generate its corresponding table using the generate_table() function. We update the definition of the object; if it finds any errors it will notify us.
+
+```{r}
+w_date <- w_date |>
+  generate_table()
+
+w_time <- w_time |>
+  generate_table()
+```
+
 
 ## Table export
 
-# Time based dimension
+# Definition examples
 
-# Date based dimension
+## Time based dimension
+
+## Date based dimension
 
 # Conclusions
 

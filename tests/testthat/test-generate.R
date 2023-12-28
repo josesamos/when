@@ -419,8 +419,6 @@ test_that("generate", {
       "week_day",
       "day_name",
       "day_num_name",
-      "year_week",
-      "week",
       "year_month",
       "month",
       "month_name",

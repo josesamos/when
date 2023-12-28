@@ -21,6 +21,9 @@ A string, name of a file.
 Once all the configuration elements have been defined and the dimension table
 has been generated, using this function we can obtain it in xlsx format.
 }
+\details{
+If no file name is given, stores the table in a temporary one.
+}
 \examples{
 
 file <- when() |>

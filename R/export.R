@@ -95,6 +95,8 @@ get_table_rdb.when <- function(td, con, overwrite = FALSE) {
 #' Once all the configuration elements have been defined and the dimension table
 #' has been generated, using this function we can obtain it in xlsx format.
 #'
+#' If no file name is given, stores the table in a temporary one.
+#'
 #' @param td A `when` object.
 #' @param file A string, name of a file.
 #'
@@ -138,6 +140,8 @@ get_table_xlsx.when <- function(td, file = NULL) {
 #'
 #' Once all the configuration elements have been defined and the dimension table
 #' has been generated, using this function we can obtain it in csv format.
+#'
+#' If no file name is given, stores the table in a temporary one.
 #'
 #' @param td A `when` object.
 #' @param file A string, name of a file.

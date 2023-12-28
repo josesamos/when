@@ -89,6 +89,8 @@ w_date <- w_date |>
   configure_dimension(locale = Sys.setlocale("LC_TIME", "English"))
 ```
 
+By default the dimension table will include a surrogate key. Through the `surrogate_key` parameter of this function we can indicate that it is not included.
+
 Next we have to select and configure the levels and define the instances. These operations can be carried out in any order.
 
 ## Definition of instances
@@ -273,6 +275,26 @@ pander::pandoc.table(rbind(head(t_time, 5), tail(t_time, 5)),
 ```
 
 `day_part` is predefined in English. Literals or associated hours can be accessed and changed using the `get_day_part()` and `set_day_part()` functions.
+
+We can export the generated tables to any Relational DBMS, as shown below, we just have to pass a connection to the database as a parameter..
+
+```{r}
+my_db <- DBI::dbConnect(RSQLite::SQLite())
+
+w_date |>
+  get_table_rdb(my_db)
+
+w_time |>
+  get_table_rdb(my_db)
+
+DBI::dbListTables(my_db)
+
+DBI::dbDisconnect(my_db)
+```
+
+In the previous example, since we have not explicitly defined any names for the tables in the configuration, they have been assigned as a name the element on which they are based (date and time).
+
+Functions to store the tables in *xlsx* and *csv* format are also available: `get_table_xlsx()` and `get_table_csv()`.
 
 
 # Definition examples

@@ -117,11 +117,14 @@ get_level_attribute_names.when <-
     if (td$type == 'time') {
       names <- names(td$att_levels[td$att_levels == 'time'])
     } else {
-      stopifnot("'name' must be a date level." = name %in% names(td$level_type[td$level_type == 'date']))
-      names <- names(td$att_levels[td$att_levels == name])
+      if (is.null(name)) {
+        name <- names(td$level_type[td$level_type == 'date'])
+      }
+      stopifnot("'name' must be a date level." = all(name %in% names(td$level_type[td$level_type == 'date'])))
+      names <- names(td$att_levels[td$att_levels %in% name])
     }
     if (selected) {
-      names <- names[td$level_include_conf[names]]
+      names <- names[td$att_include_conf[names]]
     }
     names
   }

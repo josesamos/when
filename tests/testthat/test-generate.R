@@ -82,10 +82,19 @@ test_that("generate", {
     ) |>
     generate_table()
 
-  td_13 <- when(values = 2023:2024, day_level = FALSE, week_level = FALSE, month_level = FALSE) |>
+  td_13 <-
+    when(
+      values = 2023:2024,
+      day_level = FALSE,
+      week_level = FALSE,
+      month_level = FALSE
+    ) |>
     generate_table()
 
-  td_14 <- when(values = 2023:2024, day_level = FALSE, week_level = FALSE) |>
+  td_14 <-
+    when(values = 2023:2024,
+         day_level = FALSE,
+         week_level = FALSE) |>
     generate_table()
 
   td_15 <- when(values = 2023:2024, day_level = FALSE) |>
@@ -93,6 +102,42 @@ test_that("generate", {
 
   td_16 <- when(values = 2023:2024) |>
     generate_table()
+
+  td_17 <- when(type = 'time', minute = FALSE)
+  td_18 <- when(week_level = FALSE, date = FALSE)
+  ln_17 <- td_17 |>
+    get_level_names(selected = TRUE)
+
+  ln_18 <- td_18 |>
+    get_level_names()
+
+  ln_18_s <- td_18 |>
+    get_level_names(selected = TRUE)
+
+
+  lan_17 <- td_17 |>
+    get_level_attribute_names()
+
+  lan_17_s <- td_17 |>
+    get_level_attribute_names(selected = TRUE)
+
+  lan_18 <- td_18 |>
+    get_level_attribute_names()
+
+  lan_18_s <- td_18 |>
+    get_level_attribute_names(selected = TRUE)
+
+  ln_1 <- td_1 |>
+    get_level_names()
+
+  ln_1_s <- td_1 |>
+    get_level_names(selected = TRUE)
+
+  ln_2 <- td_2 |>
+    get_level_names()
+
+  ln_2_s <- td_2 |>
+    get_level_names(selected = TRUE)
 
   expect_equal(nrow(td_1$table),
                86400)
@@ -308,6 +353,68 @@ test_that("generate", {
     c(
       "id",
       "date",
+      "month_day",
+      "week_day",
+      "day_name",
+      "day_num_name",
+      "year_week",
+      "week",
+      "year_month",
+      "month",
+      "month_name",
+      "month_num_name",
+      "year"
+    )
+  )
+
+  expect_equal(ln_17,
+               "time")
+
+  expect_equal(ln_18,
+               c("day", "week", "month", "year"))
+
+  expect_equal(ln_18_s,
+               c("day", "month", "year"))
+
+  expect_equal(lan_17,
+               c("time", "hour", "minute", "second", "day_part"))
+
+  expect_equal(lan_17_s,
+               c("time", "hour", "day_part"))
+
+  expect_equal(
+    lan_18,
+    c(
+      "date",
+      "month_day",
+      "week_day",
+      "day_name",
+      "day_num_name",
+      "day_abbr",
+      "day_num_abbr",
+      "year_day",
+      "quarter_day",
+      "year_week",
+      "week",
+      "week_date",
+      "year_month",
+      "month",
+      "month_name",
+      "month_num_name",
+      "month_abbr",
+      "month_num_abbr",
+      "year_quarter",
+      "quarter",
+      "year_semester",
+      "semester",
+      "year",
+      "decade"
+    )
+  )
+
+  expect_equal(
+    lan_18_s,
+    c(
       "month_day",
       "week_day",
       "day_name",

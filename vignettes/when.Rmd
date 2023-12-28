@@ -36,7 +36,7 @@ The purpose of the `when` package is to assist in the implementation of the ***W
 
 - In addition to attributes at the selected granularity, other attributes can be added at coarser granularity to facilitate querying.
 
-The rest of this document is structured as follows: First, the general process of defining dimensions is presented. Next, a section is dedicated to the definition of dimensions based on time and another to dimensions based on date. Finally, the document ends with conclusions and bibliography.
+The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, a section is dedicated to the definition of dimensions based on time and another to dimensions based on date. Finally, the document ends with conclusions and bibliography.
 
 # Definition process
 
@@ -63,8 +63,7 @@ w_time_2 <- when() |>
 identical(w_time, w_time_2)
 ```
 
-As with the date, we can indicate specific time periods or a vector of times to consider.
-
+Next we have to select and configure the levels and define the instances. These operations can be carried out in any order.
 
 ## Definition of instances
 
@@ -78,13 +77,15 @@ We can indicate these values at the time of creating the class object or through
 
 In both cases we can use the string format, the one provided by the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package or, when it is a single number (year or hour) we can use an integer value. Then it will be transformed appropriately.
 
+For example, below they are used with the format of `lubridate`.
+
 ```{r}
 w_date <- w_date |>
   define_instances(start = lubridate::today(),
                    end = lubridate::today() + lubridate::years(5))
 ```
 
-The following definition will be appropriate if we want to obtain the dimension at the year level, because we are indicating the specific values to consider.
+The following definition will be appropriate if we want to obtain the dimension at the year level, because we are indicating the specific values to consider (not a period).
 
 ```{r}
 w_date_2 <- w_date |>
@@ -107,7 +108,7 @@ w_date_4 <- w_date |>
 identical(w_date_3, w_date_4)
 ```
 
-In the case of time, by default, it is considered at the second level and all seconds of the day.
+In the case of time, by default, it is considered at second level and all seconds of the day.
 
 ```{r}
 w_time_3 <- w_time |>
@@ -119,22 +120,21 @@ identical(w_time, w_time_3)
 
 ## Selection and definition of levels
 
-In the definition, by default, the attributes that we have considered to be most frequently used have been included. We can consult them using the `get_table_attribute_names()` function.
+In the definition, by default, the attributes that we have considered to be most frequently used have been included. We can consult them for each level using the `get_level_attribute_names()` function with the parameter `selected = TRUE`. We can indicate the name of the level or, if we do not indicate any, it will obtain the attributes of all the levels. We obtain the level names using the `get_level_names()` function. Below are examples of using these functions.
 
 ```{r}
 w_date |>
-  get_table_attribute_names(as_string = FALSE)
+  get_level_attribute_names(selected = TRUE)
+
+w_date |>
+  get_level_names()
+
+w_date |>
+  get_level_attribute_names(name = 'month', selected = TRUE)
 
 w_time |>
-  get_table_attribute_names(as_string = FALSE)
-
-w_time |>
-  get_table_attribute_names()
+  get_level_attribute_names()
 ```
-
-Although we have not yet generated the dimension table, this function returns the names of the attributes it will contain. They can be obtained as a string or as a vector of strings.
-
-If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function.
 
 There is a function to configure each level: the attributes defined by default are configured there. We can select or deselect each attribute individually using the attribute name as a boolean parameter of the function. For the levels associated with the date, we can also select all attributes defined at the level using the special `include_all` parameter; we can also include or uninclude a level using the `level` parameter of each function.
 
@@ -151,6 +151,9 @@ w_date_6 <- when(
 )
 
 identical(w_date_5, w_date_6)
+
+w_date_5 |>
+  get_level_attribute_names(name = 'month', selected = TRUE)
 ```
 
 There is available a similar function for each level: `include_time_level()`, `include_day_level()`, `include_week_level()`, `include_month_level()` and `include_year_level()`.
@@ -159,6 +162,11 @@ For date-based levels, we can include or exclude them using the `level` paramete
 
 
 ## Generation of the result
+
+
+Although we have not yet generated the dimension table, this function returns the names of the attributes it will contain. They can be obtained as a string or as a vector of strings.
+
+If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function.
 
 ## Table export
 

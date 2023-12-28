@@ -28,7 +28,7 @@ generate_table <-
 generate_table.when <-
   function(td) {
     if (is.null(td$table_name)) {
-      if (td$time_level) {
+      if (td$type == 'time') {
         td$table_name = 'time'
       } else {
         td$table_name = 'date'
@@ -77,20 +77,13 @@ get_level_names.when <-
     if (td$type == 'time') {
       names <- 'time'
     } else {
-      names <- setdiff(td$levels, 'time')
+      names <- names(td$level_type[td$level_type == 'date'])
       if (selected) {
-        res <- NULL
-        for (n in names) {
-          if (td[paste0(n, '_level')]) {
-            res <- c(res, n)
-          }
-        }
-        names <- res
+        names <- names[td$level_include_conf[names]]
       }
     }
     names
   }
-
 
 
 #' Get level attribute names
@@ -99,7 +92,7 @@ get_level_names.when <-
 #' or only the selected ones.
 #'
 #' @param td A `when` object.
-#' @param level A string.
+#' @param name A string.
 #' @param selected A boolean.
 #'
 #' @return A string vector.
@@ -113,19 +106,26 @@ get_level_names.when <-
 #'
 #' @export
 get_level_attribute_names <-
-  function(td, level, selected)
+  function(td, name, selected)
     UseMethod("get_level_attribute_names")
 
 #' @rdname get_level_attribute_names
 #'
 #' @export
 get_level_attribute_names.when <-
-  function(td, level = NULL, selected = FALSE) {
-
-
-
-
-
+  function(td, name = NULL, selected = FALSE) {
+    if (td$type == 'time') {
+      names <- names(td$att_levels[td$att_levels == 'time'])
+    } else {
+      if (is.null(name)) {
+        name <- names(td$level_type[td$level_type == 'date'])
+      }
+      stopifnot("'name' must be a date level." = all(name %in% names(td$level_type[td$level_type == 'date'])))
+      names <- names(td$att_levels[td$att_levels %in% name])
+    }
+    if (selected) {
+      names <- names[td$att_include_conf[names]]
+    }
     names
   }
 
@@ -230,21 +230,14 @@ get_table_attribute_names.when <-
 #'
 #' @keywords internal
 get_fields <- function(td) {
-  if (!td$day_level &
-      td$week_level &
-      (td$month_level | td$year_level)) {
-    td$include_week_date <- TRUE
+  if (!td$level_include_conf['day'] &
+      td$level_include_conf['week'] &
+      (td$level_include_conf['month'] | td$level_include_conf['year'])) {
+    td$att_include_conf['week_date'] <- TRUE
   }
-  fields <- NULL
-  for (level in td$levels) {
-    if (td[[paste0(level, '_level')]]) {
-      for (name in td[[paste0(level, '_level_names')]]) {
-        if (td[[paste0('include_', name)]]) {
-          fields <- c(fields, name)
-        }
-      }
-    }
-  }
+  levels <- names(td$level_include_conf[td$level_include_conf])
+  fields <- names(td$att_levels[td$att_levels %in% levels])
+  fields <- fields[td$att_include_conf[fields]]
   if (!('minute' %in% fields)) {
     fields <- setdiff(fields, "second")
   }
@@ -268,8 +261,8 @@ get_values <- function(td) {
     if (td$type == 'time') {
       if (val == end) {
         val <- hms::as_hms("00:00:00")
-        if (td$include_minute) {
-          if (td$include_second) {
+        if (td$att_include_conf['minute']) {
+          if (td$att_include_conf['second']) {
             end <- hms::as_hms("23:59:59")
             td$start <- "00:00:00"
             td$end <- "23:59:59"
@@ -280,8 +273,8 @@ get_values <- function(td) {
           end <- hms::as_hms("23:00:00")
         }
       }
-      if (td$include_minute) {
-        if (td$include_second) {
+      if (td$att_include_conf['minute']) {
+        if (td$att_include_conf['second']) {
           inc <- 1
         } else {
           inc <- 60
@@ -301,11 +294,11 @@ get_values <- function(td) {
         values <- c(values, as.character(end))
       }
     } else {
-      if (td$day_level) {
+      if (td$level_include_conf['day']) {
         inc <- lubridate::days(1)
-      } else if (td$week_level) {
+      } else if (td$level_include_conf['week']) {
         inc <- lubridate::weeks(1)
-      } else if (td$month_level) {
+      } else if (td$level_include_conf['month']) {
         inc <- base::months(1)
         val <-
           lubridate::ymd(paste0(
@@ -315,7 +308,7 @@ get_values <- function(td) {
             "-",
             "01"
           ))
-      } else if (td$year_level) {
+      } else if (td$level_include_conf['year']) {
         inc <- lubridate::years(1)
         val <-
           lubridate::ymd(paste0(lubridate::year(val), "-", "01", "-", "01"))
@@ -350,213 +343,15 @@ get_values <- function(td) {
 get_data <- function(td, values, fields) {
   data <- list()
   for (f in fields) {
-    switch(
-      f,
-      date = {
-        data[[f]] <- values
-      },
-      year_day = {
-        data[[f]] <- sprintf("%03d", lubridate::yday(values))
-      },
-      quarter_day = {
-        data[[f]] <- sprintf("%02d", lubridate::qday(values))
-      },
-      month_day = {
-        data[[f]] <- sprintf("%02d", lubridate::mday(values))
-      },
-      week_day = {
-        if (td$week_starts_monday) {
-          v <- 1
-        } else {
-          v <- 7
-        }
-        data[[f]] <-
-          as.character(lubridate::wday(values,
-                                       week_start = getOption("lubridate.week.start", v)))
-      },
-      day_name = {
-        data[[f]] <- as.character(lubridate::wday(
-          values,
-          label = TRUE,
-          abbr = FALSE,
-          locale = td$locale
-        ))
-      },
-      day_num_name = {
-        if (td$week_starts_monday) {
-          v <- 1
-        } else {
-          v <- 7
-        }
-        data[[f]] <- paste0(
-          lubridate::wday(values,
-                          week_start = getOption("lubridate.week.start", v)),
-          '-',
-          lubridate::wday(
-            values,
-            label = TRUE,
-            abbr = FALSE,
-            locale = td$locale
-          )
-        )
-      },
-      day_abbr = {
-        data[[f]] <- gsub("\\\\.", "", as.character(
-          lubridate::wday(
-            values,
-            label = TRUE,
-            abbr = TRUE,
-            locale = td$locale
-          )
-        ))
-      },
-      day_num_abbr = {
-        if (td$week_starts_monday) {
-          v <- 1
-        } else {
-          v <- 7
-        }
-        data[[f]] <- paste0(
-          lubridate::wday(values,
-                          week_start = getOption("lubridate.week.start", v)),
-          '-',
-          gsub("\\\\.", "", as.character(
-            lubridate::wday(
-              values,
-              label = TRUE,
-              abbr = TRUE,
-              locale = td$locale
-            )
-          ))
-        )
-      },
-      year_week = {
-        switch(td$type,
-               iso = {
-                 year <- lubridate::isoyear(values)
-                 week <- lubridate::isoweek(values)
-               },
-               epi = {
-                 year <- lubridate::epiyear(values)
-                 week <- lubridate::epiweek(values)
-               },
-               {
-                 year <- lubridate::year(values)
-                 week <- lubridate::week(values)
-               })
-        data[[f]] <- paste0(year, '-', sprintf("%02d", week))
-      },
-      week = {
-        switch(td$type,
-               iso = {
-                 week <- lubridate::isoweek(values)
-               },
-               epi = {
-                 week <- lubridate::epiweek(values)
-               },
-               {
-                 week <- lubridate::week(values)
-               })
-        data[[f]] <- sprintf("%02d", week)
-      },
-      week_date = {
-        data[[f]] <- values
-      },
-      year_semester = {
-        data[[f]] <-
-          paste0(lubridate::year(values),
-                 '-',
-                 lubridate::semester(values))
-      },
-      semester = {
-        data[[f]] <- as.character(lubridate::semester(values))
-      },
-      year_quarter = {
-        data[[f]] <-
-          paste0(lubridate::year(values),
-                 '-',
-                 lubridate::quarter(values))
-      },
-      quarter = {
-        data[[f]] <- as.character(lubridate::quarter(values))
-      },
-      year_month = {
-        data[[f]] <-
-          paste0(lubridate::year(values),
-                 '-',
-                 sprintf("%02d", lubridate::month(values)))
-      },
-      month = {
-        data[[f]] <- sprintf("%02d", lubridate::month(values))
-      },
-      month_name = {
-        data[[f]] <- as.character(lubridate::month(
-          values,
-          label = TRUE,
-          abbr = FALSE,
-          locale = td$locale
-        ))
-      },
-      month_num_name = {
-        data[[f]] <-
-          paste0(
-            sprintf("%02d", lubridate::month(values)),
-            '-',
-            lubridate::month(
-              values,
-              label = TRUE,
-              abbr = FALSE,
-              locale = td$locale
-            )
-          )
-      },
-      month_abbr = {
-        data[[f]] <- as.character(lubridate::month(
-          values,
-          label = TRUE,
-          abbr = TRUE,
-          locale = td$locale
-        ))
-      },
-      month_num_abbr = {
-        data[[f]] <-
-          paste0(
-            sprintf("%02d", lubridate::month(values)),
-            '-',
-            lubridate::month(
-              values,
-              label = TRUE,
-              abbr = TRUE,
-              locale = td$locale
-            )
-          )
-      },
-      year = {
-        data[[f]] <- as.character(lubridate::year(values))
-      },
-      decade = {
-        data[[f]] <- as.character(10 * (lubridate::year(values) %/% 10))
-      },
-      time = {
-        data[[f]] <- values
-      },
-      hour = {
-        data[[f]] <- substr(values, 1, 2)
-      },
-      minute = {
-        data[[f]] <- substr(values, 4, 5)
-      },
-      second = {
-        data[[f]] <- substr(values, 7, 8)
-      },
-      day_part = {
-        h <- substr(values, 1, 2)
-        data[[f]] <- td$day_part[h]
-      },
-      {
-        stop(sprintf("Field '%s' is not considered.", f))
-      }
-    )
+    data <-
+      td$att_function[[f]](
+        data,
+        values,
+        type = td$type,
+        locale = td$locale,
+        week_starts_monday = td$week_starts_monday,
+        day_part = td$day_part
+      )
   }
   data <- tibble::as_tibble(as.data.frame(data))
   unique(data)

@@ -30,6 +30,8 @@ table <- when() |>
 \seealso{
 Other obtaining results: 
 \code{\link{generate_table}()},
+\code{\link{get_level_attribute_names}()},
+\code{\link{get_level_names}()},
 \code{\link{get_table_attribute_names}()}
 }
 \concept{obtaining results}

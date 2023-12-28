@@ -29,6 +29,8 @@ td <- when() |>
 \code{\link{when}}, \code{\link{get_table}}
 
 Other obtaining results: 
+\code{\link{get_level_attribute_names}()},
+\code{\link{get_level_names}()},
 \code{\link{get_table_attribute_names}()},
 \code{\link{set_table_attribute_names}()}
 }

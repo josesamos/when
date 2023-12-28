@@ -5,23 +5,25 @@ test_that("levels_date", {
     include_date_levels()
 
   expect_equal(
+    td_1$level_include_conf,
     c(
-      td_1$day_level,
-      td_1$week_level,
-      td_1$month_level,
-      td_1$year_level
-    ),
-    c(FALSE, TRUE, TRUE, TRUE)
+      time = FALSE,
+      day = FALSE,
+      week = TRUE,
+      month = TRUE,
+      year = TRUE
+    )
   )
 
   expect_equal(
+    td_2$level_include_conf,
     c(
-      td_2$day_level,
-      td_2$week_level,
-      td_2$month_level,
-      td_2$year_level
-    ),
-    c(TRUE, TRUE, TRUE, TRUE)
+      time = FALSE,
+      day = TRUE,
+      week = TRUE,
+      month = TRUE,
+      year = TRUE
+    )
   )
 
 })

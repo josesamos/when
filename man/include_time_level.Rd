@@ -5,32 +5,26 @@
 \alias{include_time_level.when}
 \title{Include time level}
 \usage{
-include_time_level(
-  td,
-  include_time,
-  include_minute,
-  include_second,
-  include_day_part
-)
+include_time_level(td, time, minute, second, day_part)
 
 \method{include_time_level}{when}(
   td,
-  include_time = TRUE,
-  include_minute = TRUE,
-  include_second = TRUE,
-  include_day_part = TRUE
+  time = TRUE,
+  minute = TRUE,
+  second = TRUE,
+  day_part = TRUE
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{include_time}{A boolean, include a field for the time.}
+\item{time}{A boolean, include a field for the time.}
 
-\item{include_minute}{A boolean, include the minute level of detail.}
+\item{minute}{A boolean, include the minute level of detail.}
 
-\item{include_second}{A boolean, include the second level of detail.}
+\item{second}{A boolean, include the second level of detail.}
 
-\item{include_day_part}{A boolean, include the parts of the day.}
+\item{day_part}{A boolean, include the parts of the day.}
 }
 \value{
 A \code{when} object.
@@ -46,7 +40,7 @@ included the 'second' attribute will not be included either.
 \examples{
 
 td <- when() |>
-  include_time_level(include_day_part = FALSE)
+  include_time_level(day_part = FALSE)
 
 }
 \seealso{

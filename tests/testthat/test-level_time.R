@@ -8,23 +8,15 @@ test_that("level_time", {
     set_day_part(hour = c(21:23, 0:5), name = "Noche")
 
   expect_equal(
-    c(
-      td_1$include_time,
-      td_1$include_minute,
-      td_1$include_second,
-      td_1$include_day_part
-    ),
-    c(TRUE, FALSE, FALSE, TRUE)
+    td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'time'])],
+    c(time = TRUE, hour = TRUE, minute = FALSE, second = FALSE, day_part = TRUE
+    )
   )
 
   expect_equal(
-    c(
-      td_2$include_time,
-      td_2$include_minute,
-      td_2$include_second,
-      td_2$include_day_part
-    ),
-    c(TRUE, TRUE, TRUE, TRUE)
+    td_2$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'time'])],
+    c(time = TRUE, hour = TRUE, minute = TRUE, second = TRUE, day_part = TRUE
+    )
   )
 
   expect_equal(

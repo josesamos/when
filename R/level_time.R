@@ -43,13 +43,16 @@ include_time_level.when <-
     stopifnot("'minute' must be of logical type." = is.logical(minute))
     stopifnot("'second' must be of logical type." = is.logical(second))
     stopifnot("'day_part' must be of logical type." = is.logical(day_part))
-    td$include_time <- time
-    td$include_minute <- minute
-    td$include_second <- second
-    if (!td$include_minute) {
-      td$include_second <- FALSE
+    att <- names(td$att_levels[td$att_levels == 'time'])
+    att <- setdiff(att, 'hour')
+    for (n in att) {
+      v <- eval(parse(text = n))
+      stopifnot("The parameters must be of logical type." = is.logical(v))
+      td$att_include_conf[n] <- v
     }
-    td$include_day_part <- day_part
+    if (!td$att_include_conf['minute']) {
+      td$att_include_conf['second'] <- FALSE
+    }
     td
   }
 

@@ -5,6 +5,7 @@
               envir = parent.env(environment()))
 }
 
+
 #' `when` S3 class
 #'
 #' Creates a `when` object.
@@ -42,63 +43,95 @@ when <- function(name = NULL,
                  end = lubridate::today(),
                  values = NULL,
                  ...) {
-  param <-
-    c(
-      'surrogate_key',
-      'week_starts_monday',
-      'day_level',
-      'week_level',
-      'month_level',
-      'year_level',
-      'time_level'
-    )
+  levels_t <- c("time")
+  levels_d <- c("day", "week", "month", "year")
+  levels <- c(levels_t, levels_d)
+
+  year_y <- c("year")
+  year_n <- c("decade")
+  week_y <- c("year_week", "week")
+  week_n <- c("week_date")
+  month_y <- c("year_month",
+               "month",
+               "month_name",
+               "month_num_name")
+  month_n <- c(
+    "month_abbr",
+    "month_num_abbr",
+    "year_quarter",
+    "quarter",
+    "year_semester",
+    "semester"
+  )
+  day_y <- c(
+    "date",
+    "month_day",
+    "week_day",
+    "day_name",
+    "day_num_name"
+  )
+  day_n <- c("day_abbr",
+             "day_num_abbr",
+             "year_day",
+             "quarter_day")
+  time_y <-
+    c("time", "hour", "minute", "second", "day_part")
+  time_n <- NULL
+
+  att <- c(time_y,
+           time_n,
+           day_y,
+           day_n,
+           week_y,
+           week_n,
+           month_y,
+           month_n,
+           year_y,
+           year_n)
+
+  att_include <- rep(TRUE, length(att))
+  names(att_include) <- att
+  for (l in levels) {
+    att_include[eval(parse(text = paste0(l, '_n')))] <- FALSE
+  }
+
+  att_levels <- rep("", length(att))
+  names(att_levels) <- att
+  for (l in levels) {
+    att_levels[c(eval(parse(text = paste0(l, '_y'))), eval(parse(text = paste0(l, '_n'))))] <-
+      l
+  }
+
+  level_include <- rep(TRUE, length(levels))
+  names(level_include) <- levels
+  level_include[levels_t] <- FALSE
+
+  level_type <- rep("date", length(levels))
+  names(level_type) <- levels
+  level_type[levels_t] <- "time"
+
   surrogate_key <- TRUE
   week_starts_monday <- TRUE
-  day_level <- TRUE
-  week_level <- TRUE
-  month_level <- TRUE
-  year_level <- TRUE
-  time_level <- FALSE
-  include_year <- TRUE
-  include_decade <- FALSE
-  include_month <- TRUE
-  include_year_month <- TRUE
-  include_month_name <- TRUE
-  include_month_abbr <- FALSE
-  include_month_num_name <- TRUE
-  include_month_num_abbr <- FALSE
-  include_quarter <- FALSE
-  include_year_quarter <- FALSE
-  include_semester <- FALSE
-  include_year_semester <- FALSE
-  include_week <- TRUE
-  include_year_week <- TRUE
-  include_week_date <- FALSE
-  include_date <- TRUE
-  include_month_day <- TRUE
-  include_week_day <- TRUE
-  include_day_name <- TRUE
-  include_day_abbr <- FALSE
-  include_day_num_name <- TRUE
-  include_day_num_abbr <- FALSE
-  include_quarter_day <- FALSE
-  include_year_day <- FALSE
-  include_time <- TRUE
-  include_minute <- TRUE
-  include_second <- TRUE
-  include_day_part <- TRUE
+  att_include_conf <- att_include
+  level_include_conf <- level_include
+  nl <- paste0(levels, '_level')
+  att_o <- c('surrogate_key', 'week_starts_monday')
   dots <- list(...)
   for (n in names(dots)) {
     stopifnot("The additional parameters must be of logical type." = is.logical(dots[[n]]))
-    nom <- n
-    if (!(n %in% param)) {
-      nom <- paste0('include_', n)
+    stopifnot("There are additional parameters that are not considered." = n %in% c(att, att_o, nl))
+    if (n %in% att_o) {
+      assign(n, dots[[n]])
+    } else if (n %in% nl) {
+      nom <- gsub('_level', '', n)
+      level_include_conf[nom] <- dots[[n]]
+    } else {
+      att_include_conf[n] <- dots[[n]]
     }
-    assign(nom, dots[[n]])
   }
-  include_hour <- TRUE
-  if (!include_minute) {
-    include_second <- FALSE
+  att_include_conf['hour'] <- TRUE
+  if (!att_include_conf['minute']) {
+    att_include_conf['second'] <- FALSE
   }
 
   if (!is.null(name)) {
@@ -124,72 +157,12 @@ when <- function(name = NULL,
       values = values,
       surrogate_key = surrogate_key,
       week_starts_monday = week_starts_monday,
-      levels = c("time", "day", "week", "month", "year"),
 
-      year_level = year_level,
-      year_level_names = c("year", "decade"),
-      include_year = include_year,
-      include_decade = include_decade,
+      att_levels = att_levels,
+      level_type = level_type,
+      att_include_conf = att_include_conf,
+      level_include_conf = level_include_conf,
 
-      week_level = week_level,
-      week_level_names = c("year_week", "week", "week_date"),
-      include_week_date = include_week_date,
-      include_week = include_week,
-      include_year_week = include_year_week,
-
-      month_level = month_level,
-      month_level_names = c(
-        "year_month",
-        "month",
-        "month_name",
-        "month_num_name",
-        "month_abbr",
-        "month_num_abbr",
-        "year_quarter",
-        "quarter",
-        "year_semester",
-        "semester"
-      ),
-      include_month = include_month,
-      include_year_month = include_year_month,
-      include_month_name = include_month_name,
-      include_month_abbr = include_month_abbr,
-      include_month_num_name = include_month_num_name,
-      include_month_num_abbr = include_month_num_abbr,
-      include_quarter = include_quarter,
-      include_year_quarter = include_year_quarter,
-      include_semester = include_semester,
-      include_year_semester = include_year_semester,
-
-      day_level = day_level,
-      day_level_names = c(
-        "date",
-        "year_day",
-        "quarter_day",
-        "month_day",
-        "week_day",
-        "day_name",
-        "day_num_name",
-        "day_abbr",
-        "day_num_abbr"
-      ),
-      include_month_day = include_month_day,
-      include_week_day = include_week_day,
-      include_day_name = include_day_name,
-      include_day_abbr = include_day_abbr,
-      include_day_num_name = include_day_num_name,
-      include_day_num_abbr = include_day_num_abbr,
-      include_quarter_day = include_quarter_day,
-      include_year_day = include_year_day,
-      include_date = include_date,
-
-      time_level = time_level,
-      time_level_names = c("time", "hour", "minute", "second", "day_part"),
-      include_time = include_time,
-      include_hour = include_hour,
-      include_minute = include_minute,
-      include_second = include_second,
-      include_day_part = include_day_part,
       day_part = day_part,
       table_name = name,
       attribute_names = NULL,

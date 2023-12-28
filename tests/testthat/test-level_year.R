@@ -9,30 +9,18 @@ test_that("level_year", {
     include_year_level()
 
   expect_equal(
-    c(
-      td_1$year_level,
-      td_1$include_year,
-      td_1$include_decade
-    ),
-    c(TRUE, FALSE, FALSE)
+    td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'year'])],
+    c(year = FALSE, decade = FALSE)
   )
 
   expect_equal(
-    c(
-      td_2$year_level,
-      td_2$include_year,
-      td_2$include_decade
-    ),
-    c(TRUE, TRUE, TRUE)
+    td_2$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'year'])],
+    c(year = TRUE, decade = TRUE)
   )
 
   expect_equal(
-    c(
-      td_3$year_level,
-      td_3$include_year,
-      td_3$include_decade
-    ),
-    c(TRUE, TRUE, FALSE)
+    td_3$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'year'])],
+    c(year = TRUE, decade = FALSE)
   )
 
 })

@@ -1,7 +1,7 @@
 test_that("when", {
   td <- when()
 
-  td_2 <- when(include_date = TRUE)
+  td_2 <- when(date = TRUE)
 
   td_3 <- when(type = 'time')
 
@@ -28,68 +28,82 @@ test_that("when", {
                    values = NULL,
                    surrogate_key = TRUE,
                    week_starts_monday = TRUE,
-                   levels = c("time", "day", "week", "month", "year"),
-                   year_level = TRUE,
-                   year_level_names = c("year", "decade"),
-                   include_year = TRUE,
-                   include_decade = FALSE,
-                   week_level = TRUE,
-                   week_level_names = c("year_week", "week", "week_date"),
-                   include_week_date = FALSE,
-                   include_week = TRUE,
-                   include_year_week = TRUE,
-                   month_level = TRUE,
-                   month_level_names = c(
-                     "year_month",
-                     "month",
-                     "month_name",
-                     "month_num_name",
-                     "month_abbr",
-                     "month_num_abbr",
-                     "year_quarter",
-                     "quarter",
-                     "year_semester",
-                     "semester"
+                   att_levels = c(
+                     time = "time",
+                     hour = "time",
+                     minute = "time",
+                     second = "time",
+                     day_part = "time",
+                     date = "day",
+                     month_day = "day",
+                     week_day = "day",
+                     day_name = "day",
+                     day_num_name = "day",
+                     day_abbr = "day",
+                     day_num_abbr = "day",
+                     year_day = "day",
+                     quarter_day = "day",
+                     year_week = "week",
+                     week = "week",
+                     week_date = "week",
+                     year_month = "month",
+                     month = "month",
+                     month_name = "month",
+                     month_num_name = "month",
+                     month_abbr = "month",
+                     month_num_abbr = "month",
+                     year_quarter = "month",
+                     quarter = "month",
+                     year_semester = "month",
+                     semester = "month",
+                     year = "year",
+                     decade = "year"
                    ),
-                   include_month = TRUE,
-                   include_year_month = TRUE,
-                   include_month_name = TRUE,
-                   include_month_abbr = FALSE,
-                   include_month_num_name = TRUE,
-                   include_month_num_abbr = FALSE,
-                   include_quarter = FALSE,
-                   include_year_quarter = FALSE,
-                   include_semester = FALSE,
-                   include_year_semester = FALSE,
-                   day_level = TRUE,
-                   day_level_names = c(
-                     "date",
-                     "year_day",
-                     "quarter_day",
-                     "month_day",
-                     "week_day",
-                     "day_name",
-                     "day_num_name",
-                     "day_abbr",
-                     "day_num_abbr"
+                   level_type = c(
+                     time = "time",
+                     day = "date",
+                     week = "date",
+                     month = "date",
+                     year = "date"
                    ),
-                   include_month_day = TRUE,
-                   include_week_day = TRUE,
-                   include_day_name = TRUE,
-                   include_day_abbr = FALSE,
-                   include_day_num_name = TRUE,
-                   include_day_num_abbr = FALSE,
-                   include_quarter_day = FALSE,
-                   include_year_day = FALSE,
-                   include_date = TRUE,
-                   time_level = FALSE,
-                   time_level_names = c("time", "hour", "minute", "second",
-                                        "day_part"),
-                   include_time = TRUE,
-                   include_hour = TRUE,
-                   include_minute = TRUE,
-                   include_second = TRUE,
-                   include_day_part = TRUE,
+                   att_include_conf = c(
+                     time = TRUE,
+                     hour = TRUE,
+                     minute = TRUE,
+                     second = TRUE,
+                     day_part = TRUE,
+                     date = TRUE,
+                     month_day = TRUE,
+                     week_day = TRUE,
+                     day_name = TRUE,
+                     day_num_name = TRUE,
+                     day_abbr = FALSE,
+                     day_num_abbr = FALSE,
+                     year_day = FALSE,
+                     quarter_day = FALSE,
+                     year_week = TRUE,
+                     week = TRUE,
+                     week_date = FALSE,
+                     year_month = TRUE,
+                     month = TRUE,
+                     month_name = TRUE,
+                     month_num_name = TRUE,
+                     month_abbr = FALSE,
+                     month_num_abbr = FALSE,
+                     year_quarter = FALSE,
+                     quarter = FALSE,
+                     year_semester = FALSE,
+                     semester = FALSE,
+                     year = TRUE,
+                     decade = FALSE
+                   ),
+                   level_include_conf = c(
+                     time = FALSE,
+                     day = TRUE,
+                     week = TRUE,
+                     month = TRUE,
+                     year = TRUE
+                   ),
                    day_part = c(
                      `00` = "Night",
                      `01` = "Night",
@@ -127,14 +141,14 @@ test_that("when", {
                td_2)
 
   expect_equal(
+    td_3$level_include_conf,
     c(
-      td_3$time_level,
-      td_3$year_level,
-      td_3$week_level,
-      td_3$month_level,
-      td_3$day_level
-    ),
-    c(TRUE, FALSE, FALSE, FALSE, FALSE)
+      time = TRUE,
+      day = FALSE,
+      week = FALSE,
+      month = FALSE,
+      year = FALSE
+    )
   )
 
   expect_equal(td_4,

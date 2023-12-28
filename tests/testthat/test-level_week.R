@@ -1,39 +1,24 @@
 test_that("level_week", {
   td_1 <- when() |>
-    include_week_level(week_date = FALSE)
+    include_week_level(week = FALSE)
   td_2 <- td_1 |>
     include_week_level(include_all = TRUE)
   td_3 <- td_1 |>
     include_week_level()
 
   expect_equal(
-    c(
-      td_1$week_level,
-      td_1$include_week,
-      td_1$include_year_week,
-      td_1$include_week_date
-    ),
-    c(TRUE, TRUE, TRUE, FALSE)
+    td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'week'])],
+    c(year_week = TRUE, week = FALSE, week_date = FALSE)
   )
 
   expect_equal(
-    c(
-      td_2$week_level,
-      td_2$include_week,
-      td_2$include_year_week,
-      td_2$include_week_date
-    ),
-    c(TRUE, TRUE, TRUE, TRUE)
+    td_2$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'week'])],
+    c(year_week = TRUE, week = TRUE, week_date = TRUE)
   )
 
   expect_equal(
-    c(
-      td_3$week_level,
-      td_3$include_week,
-      td_3$include_year_week,
-      td_3$include_week_date
-    ),
-    c(TRUE, TRUE, TRUE, FALSE)
+    td_3$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'week'])],
+    c(year_week = TRUE, week = TRUE, week_date = FALSE)
   )
 
 })

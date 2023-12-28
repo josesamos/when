@@ -127,13 +127,28 @@ querying.</p></li>
 </ul>
 <p>The rest of this document is structured as follows: First, the
 general process of defining these dimensions is presented. Next, a
-section is dedicated to the definition of dimensions based on time and
-another to dimensions based on date. Finally, the document ends with
-conclusions and bibliography.</p>
+section is dedicated to showing examples of dimension definitions,
+time-based and date-based. Finally, the document ends with conclusions
+and bibliography.</p>
 </div>
 <div class="section level2">
 <h2 id="definition-process">Definition process<a class="anchor" aria-label="anchor" href="#definition-process"></a>
 </h2>
+<p>The definition process consists of the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Creating an object.</li>
+<li>Configuration of general aspects.</li>
+<li>Definition of instances.</li>
+<li>Selection and definition of levels.</li>
+<li>Generation of the result.</li>
+<li>Table export.</li>
+</ol>
+<p>Steps 2, 3 and 4 can be done in any order, they can even be included
+in step 1.</p>
+<p>Below we discuss each of them.</p>
+<div class="section level3">
+<h3 id="creating-an-object">Creating an object<a class="anchor" aria-label="anchor" href="#creating-an-object"></a>
+</h3>
 <p>The definition process begins by creating an object of the
 <code>when</code> class.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -145,6 +160,10 @@ create it based on time by indicating it using the <code>type</code>
 parameter.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="configuration-of-general-aspects">Configuration of general aspects<a class="anchor" aria-label="anchor" href="#configuration-of-general-aspects"></a>
+</h3>
 <p>Virtually all configuration options can be defined using the object
 creation function. They can also be defined later using specific
 functions. For example, using the following combination of functions we
@@ -157,6 +176,7 @@ obtain the same result.</p>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Next we have to select and configure the levels and define the
 instances. These operations can be carried out in any order.</p>
+</div>
 <div class="section level3">
 <h3 id="definition-of-instances">Definition of instances<a class="anchor" aria-label="anchor" href="#definition-of-instances"></a>
 </h3>
@@ -277,18 +297,60 @@ and <code><a href="../reference/include_year_level.html">include_year_level()</a
 <p>For date-based levels, we can include or exclude them using the
 <code>level</code> parameter of each of those functions or using the
 <code><a href="../reference/include_date_levels.html">include_date_levels()</a></code> function.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_7</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/include_month_level.html">include_month_level</a></span><span class="op">(</span>level <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_date_8</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/include_date_levels.html">include_date_levels</a></span><span class="op">(</span>month_level <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_date_7</span>, <span class="va">w_date_8</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span></span>
+<span><span class="va">w_date_7</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span>, selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<p>If we want to include the level with the default attributes again,
+just use the <code><a href="../reference/include_month_level.html">include_month_level()</a></code> function again with the
+default values of the parameters.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_9</span> <span class="op">&lt;-</span> <span class="va">w_date_7</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/include_month_level.html">include_month_level</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_date_9</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span>, selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "year_month"     "month"          "month_name"     "month_num_name"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="generation-of-the-result">Generation of the result<a class="anchor" aria-label="anchor" href="#generation-of-the-result"></a>
 </h3>
-<p>Although we have not yet generated the dimension table, this function
-returns the names of the attributes it will contain. They can be
-obtained as a string or as a vector of strings.</p>
+<p>Once the characteristics of the dimension are defined, we can
+generate its table.</p>
+<p>Although we have not yet generated the dimension table, the following
+function returns the names of the attributes it will contain. They can
+be obtained as a string or as a vector of strings.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "id"             "date"           "month_day"      "week_day"      </span></span>
+<span><span class="co">#&gt;  [5] "day_name"       "day_num_name"   "year_week"      "week"          </span></span>
+<span><span class="co">#&gt;  [9] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
+<span><span class="co">#&gt; [13] "year"</span></span></code></pre></div>
 <p>If it is generated in the form of a string
 (<code>as_string = TRUE</code>, default option), the result can be used
 to easily change the name of the attributes, when the table is
-generated, using the <code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code>
-function.</p>
+generated, using the <code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code> function,
+if deemed necessary.</p>
+<p>When we consider that the dimension is already properly defined, we
+can generate its corresponding table using the generate_table()
+function. We update the definition of the object; if it finds any errors
+it will notify us.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_time</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="table-export">Table export<a class="anchor" aria-label="anchor" href="#table-export"></a>
@@ -296,12 +358,16 @@ function.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="time-based-dimension">Time based dimension<a class="anchor" aria-label="anchor" href="#time-based-dimension"></a>
+<h2 id="definition-examples">Definition examples<a class="anchor" aria-label="anchor" href="#definition-examples"></a>
 </h2>
+<div class="section level3">
+<h3 id="time-based-dimension">Time based dimension<a class="anchor" aria-label="anchor" href="#time-based-dimension"></a>
+</h3>
 </div>
-<div class="section level2">
-<h2 id="date-based-dimension">Date based dimension<a class="anchor" aria-label="anchor" href="#date-based-dimension"></a>
-</h2>
+<div class="section level3">
+<h3 id="date-based-dimension">Date based dimension<a class="anchor" aria-label="anchor" href="#date-based-dimension"></a>
+</h3>
+</div>
 </div>
 <div class="section level2">
 <h2 id="conclusions">Conclusions<a class="anchor" aria-label="anchor" href="#conclusions"></a>

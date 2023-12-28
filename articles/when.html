@@ -126,10 +126,10 @@ attributes can be added at coarser granularity to facilitate
 querying.</p></li>
 </ul>
 <p>The rest of this document is structured as follows: First, the
-general process of defining dimensions is presented. Next, a section is
-dedicated to the definition of dimensions based on time and another to
-dimensions based on date. Finally, the document ends with conclusions
-and bibliography.</p>
+general process of defining these dimensions is presented. Next, a
+section is dedicated to the definition of dimensions based on time and
+another to dimensions based on date. Finally, the document ends with
+conclusions and bibliography.</p>
 </div>
 <div class="section level2">
 <h2 id="definition-process">Definition process<a class="anchor" aria-label="anchor" href="#definition-process"></a>
@@ -155,8 +155,8 @@ obtain the same result.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_time</span>, <span class="va">w_time_2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<p>As with the date, we can indicate specific time periods or a vector
-of times to consider.</p>
+<p>Next we have to select and configure the levels and define the
+instances. These operations can be carried out in any order.</p>
 <div class="section level3">
 <h3 id="definition-of-instances">Definition of instances<a class="anchor" aria-label="anchor" href="#definition-of-instances"></a>
 </h3>
@@ -178,13 +178,15 @@ the format <code>yyyy-mm</code>), or year month and day
 <a href="https://CRAN.R-project.org/package=lubridate" class="external-link"><code>lubridate</code></a>
 package or, when it is a single number (year or hour) we can use an
 integer value. Then it will be transformed appropriately.</p>
+<p>For example, below they are used with the format of
+<code>lubridate</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                   end <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">years</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The following definition will be appropriate if we want to obtain the
 dimension at the year level, because we are indicating the specific
-values to consider.</p>
+values to consider (not a period).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date_2</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2030</span><span class="op">)</span></span></code></pre></div>
@@ -203,8 +205,8 @@ one.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_date_3</span>, <span class="va">w_date_4</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<p>In the case of time, by default, it is considered at the second level
-and all seconds of the day.</p>
+<p>In the case of time, by default, it is considered at second level and
+all seconds of the day.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_time_3</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"00:00:00"</span>, end <span class="op">=</span> <span class="st">"23:59:59"</span><span class="op">)</span></span>
@@ -216,31 +218,31 @@ and all seconds of the day.</p>
 <h3 id="selection-and-definition-of-levels">Selection and definition of levels<a class="anchor" aria-label="anchor" href="#selection-and-definition-of-levels"></a>
 </h3>
 <p>In the definition, by default, the attributes that we have considered
-to be most frequently used have been included. We can consult them using
-the <code><a href="../reference/get_table_attribute_names.html">get_table_attribute_names()</a></code> function.</p>
+to be most frequently used have been included. We can consult them for
+each level using the <code><a href="../reference/get_level_attribute_names.html">get_level_attribute_names()</a></code> function
+with the parameter <code>selected = TRUE</code>. We can indicate the
+name of the level or, if we do not indicate any, it will obtain the
+attributes of all the levels. We obtain the level names using the
+<code><a href="../reference/get_level_names.html">get_level_names()</a></code> function. Below are examples of using
+these functions.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "id"             "date"           "month_day"      "week_day"      </span></span>
-<span><span class="co">#&gt;  [5] "day_name"       "day_num_name"   "year_week"      "week"          </span></span>
-<span><span class="co">#&gt;  [9] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
-<span><span class="co">#&gt; [13] "year"</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "date"           "month_day"      "week_day"       "day_name"      </span></span>
+<span><span class="co">#&gt;  [5] "day_num_name"   "year_week"      "week"           "year_month"    </span></span>
+<span><span class="co">#&gt;  [9] "month"          "month_name"     "month_num_name" "year"</span></span>
+<span></span>
+<span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_names.html">get_level_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "day"   "week"  "month" "year"</span></span>
+<span></span>
+<span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span>, selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
 <span></span>
 <span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "id"       "time"     "hour"     "minute"   "second"   "day_part"</span></span>
-<span></span>
-<span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "c('id', 'time', 'hour', 'minute', 'second', 'day_part')"</span></span></code></pre></div>
-<p>Although we have not yet generated the dimension table, this function
-returns the names of the attributes it will contain. They can be
-obtained as a string or as a vector of strings.</p>
-<p>If it is generated in the form of a string
-(<code>as_string = TRUE</code>, default option), the result can be used
-to easily change the name of the attributes, when the table is
-generated, using the <code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code>
-function.</p>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "time"     "hour"     "minute"   "second"   "day_part"</span></span></code></pre></div>
 <p>There is a function to configure each level: the attributes defined
 by default are configured there. We can select or deselect each
 attribute individually using the attribute name as a boolean parameter
@@ -263,7 +265,11 @@ shown below.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_date_5</span>, <span class="va">w_date_6</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span></span>
+<span><span class="va">w_date_5</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span>, selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "year_month"     "month"          "month_num_name"</span></span></code></pre></div>
 <p>There is available a similar function for each level:
 <code><a href="../reference/include_time_level.html">include_time_level()</a></code>, <code><a href="../reference/include_day_level.html">include_day_level()</a></code>,
 <code><a href="../reference/include_week_level.html">include_week_level()</a></code>, <code><a href="../reference/include_month_level.html">include_month_level()</a></code>
@@ -275,6 +281,14 @@ and <code><a href="../reference/include_year_level.html">include_year_level()</a
 <div class="section level3">
 <h3 id="generation-of-the-result">Generation of the result<a class="anchor" aria-label="anchor" href="#generation-of-the-result"></a>
 </h3>
+<p>Although we have not yet generated the dimension table, this function
+returns the names of the attributes it will contain. They can be
+obtained as a string or as a vector of strings.</p>
+<p>If it is generated in the form of a string
+(<code>as_string = TRUE</code>, default option), the result can be used
+to easily change the name of the attributes, when the table is
+generated, using the <code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code>
+function.</p>
 </div>
 <div class="section level3">
 <h3 id="table-export">Table export<a class="anchor" aria-label="anchor" href="#table-export"></a>

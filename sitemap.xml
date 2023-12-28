@@ -46,10 +46,103 @@
     <loc>https://josesamos.github.io/when/reference/get_data.html</loc>
   </url>
   <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_date.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_day_abbr.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_day_name.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_day_num_abbr.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_day_num_name.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_day_part.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_decade.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_hour.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_minute.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_month.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_month_abbr.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_month_day.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_month_name.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_month_num_abbr.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_month_num_name.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_quarter.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_quarter_day.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_second.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_semester.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_time.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_week.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_week_date.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_week_day.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_year.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_year_day.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_year_month.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_year_quarter.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_year_semester.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_data_year_week.html</loc>
+  </url>
+  <url>
     <loc>https://josesamos.github.io/when/reference/get_day_part.html</loc>
   </url>
   <url>
     <loc>https://josesamos.github.io/when/reference/get_fields.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_level_attribute_names.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/get_level_names.html</loc>
   </url>
   <url>
     <loc>https://josesamos.github.io/when/reference/get_table.html</loc>
@@ -68,6 +161,9 @@
   </url>
   <url>
     <loc>https://josesamos.github.io/when/reference/get_values.html</loc>
+  </url>
+  <url>
+    <loc>https://josesamos.github.io/when/reference/include_date_level_common.html</loc>
   </url>
   <url>
     <loc>https://josesamos.github.io/when/reference/include_date_levels.html</loc>

@@ -37,7 +37,6 @@ Other dimension definition:
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},
 \code{\link{include_month_level}()},
-\code{\link{include_surrogate_key}()},
 \code{\link{include_time_level}()},
 \code{\link{include_week_level}()},
 \code{\link{include_year_level}()},

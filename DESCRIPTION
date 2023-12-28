@@ -29,6 +29,7 @@ Imports:
 Suggests: 
     dbplyr,
     knitr,
+    pander,
     rmarkdown,
     RSQLite,
     testthat (>= 3.0.0)

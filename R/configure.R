@@ -2,7 +2,8 @@
 #'
 #' With this function we can define the characteristics of the dimension that do
 #' not depend on the levels it includes, such as the name, type, location or the
-#' day the week begins.
+#' day the week begins. It also allows us to define whether the table includes a
+#' surrogate key.
 #'
 #' The `week_starts_monday` parameter only affects the numbering of days, not weeks.
 #'
@@ -20,6 +21,7 @@
 #'
 #' @param td A `when` object.
 #' @param name A string, table name.
+#' @param surrogate_key A boolean, include a surrogate key in the dimension table.
 #' @param type A string, type of calendar (NULL, 'iso', 'epi' or 'time').
 #' @param locale A locale, to use for day and month names.
 #' @param week_starts_monday A boolean.
@@ -35,7 +37,12 @@
 #'
 #' @export
 configure_dimension <-
-  function(td, name, type, locale, week_starts_monday)
+  function(td,
+           name,
+           surrogate_key,
+           type,
+           locale,
+           week_starts_monday)
     UseMethod("configure_dimension")
 
 #' @rdname configure_dimension
@@ -43,18 +50,25 @@ configure_dimension <-
 #' @export
 configure_dimension.when <- function(td,
                                 name = NULL,
+                                surrogate_key = NULL,
                                 type = NULL,
                                 locale = Sys.getlocale("LC_TIME"),
-                                week_starts_monday = TRUE) {
+                                week_starts_monday = NULL) {
   if (!is.null(name)) {
     stopifnot("'name' must have a single value." = length(name) == 1)
     td$table_name = name
   }
+  if (!is.null(surrogate_key)) {
+    stopifnot("'surrogate_key' must be of logical type." = is.logical(surrogate_key))
+    td$surrogate_key <- surrogate_key
+  }
+  if (!is.null(week_starts_monday)) {
+    stopifnot("'week_starts_monday' must be of logical type." = is.logical(week_starts_monday))
+    td$week_starts_monday <- week_starts_monday
+  }
   td <- validate_type(td, type)
   td <- validate_start_end(td, td$start, td$end)
   td <- validate_values(td, td$values)
-  stopifnot("'week_starts_monday' must be of logical type." = is.logical(week_starts_monday))
-  td$week_starts_monday <- week_starts_monday
   td$locale <- locale
   td
 }

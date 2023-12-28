@@ -69,10 +69,11 @@ By default, an object is created based on date, but we can also create it based 
 w_time <- when(type = 'time')
 ```
 
+Virtually all configuration options can be defined using the object creation function. They can also be defined later using specific functions, as shown in the following section.
 
 ## Configuration of general aspects
 
-Virtually all configuration options can be defined using the object creation function. They can also be defined later using specific functions. For example, using the following combination of functions we obtain the same result.
+For example, using the following combination of functions we obtain the same result as defining the type at the time of object creation.
 
 ```{r}
 w_time_2 <- when() |>
@@ -81,8 +82,12 @@ w_time_2 <- when() |>
 identical(w_time, w_time_2)
 ```
 
+By default it considers the system language. Since our system is Spanish, for the literals of day and month names to appear in English, we must configure it explicitly.
 
-
+```{r}
+w_date <- w_date |>
+  configure_dimension(locale = Sys.setlocale("LC_TIME", "English"))
+```
 
 Next we have to select and configure the levels and define the instances. These operations can be carried out in any order.
 
@@ -141,7 +146,7 @@ identical(w_time, w_time_3)
 
 ## Selection and definition of levels
 
-In the definition, by default, the attributes that we have considered to be most frequently used have been included. We can consult them for each level using the `get_level_attribute_names()` function with the parameter `selected = TRUE`. We can indicate the name of the level or, if we do not indicate any, it will obtain the attributes of all the levels. We obtain the level names using the `get_level_names()` function. Below are examples of using these functions.
+In the definition, by default, the attributes that we have considered to be most frequently used have been included. We can consult them for each level using the `get_level_attribute_names()` function with the parameter `selected = TRUE`. If we define the parameter as `selected = FALSE` (default option), it will return all available attributes. We can indicate the name of the level or, if we do not indicate any, it will obtain the attributes of all the levels. We obtain the level names using the `get_level_names()` function. Below are examples of using these functions.
 
 ```{r}
 w_date |>
@@ -153,11 +158,14 @@ w_date |>
 w_date |>
   get_level_attribute_names(name = 'month', selected = TRUE)
 
+w_date |>
+  get_level_attribute_names(name = 'month')
+
 w_time |>
   get_level_attribute_names()
 ```
 
-There is a function to configure each level: the attributes defined by default are configured there. We can select or deselect each attribute individually using the attribute name as a boolean parameter of the function. For the levels associated with the date, we can also select all attributes defined at the level using the special `include_all` parameter; we can also include or uninclude a level using the `level` parameter of each function.
+There is a function to configure each level: the attributes defined by default are configured there. We can select or deselect each attribute individually using the attribute name as a boolean parameter of the function. For the levels associated with the date, we can also select all attributes defined at the level using the special `include_all` parameter.
 
 For example, if we do not want to include the name of the month, we can configure it using the `include_month_level()` function or at the time of object creation with a parameter of the same name, as shown below.
 
@@ -179,7 +187,7 @@ w_date_5 |>
 
 There is available a similar function for each level: `include_time_level()`, `include_day_level()`, `include_week_level()`, `include_month_level()` and `include_year_level()`.
 
-For date-based levels, we can include or exclude them using the `level` parameter of each of those functions or using the `include_date_levels()` function.
+For date-based levels, we can include or exclude them using the `level` parameter of each of those functions or using the `include_date_levels()` function. The advantage of this last function is that we can include or exclude several levels in a single step.
 
 ```{r}
 w_date_7 <- w_date |>
@@ -194,7 +202,7 @@ w_date_7 |>
   get_level_attribute_names(name = 'month', selected = TRUE)
 ```
 
-If we want to include the level with the default attributes again, just use the `include_month_level()` function again with the default values of the parameters.
+If we want to include the level with the default attributes, just use the `include_month_level()` function again with the default values of the parameters.
 
 ```{r}
 w_date_9 <- w_date_7 |>
@@ -218,7 +226,7 @@ w_date |>
 
 If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function, if deemed necessary.
 
-When we consider that the dimension is already properly defined, we can generate its corresponding table using the generate_table() function. We update the definition of the object; if it finds any errors it will notify us.
+When we consider that the dimension is already properly defined, we can generate its corresponding table using the `generate_table()` function. We update the definition of the object. Any errors found will be notified to us.
 
 ```{r}
 w_date <- w_date |>
@@ -228,8 +236,44 @@ w_time <- w_time |>
   generate_table()
 ```
 
+Once the table is generated, we can export it. If we want to access the table and it is not yet generated, it will send us an error message.
+
+If we make changes to the configuration, it is our responsibility to generate the table again.
 
 ## Table export
+
+We can access the dimension table to work with it in R (for example using the [`rolap`](https://CRAN.R-project.org/package=rolap) package), or export it in the format that is most convenient for us to work with other tools.
+
+Next we access the generated tables and display them. First of all for the date.
+
+```{r}
+t_date <- w_date |>
+  get_table()
+```
+
+The first and last rows of the obtained result are shown below.
+
+```{r, results = "asis"}
+pander::pandoc.table(rbind(head(t_date, 5), tail(t_date, 5)),
+                     split.table = Inf)
+```
+
+Next for the time.
+
+```{r}
+t_time <- w_time |>
+  get_table()
+```
+
+The start and end of the result table is shown below.
+
+```{r, results = "asis"}
+pander::pandoc.table(rbind(head(t_time, 5), tail(t_time, 5)),
+                     split.table = Inf)
+```
+
+`day_part` is predefined in English. Literals or associated hours can be accessed and changed using the `get_day_part()` and `set_day_part()` functions.
+
 
 # Definition examples
 

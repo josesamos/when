@@ -5,20 +5,23 @@
 \alias{configure_dimension.when}
 \title{Configure dimension}
 \usage{
-configure_dimension(td, name, type, locale, week_starts_monday)
+configure_dimension(td, name, surrogate_key, type, locale, week_starts_monday)
 
 \method{configure_dimension}{when}(
   td,
   name = NULL,
+  surrogate_key = NULL,
   type = NULL,
   locale = Sys.getlocale("LC_TIME"),
-  week_starts_monday = TRUE
+  week_starts_monday = NULL
 )
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
 \item{name}{A string, table name.}
+
+\item{surrogate_key}{A boolean, include a surrogate key in the dimension table.}
 
 \item{type}{A string, type of calendar (NULL, 'iso', 'epi' or 'time').}
 
@@ -32,7 +35,8 @@ A \code{when} object.
 \description{
 With this function we can define the characteristics of the dimension that do
 not depend on the levels it includes, such as the name, type, location or the
-day the week begins.
+day the week begins. It also allows us to define whether the table includes a
+surrogate key.
 }
 \details{
 The \code{week_starts_monday} parameter only affects the numbering of days, not weeks.
@@ -62,7 +66,6 @@ Other dimension definition:
 \code{\link{include_date_levels}()},
 \code{\link{include_day_level}()},
 \code{\link{include_month_level}()},
-\code{\link{include_surrogate_key}()},
 \code{\link{include_time_level}()},
 \code{\link{include_week_level}()},
 \code{\link{include_year_level}()},

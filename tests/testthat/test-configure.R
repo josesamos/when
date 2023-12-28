@@ -9,6 +9,17 @@ test_that("configure", {
   td_3 <- when() |>
     configure_dimension()
 
+  td_4 <- when() |>
+    configure_dimension(surrogate_key = FALSE)
+
+  td_5 <- when(surrogate_key = FALSE)
+
+  td_6 <- td_2 |>
+    configure_dimension()
+
+  td_7 <- td_4 |>
+    configure_dimension()
+
   wt <- when(type = 'time')
   wt_2 <- when() |>
     configure_dimension(type = 'time')
@@ -43,4 +54,15 @@ test_that("configure", {
 
   expect_equal(wt, wt_2)
 
+  expect_equal(td_3$surrogate_key, TRUE)
+
+  expect_equal(td_4$surrogate_key, FALSE)
+
+  expect_equal(td_5$surrogate_key, FALSE)
+
+  expect_equal(td_2, td_6)
+
+  expect_equal(td_4, td_7)
+
 })
+

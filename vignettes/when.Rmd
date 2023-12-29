@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 The *When Dimension* plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed focus of attention have occurred.
 
-This dimension corresponds to the generically called “Time Dimension”, as named in @kimball1996data and @adamson2010star. Later it has also been called "Date Dimension" or "Time Dimension" to express granularity [@kimball2013data]. We prefer to call it "When Dimension" because granularity is not involved in that term.
+This dimension corresponds to the generically called “Time Dimension”, as named in @kimball1996data and @adamson2010star. Later it has also been called "Date Dimension" (date-based dimension) and "Time Dimension" (time-of-day-based dimension) to express granularity [@kimball2013data]. We prefer to call it "When Dimension" because granularity is not involved in that term.
 
 Although conceptually the date and time can be represented together in a single dimension, in ROLAP (*Relational On-Line Analytical Processing*) systems, it is common to implement these concepts separately, sometimes in separate tables "to avoid a row count explosion in the date dimension" [@kimball2013data] by adding the time for each day.
 
@@ -28,15 +28,17 @@ In @kimball2013data these dimensions are considered *static dimensions*: they ar
 
 The purpose of the `when` package is to assist in the implementation of the ***When Dimension*** in Multidimensional Systems implemented on a ROLAP star database, regardless of its granularity, with the following features:
 
-- It supports the generation of tables with the granularity needed (second, minute, hour, date, week, month or year). 
+- It supports the generation of tables with the granularity needed (second, minute, hour, date, week, month, quarter, semester or year) according to the relational star schema design criteria [@kimball2013data]. 
 
-- We consider separate tables for **time** data and data obtained from **date** to avoid a row count explosion if a single table were used. 
+- We consider separate tables for **time-of-day** data and data obtained from **date** to avoid a row count explosion if a single table were used. 
 
 - It can be used to generate tables **statically**, indicating a period, or **dynamically**, indicating data series. 
 
-- In addition to attributes at the selected granularity, other attributes can be added at coarser granularity to facilitate querying.
+- In addition to attributes at the selected granularity, other attributes can be added at coarser granularity to facilitate querying. We can also add a surrogate key.
 
-The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, a section is dedicated to showing examples of dimension definitions, time-based and date-based. Finally, the document ends with conclusions and bibliography.
+- We can obtain the tables in `tibble` format and in other formats (*xlsx*, *csv* or *Relational DBMS* table).
+
+The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, a section is dedicated to showing examples of dimension definitions, time-based and date-based dimensions. Finally, the document ends with conclusions and bibliography.
 
 # Definition process
 
@@ -73,7 +75,7 @@ Virtually all configuration options can be defined using the object creation fun
 
 ## Configuration of general aspects
 
-For example, using the following combination of functions we obtain the same result as defining the type at the time of object creation.
+For example, using the following combination of functions we get the same result as defining the type when we create the object.
 
 ```{r}
 w_time_2 <- when() |>
@@ -91,13 +93,13 @@ w_date <- w_date |>
 
 By default the dimension table will include a surrogate key. Through the `surrogate_key` parameter of this function we can indicate that it is not included.
 
-Next we have to select and configure the levels and define the instances. These operations can be carried out in any order.
+Next we have to select and configure the levels and define the instances. These operations, along with the current one, can be performed in any order.
 
 ## Definition of instances
 
 We can define the instances by giving a range of values or by indicating the specific instances. The values in both cases will depend on the type of dimension (date-based or time-based).
 
-We can indicate these values at the time of creating the class object or through the `define_instances()` configuration function.
+We can indicate these values at the time of creating the class object or through the `define_instances()` function.
 
 - In the case of date, we can indicate a year, year and month (with the format `yyyy-mm`), or year month and day (`yyyy-mm-dd`).
 
@@ -145,10 +147,22 @@ w_time_3 <- w_time |>
 identical(w_time, w_time_3)
 ```
 
+We can also indicate a period or a set of times according to the indicated criteria. In the following example, the two definitions are equivalent.
+
+```{r}
+w_time_4 <- w_time |>
+  define_instances(start = 8, end = 17)
+
+w_time_5 <- w_time |>
+  define_instances(start = "08:00:00", end = "17:00:00")
+
+identical(w_time_4, w_time_5)
+```
+
 
 ## Selection and definition of levels
 
-In the definition, by default, the attributes that we have considered to be most frequently used have been included. We can consult them for each level using the `get_level_attribute_names()` function with the parameter `selected = TRUE`. If we define the parameter as `selected = FALSE` (default option), it will return all available attributes. We can indicate the name of the level or, if we do not indicate any, it will obtain the attributes of all the levels. We obtain the level names using the `get_level_names()` function. Below are examples of using these functions.
+In the definition, by default, the attributes that we have considered to be most frequently used have been included. We can consult them for each level using the `get_level_attribute_names()` function with the parameter `selected = TRUE`. If we define the parameter as `selected = FALSE` (default option), it will return all available attributes. We can indicate the name of the level or, if we do not indicate any, it will obtain the attributes of all the levels. We obtain the level names using the `get_level_names()` function. Below are examples of using these functions for the date-based dimension.
 
 ```{r}
 w_date |>
@@ -162,12 +176,19 @@ w_date |>
 
 w_date |>
   get_level_attribute_names(name = 'month')
-
-w_time |>
-  get_level_attribute_names()
 ```
 
-There is a function to configure each level: the attributes defined by default are configured there. We can select or deselect each attribute individually using the attribute name as a boolean parameter of the function. For the levels associated with the date, we can also select all attributes defined at the level using the special `include_all` parameter.
+Also for the time-based dimension.
+
+```{r}
+w_time |>
+  get_level_attribute_names()
+
+w_time |>
+  get_level_names()
+```
+
+There is a function to configure each level. We can select or deselect each attribute individually using the attribute name as a boolean parameter of the function. We can also select or deselect all attributes defined at the level using the special `include_all` and `exclude_all` parameters: Once all the attributes have been updated with these special parameters, in the same function call, we can select or deselect the attributes we want.
 
 For example, if we do not want to include the name of the month, we can configure it using the `configure_month_level()` function or at the time of object creation with a parameter of the same name, as shown below.
 
@@ -187,31 +208,38 @@ w_date_5 |>
   get_level_attribute_names(name = 'month', selected = TRUE)
 ```
 
-There is available a similar function for each level: `configure_time_level()`, `configure_day_level()`, `configure_week_level()`, `configure_month_level()` and `configure_year_level()`.
-
-For date-based levels, we can include or exclude them using the `level` parameter of each of those functions or using the `configure_date_levels()` function. The advantage of this last function is that we can include or exclude several levels in a single step.
+If we only want to include the name of the month, we can do it as follows.
 
 ```{r}
 w_date_7 <- w_date |>
-  configure_month_level()
-
-w_date_8 <- w_date |>
-  configure_date_levels(month_level = FALSE)
-
-identical(w_date_7, w_date_8)
+  configure_month_level(exclude_all = TRUE, month_name = TRUE)
 
 w_date_7 |>
   get_level_attribute_names(name = 'month', selected = TRUE)
 ```
 
-If we want to include the level with the default attributes, just use the `configure_month_level()` function again with the default values of the parameters.
+There is available a similar function for each level: time, date, week, month, quarter, semester and year. 
+
+In the case of the date-based dimension levels, we can select or deselect them directly using the `configure_date_levels()` function. It allows us to treat the levels globally in the same way that we have been treating the attributes. For example, to exclude the month level we can do the following.
 
 ```{r}
-w_date_9 <- w_date_7 |>
-  configure_month_level()
+w_date_8 <- w_date |>
+  configure_date_levels(month_level = FALSE)
 
-w_date_9 |>
+w_date_8 |>
   get_level_attribute_names(name = 'month', selected = TRUE)
+```
+
+We can also perform that same operation at object creation time, as shown below.
+
+```{r}
+w_date_9 <- when(
+  start = lubridate::today(),
+  end = lubridate::today() + lubridate::years(5),
+  month_level = FALSE
+)
+
+identical(w_date_8, w_date_9)
 ```
 
 

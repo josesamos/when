@@ -44,7 +44,7 @@ when <- function(name = NULL,
                  values = NULL,
                  ...) {
   levels_t <- c("time")
-  levels_d <- c("day", "week", "month", "year")
+  levels_d <- c("day", "week", "month", "quarter", "semester", "year")
   levels <- c(levels_t, levels_d)
 
   year_y <- c("year")
@@ -57,12 +57,17 @@ when <- function(name = NULL,
                "month_num_name")
   month_n <- c(
     "month_abbr",
-    "month_num_abbr",
+    "month_num_abbr")
+  quarter_y <- c(
     "year_quarter",
-    "quarter",
+    "quarter"
+  )
+  quarter_n <- NULL
+  semester_y <- c(
     "year_semester",
     "semester"
   )
+  semester_n <- NULL
   day_y <- c(
     "date",
     "month_day",
@@ -86,6 +91,10 @@ when <- function(name = NULL,
            week_n,
            month_y,
            month_n,
+           quarter_y,
+           quarter_n,
+           semester_y,
+           semester_n,
            year_y,
            year_n)
 
@@ -104,7 +113,7 @@ when <- function(name = NULL,
 
   level_include <- rep(TRUE, length(levels))
   names(level_include) <- levels
-  level_include[levels_t] <- FALSE
+  level_include[c(levels_t, "quarter", "semester")] <- FALSE
 
   level_type <- rep("date", length(levels))
   names(level_type) <- levels

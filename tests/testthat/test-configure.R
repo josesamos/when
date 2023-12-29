@@ -31,6 +31,8 @@ test_that("configure", {
       day = FALSE,
       week = FALSE,
       month = FALSE,
+      quarter = FALSE,
+      semester = FALSE,
       year = FALSE
     )
   )
@@ -48,6 +50,8 @@ test_that("configure", {
       day = TRUE,
       week = TRUE,
       month = TRUE,
+      quarter = FALSE,
+      semester = FALSE,
       year = TRUE
     )
   )

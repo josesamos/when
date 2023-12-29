@@ -2,7 +2,7 @@
 % Please edit documentation in R/levels_date.R
 \name{configure_date_level_common}
 \alias{configure_date_level_common}
-\title{Include date level (common)}
+\title{Configure date level (common)}
 \usage{
 configure_date_level_common(
   td,
@@ -25,6 +25,6 @@ configure_date_level_common(
 A \code{when} object.
 }
 \description{
-Include date level (common)
+Configure date level (common)
 }
 \keyword{internal}

@@ -169,11 +169,11 @@ w_time |>
 
 There is a function to configure each level: the attributes defined by default are configured there. We can select or deselect each attribute individually using the attribute name as a boolean parameter of the function. For the levels associated with the date, we can also select all attributes defined at the level using the special `include_all` parameter.
 
-For example, if we do not want to include the name of the month, we can configure it using the `include_month_level()` function or at the time of object creation with a parameter of the same name, as shown below.
+For example, if we do not want to include the name of the month, we can configure it using the `configure_month_level()` function or at the time of object creation with a parameter of the same name, as shown below.
 
 ```{r}
 w_date_5 <- w_date |>
-  include_month_level(month_name = FALSE)
+  configure_month_level(month_name = FALSE)
 
 w_date_6 <- when(
   start = lubridate::today(),
@@ -187,16 +187,16 @@ w_date_5 |>
   get_level_attribute_names(name = 'month', selected = TRUE)
 ```
 
-There is available a similar function for each level: `include_time_level()`, `include_day_level()`, `include_week_level()`, `include_month_level()` and `include_year_level()`.
+There is available a similar function for each level: `configure_time_level()`, `configure_day_level()`, `configure_week_level()`, `configure_month_level()` and `configure_year_level()`.
 
-For date-based levels, we can include or exclude them using the `level` parameter of each of those functions or using the `include_date_levels()` function. The advantage of this last function is that we can include or exclude several levels in a single step.
+For date-based levels, we can include or exclude them using the `level` parameter of each of those functions or using the `configure_date_levels()` function. The advantage of this last function is that we can include or exclude several levels in a single step.
 
 ```{r}
 w_date_7 <- w_date |>
-  include_month_level(level = FALSE)
+  configure_month_level()
 
 w_date_8 <- w_date |>
-  include_date_levels(month_level = FALSE)
+  configure_date_levels(month_level = FALSE)
 
 identical(w_date_7, w_date_8)
 
@@ -204,11 +204,11 @@ w_date_7 |>
   get_level_attribute_names(name = 'month', selected = TRUE)
 ```
 
-If we want to include the level with the default attributes, just use the `include_month_level()` function again with the default values of the parameters.
+If we want to include the level with the default attributes, just use the `configure_month_level()` function again with the default values of the parameters.
 
 ```{r}
 w_date_9 <- w_date_7 |>
-  include_month_level()
+  configure_month_level()
 
 w_date_9 |>
   get_level_attribute_names(name = 'month', selected = TRUE)

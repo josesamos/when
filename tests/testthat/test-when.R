@@ -56,10 +56,10 @@ test_that("when", {
         month_num_name = "month",
         month_abbr = "month",
         month_num_abbr = "month",
-        year_quarter = "month",
-        quarter = "month",
-        year_semester = "month",
-        semester = "month",
+        year_quarter = "quarter",
+        quarter = "quarter",
+        year_semester = "semester",
+        semester = "semester",
         year = "year",
         decade = "year"
       ),
@@ -68,6 +68,8 @@ test_that("when", {
         day = "date",
         week = "date",
         month = "date",
+        quarter = "date",
+        semester = "date",
         year = "date"
       ),
       att_include_conf = c(
@@ -94,10 +96,10 @@ test_that("when", {
         month_num_name = TRUE,
         month_abbr = FALSE,
         month_num_abbr = FALSE,
-        year_quarter = FALSE,
-        quarter = FALSE,
-        year_semester = FALSE,
-        semester = FALSE,
+        year_quarter = TRUE,
+        quarter = TRUE,
+        year_semester = TRUE,
+        semester = TRUE,
         year = TRUE,
         decade = FALSE
       ),
@@ -106,6 +108,8 @@ test_that("when", {
         day = TRUE,
         week = TRUE,
         month = TRUE,
+        quarter = FALSE,
+        semester = FALSE,
         year = TRUE
       ),
       day_part = c(
@@ -151,6 +155,8 @@ test_that("when", {
       day = FALSE,
       week = FALSE,
       month = FALSE,
+      quarter = FALSE,
+      semester = FALSE,
       year = FALSE
     )
   )

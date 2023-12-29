@@ -3,7 +3,7 @@
 \name{configure_quarter_level}
 \alias{configure_quarter_level}
 \alias{configure_quarter_level.when}
-\title{Include quarter level}
+\title{Configure quarter level}
 \usage{
 configure_quarter_level(td, include_all, exclude_all, quarter, year_quarter)
 
@@ -25,10 +25,6 @@ configure_quarter_level(td, include_all, exclude_all, quarter, year_quarter)
 \item{quarter}{A boolean, include the quarter field.}
 
 \item{year_quarter}{A boolean, include the quarter field.}
-
-\item{semester}{A boolean, include the semester field.}
-
-\item{year_semester}{A boolean, include the semester field.}
 }
 \value{
 A \code{when} object.
@@ -55,11 +51,11 @@ Other dimension definition:
 \code{\link{configure_dimension}()},
 \code{\link{configure_month_level}()},
 \code{\link{configure_semester_level}()},
+\code{\link{configure_time_level}()},
 \code{\link{configure_week_level}()},
 \code{\link{configure_year_level}()},
 \code{\link{define_instances}()},
 \code{\link{get_day_part}()},
-\code{\link{include_time_level}()},
 \code{\link{set_day_part}()},
 \code{\link{when}()}
 }

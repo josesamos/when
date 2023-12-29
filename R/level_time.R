@@ -1,4 +1,4 @@
-#' Include time level
+#' Configure time level
 #'
 #' When the dimension is defined as a time type, using this function we can select
 #' its attributes to include in it: time, minute, second and day_part.
@@ -7,6 +7,8 @@
 #' included the 'second' attribute will not be included either.
 #'
 #' @param td A `when` object.
+#' @param include_all A boolean, include all fields of the level.
+#' @param exclude_all A boolean, exclude all fields of the level.
 #' @param time A boolean, include a field for the time.
 #' @param minute A boolean, include the minute level of detail.
 #' @param second A boolean, include the second level of detail.
@@ -19,36 +21,46 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   include_time_level(day_part = FALSE)
+#'   configure_time_level(day_part = FALSE)
 #'
 #' @export
-include_time_level <-
+configure_time_level <-
   function(td,
+           include_all,
+           exclude_all,
            time,
            minute,
            second,
            day_part)
-    UseMethod("include_time_level")
+    UseMethod("configure_time_level")
 
-#' @rdname include_time_level
+#' @rdname configure_time_level
 #'
 #' @export
-include_time_level.when <-
+configure_time_level.when <-
   function(td,
-           time = TRUE,
-           minute = TRUE,
-           second = TRUE,
-           day_part = TRUE) {
-    stopifnot("'time' must be of logical type." = is.logical(time))
-    stopifnot("'minute' must be of logical type." = is.logical(minute))
-    stopifnot("'second' must be of logical type." = is.logical(second))
-    stopifnot("'day_part' must be of logical type." = is.logical(day_part))
+           include_all = FALSE,
+           exclude_all = FALSE,
+           time = NULL,
+           minute = NULL,
+           second = NULL,
+           day_part = NULL) {
+    stopifnot("'include_all' must be of logical type." = is.logical(include_all))
+    stopifnot("'exclude_all' must be of logical type." = is.logical(exclude_all))
+    stopifnot("Only one of the options can be selected: include or exclude all." = !(include_all & exclude_all))
     att <- names(td$att_levels[td$att_levels == 'time'])
     att <- setdiff(att, 'hour')
+    if (include_all) {
+      td$att_include_conf[att] <- TRUE
+    } else if (exclude_all) {
+      td$att_include_conf[att] <- FALSE
+    }
     for (n in att) {
       v <- eval(parse(text = n))
-      stopifnot("The parameters must be of logical type." = is.logical(v))
-      td$att_include_conf[n] <- v
+      if (!is.null(v)) {
+        stopifnot("The parameters must be of logical type." = is.logical(v))
+        td$att_include_conf[n] <- v
+      }
     }
     if (!td$att_include_conf['minute']) {
       td$att_include_conf['second'] <- FALSE

@@ -3,7 +3,7 @@
 \name{configure_year_level}
 \alias{configure_year_level}
 \alias{configure_year_level.when}
-\title{Include year level}
+\title{Configure year level}
 \usage{
 configure_year_level(td, include_all, exclude_all, year, decade)
 
@@ -51,10 +51,10 @@ Other dimension definition:
 \code{\link{configure_month_level}()},
 \code{\link{configure_quarter_level}()},
 \code{\link{configure_semester_level}()},
+\code{\link{configure_time_level}()},
 \code{\link{configure_week_level}()},
 \code{\link{define_instances}()},
 \code{\link{get_day_part}()},
-\code{\link{include_time_level}()},
 \code{\link{set_day_part}()},
 \code{\link{when}()}
 }

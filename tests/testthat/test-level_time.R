@@ -1,8 +1,17 @@
 test_that("level_time", {
   td_1 <- when() |>
-    include_time_level(minute = FALSE)
+    configure_time_level(minute = FALSE)
   td_2 <- td_1 |>
-    include_time_level()
+    configure_time_level()
+
+  td_5 <- td_1 |>
+    configure_time_level(include_all = TRUE)
+
+  td_4 <- td_1 |>
+    configure_time_level(exclude_all = TRUE)
+
+  td_6 <- td_1 |>
+    configure_time_level(include_all = TRUE, minute = FALSE)
 
   td_3 <- td_1 |>
     set_day_part(hour = c(21:23, 0:5), name = "Noche")
@@ -15,7 +24,25 @@ test_that("level_time", {
 
   expect_equal(
     td_2$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'time'])],
+    c(time = TRUE, hour = TRUE, minute = FALSE, second = FALSE, day_part = TRUE
+    )
+  )
+
+  expect_equal(
+    td_5$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'time'])],
     c(time = TRUE, hour = TRUE, minute = TRUE, second = TRUE, day_part = TRUE
+    )
+  )
+
+  expect_equal(
+    td_4$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'time'])],
+    c(time = FALSE, hour = TRUE, minute = FALSE, second = FALSE, day_part = FALSE
+    )
+  )
+
+  expect_equal(
+    td_6$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'time'])],
+    c(time = TRUE, hour = TRUE, minute = FALSE, second = FALSE, day_part = TRUE
     )
   )
 

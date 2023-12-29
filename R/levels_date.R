@@ -1,4 +1,4 @@
-#' Include date levels
+#' Configure date levels
 #'
 #' When the dimension is defined as date type, using this function we can select
 #' the levels to include in it: day, week, month, quarter, semester and year.
@@ -48,7 +48,19 @@ configure_date_levels.when <-
            quarter_level = NULL,
            semester_level = NULL,
            year_level = NULL) {
-    for (l in names(td$level_type[td$level_type == 'date'])) {
+    stopifnot("'include_all' must be of logical type." = is.logical(include_all))
+    stopifnot("'exclude_all' must be of logical type." = is.logical(exclude_all))
+    stopifnot(
+      "Only one of the options can be selected: include or exclude all." = !(include_all &
+                                                                               exclude_all)
+    )
+    date_levels <- names(td$level_type[td$level_type == 'date'])
+    if (include_all) {
+      td$level_include_conf[date_levels] <- TRUE
+    } else if (exclude_all) {
+      td$level_include_conf[date_levels] <- FALSE
+    }
+    for (l in date_levels) {
       v <- eval(parse(text = paste0(l, '_level')))
       if (!is.null(v)) {
         stopifnot("The parameters must be of logical type." = is.logical(v))
@@ -59,7 +71,7 @@ configure_date_levels.when <-
   }
 
 
-#' Include date level (common)
+#' Configure date level (common)
 #'
 #' @param td A `when` object.
 #' @param include_all A boolean, include all fields of the level.
@@ -70,22 +82,25 @@ configure_date_levels.when <-
 #'
 #' @keywords internal
 configure_date_level_common <- function(td,
-                                      name = NULL,
-                                      include_all = FALSE,
-                                      exclude_all = FALSE,
-                                      ...) {
+                                        name = NULL,
+                                        include_all = FALSE,
+                                        exclude_all = FALSE,
+                                        ...) {
   stopifnot("'name' must be a date level." = name %in% names(td$level_type[td$level_type == 'date']))
   stopifnot("'include_all' must be of logical type." = is.logical(include_all))
   stopifnot("'exclude_all' must be of logical type." = is.logical(exclude_all))
-  stopifnot("Only one of the options can be selected: include or exclude all." = include_all & exclude_all)
+  stopifnot(
+    "Only one of the options can be selected: include or exclude all." = !(include_all &
+                                                                             exclude_all)
+  )
 
   att <- names(td$att_levels[td$att_levels == name])
   if (include_all) {
     td$att_include_conf[att] <- TRUE
     td$level_include_conf[name] <- TRUE
   } else if (exclude_all) {
-      td$att_include_conf[att] <- FALSE
-      td$level_include_conf[name] <- FALSE
+    td$att_include_conf[att] <- FALSE
+    td$level_include_conf[name] <- FALSE
   }
   dots <- list(...)
   for (n in names(dots)) {
@@ -102,7 +117,7 @@ configure_date_level_common <- function(td,
 }
 
 
-#' Include year level
+#' Configure year level
 #'
 #' When the dimension is defined as a date type, using this function we can select
 #' the year level and its attributes to include in it: year and decade.
@@ -143,15 +158,17 @@ configure_year_level.when <-
            exclude_all = FALSE,
            year = NULL,
            decade = NULL) {
-    configure_date_level_common(td,
-                              name = 'year',
-                              include_all,
-                              exclude_all,
-                              year = year,
-                              decade = decade)
+    configure_date_level_common(
+      td,
+      name = 'year',
+      include_all,
+      exclude_all,
+      year = year,
+      decade = decade
+    )
   }
 
-#' Include week level
+#' Configure week level
 #'
 #' When the dimension is defined as a date type, using this function we can select
 #' the week level and its attributes to include in it: week, year_week and week_date.
@@ -211,17 +228,19 @@ configure_week_level.when <-
            week = NULL,
            year_week = NULL,
            week_date = NULL) {
-    configure_date_level_common(td,
-                              name = 'week',
-                              include_all,
-                              exclude_all,
-                              week = week,
-                              year_week = year_week,
-                              week_date = week_date)
+    configure_date_level_common(
+      td,
+      name = 'week',
+      include_all,
+      exclude_all,
+      week = week,
+      year_week = year_week,
+      week_date = week_date
+    )
   }
 
 
-#' Include month level
+#' Configure month level
 #'
 #' When the dimension is defined as a date type, using this function we can select
 #' the month level and its attributes to include in it. We can also obtain the
@@ -266,7 +285,7 @@ configure_month_level <-
            month_num_name,
            month_abbr,
            month_num_abbr)
-UseMethod("configure_month_level")
+    UseMethod("configure_month_level")
 
 #' @rdname configure_month_level
 #'
@@ -281,20 +300,22 @@ configure_month_level.when <-
            month_num_name = NULL,
            month_abbr = NULL,
            month_num_abbr = NULL) {
-    configure_date_level_common(td,
-                              name = 'month',
-                              include_all,
-                              exclude_all,
-                              month = month,
-                              year_month = year_month,
-                              month_name = month_name,
-                              month_num_name = month_num_name,
-                              month_abbr = month_abbr,
-                              month_num_abbr = month_num_abbr)
+    configure_date_level_common(
+      td,
+      name = 'month',
+      include_all,
+      exclude_all,
+      month = month,
+      year_month = year_month,
+      month_name = month_name,
+      month_num_name = month_num_name,
+      month_abbr = month_abbr,
+      month_num_abbr = month_num_abbr
+    )
   }
 
 
-#' Include quarter level
+#' Configure quarter level
 #'
 #' When the dimension is defined as a date type, using this function we can select
 #' the quarter level and its attributes to include in it: quarter number and the
@@ -308,8 +329,6 @@ configure_month_level.when <-
 #' @param exclude_all A boolean, exclude all fields of the level.
 #' @param quarter A boolean, include the quarter field.
 #' @param year_quarter A boolean, include the quarter field.
-#' @param semester A boolean, include the semester field.
-#' @param year_semester A boolean, include the semester field.
 #'
 #' @return A `when` object.
 #'
@@ -327,7 +346,7 @@ configure_quarter_level <-
            exclude_all,
            quarter,
            year_quarter)
-UseMethod("configure_quarter_level")
+    UseMethod("configure_quarter_level")
 
 #' @rdname configure_quarter_level
 #'
@@ -338,16 +357,18 @@ configure_quarter_level.when <-
            exclude_all = FALSE,
            quarter = NULL,
            year_quarter = NULL) {
-    configure_date_level_common(td,
-                              name = 'month',
-                              include_all,
-                              exclude_all,
-                              quarter = quarter,
-                              year_quarter = year_quarter)
+    configure_date_level_common(
+      td,
+      name = 'quarter',
+      include_all,
+      exclude_all,
+      quarter = quarter,
+      year_quarter = year_quarter
+    )
   }
 
 
-#' Include semester level
+#' Configure semester level
 #'
 #' When the dimension is defined as a date type, using this function we can select
 #' the semester level and its attributes to include in it: semester number and the
@@ -389,15 +410,17 @@ configure_semester_level.when <-
            exclude_all = FALSE,
            semester = NULL,
            year_semester = NULL) {
-    configure_date_level_common(td,
-                              name = 'month',
-                              include_all,
-                              exclude_all,
-                              semester = semester,
-                              year_semester = year_semester)
+    configure_date_level_common(
+      td,
+      name = 'semester',
+      include_all,
+      exclude_all,
+      semester = semester,
+      year_semester = year_semester
+    )
   }
 
-#' Include day level
+#' Configure day level
 #'
 #' When the dimension is defined as a date type, using this function we can select
 #' the day level and its attributes to include in it: date, month_day, week_day,
@@ -438,45 +461,47 @@ configure_semester_level.when <-
 #'
 #' @export
 configure_day_level <- function(td,
-                              include_all,
-                              exclude_all,
-                              date,
-                              month_day,
-                              week_day,
-                              day_name,
-                              day_num_name,
-                              day_abbr,
-                              day_num_abbr,
-                              quarter_day,
-                              year_day)
+                                include_all,
+                                exclude_all,
+                                date,
+                                month_day,
+                                week_day,
+                                day_name,
+                                day_num_name,
+                                day_abbr,
+                                day_num_abbr,
+                                quarter_day,
+                                year_day)
 UseMethod("configure_day_level")
 
 #' @rdname configure_day_level
 #'
 #' @export
 configure_day_level.when <- function(td,
-                                   include_all = FALSE,
-                                   exclude_all = FALSE,
-                                   date = NULL,
-                                   month_day = NULL,
-                                   week_day = NULL,
-                                   day_name = NULL,
-                                   day_num_name = NULL,
-                                   day_abbr = NULL,
-                                   day_num_abbr = NULL,
-                                   quarter_day = NULL,
-                                   year_day = NULL) {
-  configure_date_level_common(td,
-                            name = 'day',
-                            include_all,
-                            exclude_all,
-                            date = date,
-                            month_day = month_day,
-                            week_day = week_day,
-                            day_name = day_name,
-                            day_num_name = day_num_name,
-                            day_abbr = day_abbr,
-                            day_num_abbr = day_num_abbr,
-                            quarter_day = quarter_day,
-                            year_day = year_day)
+                                     include_all = FALSE,
+                                     exclude_all = FALSE,
+                                     date = NULL,
+                                     month_day = NULL,
+                                     week_day = NULL,
+                                     day_name = NULL,
+                                     day_num_name = NULL,
+                                     day_abbr = NULL,
+                                     day_num_abbr = NULL,
+                                     quarter_day = NULL,
+                                     year_day = NULL) {
+  configure_date_level_common(
+    td,
+    name = 'day',
+    include_all,
+    exclude_all,
+    date = date,
+    month_day = month_day,
+    week_day = week_day,
+    day_name = day_name,
+    day_num_name = day_num_name,
+    day_abbr = day_abbr,
+    day_num_abbr = day_num_abbr,
+    quarter_day = quarter_day,
+    year_day = year_day
+  )
 }

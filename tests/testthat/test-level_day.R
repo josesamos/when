@@ -1,12 +1,12 @@
 test_that("level_day", {
   td_1 <- when() |>
-    include_day_level(day_abbr = TRUE,
+    configure_day_level(day_abbr = TRUE,
                       day_num_name = FALSE)
   td_2 <- td_1 |>
-    include_day_level(include_all = TRUE)
+    configure_day_level(include_all = TRUE)
 
   td_3 <- td_1 |>
-    include_day_level()
+    configure_day_level()
 
   expect_equal(
     td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'day'])],
@@ -45,8 +45,8 @@ test_that("level_day", {
       month_day = TRUE,
       week_day = TRUE,
       day_name = TRUE,
-      day_num_name = TRUE,
-      day_abbr = FALSE,
+      day_num_name = FALSE,
+      day_abbr = TRUE,
       day_num_abbr = FALSE,
       year_day = FALSE,
       quarter_day = FALSE

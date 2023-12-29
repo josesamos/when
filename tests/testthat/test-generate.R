@@ -20,10 +20,10 @@ test_that("generate", {
     generate_table()
 
   td_3 <- when() |>
-    include_day_level(include_all = TRUE) |>
-    include_week_level(include_all = TRUE) |>
-    include_month_level(include_all = TRUE) |>
-    include_year_level(include_all = TRUE) |>
+    configure_day_level(include_all = TRUE) |>
+    configure_week_level(include_all = TRUE) |>
+    configure_month_level(include_all = TRUE) |>
+    configure_year_level(include_all = TRUE) |>
     generate_table()
 
   td_4 <- when(type = 'time', minute = FALSE) |>
@@ -198,10 +198,6 @@ test_that("generate", {
       "month_num_name",
       "month_abbr",
       "month_num_abbr",
-      "year_quarter",
-      "quarter",
-      "year_semester",
-      "semester",
       "year",
       "decade"
     )
@@ -371,7 +367,7 @@ test_that("generate", {
                "time")
 
   expect_equal(ln_18,
-               c("day", "week", "month", "year"))
+               c("day", "week", "month", "quarter", "semester", "year"))
 
   expect_equal(ln_18_s,
                c("day", "month", "year"))

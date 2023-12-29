@@ -3,7 +3,7 @@
 \name{configure_semester_level}
 \alias{configure_semester_level}
 \alias{configure_semester_level.when}
-\title{Include semester level}
+\title{Configure semester level}
 \usage{
 configure_semester_level(td, include_all, exclude_all, semester, year_semester)
 
@@ -51,11 +51,11 @@ Other dimension definition:
 \code{\link{configure_dimension}()},
 \code{\link{configure_month_level}()},
 \code{\link{configure_quarter_level}()},
+\code{\link{configure_time_level}()},
 \code{\link{configure_week_level}()},
 \code{\link{configure_year_level}()},
 \code{\link{define_instances}()},
 \code{\link{get_day_part}()},
-\code{\link{include_time_level}()},
 \code{\link{set_day_part}()},
 \code{\link{when}()}
 }

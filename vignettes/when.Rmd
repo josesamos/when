@@ -38,7 +38,7 @@ The purpose of the `when` package is to assist in the implementation of the ***W
 
 - We can obtain the tables in `tibble` format and in other formats (*xlsx*, *csv* or *Relational DBMS* table).
 
-The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, a section is dedicated to showing examples of dimension definitions, time-based and date-based dimensions. Finally, the document ends with conclusions and bibliography.
+The rest of this document is structured as follows: The general process of defining these dimensions is presented. Then, the document ends with conclusions and bibliography.
 
 # Definition process
 
@@ -91,7 +91,19 @@ w_date <- w_date |>
   configure_dimension(locale = Sys.setlocale("LC_TIME", "English"))
 ```
 
-By default the dimension table will include a surrogate key. Through the `surrogate_key` parameter of this function we can indicate that it is not included.
+By default the dimension table will include a surrogate key: Through the `surrogate_key` parameter of this function we can indicate that it is not included. Using the `name` parameter, also of this function, we can assign a name to the dimension table.
+
+We have associated each hour with the usual part of the day in English. We can consult them and change them if necessary (for example, to define them in another language) using the `get_day_part()` and `set_day_part()` functions, as shown below.
+
+```{r}
+when() |>
+  get_day_part()
+
+when() |>
+  set_day_part(hour = c(21:23, 0:4), name = "Noche") |>
+  set_day_part(hour = c(13:20), name = "Tarde") |>
+  get_day_part()
+```
 
 Next we have to select and configure the levels and define the instances. These operations, along with the current one, can be performed in any order.
 
@@ -242,6 +254,30 @@ w_date_9 <- when(
 identical(w_date_8, w_date_9)
 ```
 
+In the case of a time-based dimension, as we have seen, we only consider one level called "time", as shown again below.
+
+```{r}
+w_time |>
+  get_level_names()
+```
+
+We can configure the attributes it includes using the `configure_time_level()` function. The attribute called "hour" must always be included. If we do not include the "minute" attribute then "second" will not be included either. Below are some examples of definition and the result obtained.
+
+```{r}
+w_time_6 <- w_time |>
+  configure_time_level(exclude_all = TRUE)
+
+w_time_6 |>
+  get_level_attribute_names(selected = TRUE)
+
+w_time_7 <- w_time |>
+  configure_time_level(minute = FALSE)
+
+w_time_7 |>
+  get_level_attribute_names(selected = TRUE)
+```
+
+
 
 ## Generation of the result
 
@@ -304,7 +340,7 @@ pander::pandoc.table(rbind(head(t_time, 5), tail(t_time, 5)),
 
 `day_part` is predefined in English. Literals or associated hours can be accessed and changed using the `get_day_part()` and `set_day_part()` functions.
 
-We can export the generated tables to any Relational DBMS, as shown below, we just have to pass a connection to the database as a parameter..
+We can take the generated tables to any Relational DBMS, as shown below, we just have to pass a connection to the database as a parameter.
 
 ```{r}
 my_db <- DBI::dbConnect(RSQLite::SQLite())
@@ -320,20 +356,14 @@ DBI::dbListTables(my_db)
 DBI::dbDisconnect(my_db)
 ```
 
-In the previous example, since we have not explicitly defined any names for the tables in the configuration, they have been assigned as a name the element on which they are based (date and time).
+In the previous example, since we have not explicitly defined any names for the tables in the configuration, they have been assigned as a name the element on which they are based (date or time).
 
-Functions to store the tables in *xlsx* and *csv* format are also available: `get_table_xlsx()` and `get_table_csv()`.
+Functions to get the tables in *xlsx* and *csv* format are also available: `get_table_xlsx()` and `get_table_csv()`.
 
-
-# Definition examples
-
-## Time based dimension
-
-## Date based dimension
 
 # Conclusions
 
-`when` package offers a set of operations that allow us to transform tables into star databases.  From several star databases you can define a constellation with conformed dimensions.
+`when` package offers a set of operations that allow us to
 
 Operations have been designed to be intuitive and easy to use. The result greatly facilitates the data transformation process for the exposed situation.
 

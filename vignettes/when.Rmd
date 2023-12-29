@@ -38,7 +38,7 @@ The purpose of the `when` package is to assist in the implementation of the ***W
 
 - We can obtain the tables in `tibble` format and in other formats (*xlsx*, *csv* or *Relational DBMS* table).
 
-The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, we present dimension-specific aspects that we can configure, both for date-based and time-based dimensions. Finally, the document ends with conclusions and bibliography.
+The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, we present dimension-specific aspects that we can define, both for date-based and time-based dimensions. Finally, the document ends with conclusions and bibliography.
 
 # Definition process
 
@@ -49,7 +49,7 @@ The definition process consists of the following steps:
 1. Definition of instances.
 1. Selection of levels and attributes.
 1. Generation of the result.
-1. Getting the table.
+1. Getting the dimension table.
 
 Steps 2, 3 and 4 can be done in any order, they can even be included in step 1.
 
@@ -73,7 +73,7 @@ w_time <- when(type = 'time')
 
 Virtually all configuration options can be defined using the object creation function. They can also be defined later using specific functions, as shown in the following section.
 
-## Definition  of general aspects
+## Definition of general aspects {#general_aspects} 
 
 For example, using the following combination of functions we get the same result as defining the type when we create the object.
 
@@ -292,7 +292,7 @@ Once the table is generated, we can export it. If we want to access the table an
 
 If we make changes to the configuration, it is our responsibility to generate the table again.
 
-## Getting the table
+## Getting the dimension table
 
 We can access the dimension table to work with it in R (for example using the [`rolap`](https://CRAN.R-project.org/package=rolap) package), or export it in the format that is most convenient for us to work with other tools.
 
@@ -349,7 +349,17 @@ Functions to get the tables in *xlsx* and *csv* format are also available: `get_
 
 # Other configuration options
 
+In section [Definition  of general aspects](#general_aspects) we have presented the necessary configuration options for the examples we have used. In particular, we have only needed to define the type on which the dimension is based and the language for naming days and months (because it is different from the language of our operating system). The default options have been adequate for the examples shown.
+
+In this section we are going to show other configuration options that may be necessary to define our dimensions. Likewise, we will comment on some elements of the package's operation that may be less obvious than those presented so far.
+
+
+## Dimension table features
+
 By default the dimension table will include a surrogate key: Through the `surrogate_key` parameter of this function we can indicate that it is not included. Using the `name` parameter, also of this function, we can assign a name to the dimension table.
+
+
+## Names of the parts of the day
 
 We have associated each hour with the usual part of the day in English. We can consult them and change them if necessary (for example, to define them in another language) using the `get_day_part()` and `set_day_part()` functions, as shown below.
 
@@ -362,6 +372,12 @@ when() |>
   set_day_part(hour = c(13:20), name = "Tarde") |>
   get_day_part()
 ```
+
+## Numbering of weeks in the year
+
+
+## Inclusion of the date associated with the week
+
 
 
 

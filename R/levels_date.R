@@ -20,10 +20,10 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_date_levels(week_level = FALSE)
+#'   select_date_levels(week_level = FALSE)
 #'
 #' @export
-configure_date_levels <-
+select_date_levels <-
   function(td,
            include_all,
            exclude_all,
@@ -33,12 +33,12 @@ configure_date_levels <-
            quarter_level,
            semester_level,
            year_level)
-    UseMethod("configure_date_levels")
+    UseMethod("select_date_levels")
 
-#' @rdname configure_date_levels
+#' @rdname select_date_levels
 #'
 #' @export
-configure_date_levels.when <-
+select_date_levels.when <-
   function(td,
            include_all = FALSE,
            exclude_all = FALSE,
@@ -81,11 +81,11 @@ configure_date_levels.when <-
 #' @return A `when` object.
 #'
 #' @keywords internal
-configure_date_level_common <- function(td,
-                                        name = NULL,
-                                        include_all = FALSE,
-                                        exclude_all = FALSE,
-                                        ...) {
+select_date_level_common <- function(td,
+                                     name = NULL,
+                                     include_all = FALSE,
+                                     exclude_all = FALSE,
+                                     ...) {
   stopifnot("'name' must be a date level." = name %in% names(td$level_type[td$level_type == 'date']))
   stopifnot("'include_all' must be of logical type." = is.logical(include_all))
   stopifnot("'exclude_all' must be of logical type." = is.logical(exclude_all))
@@ -138,27 +138,27 @@ configure_date_level_common <- function(td,
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_year_level(decade = FALSE)
+#'   select_year_level(decade = FALSE)
 #'
 #' @export
-configure_year_level <-
+select_year_level <-
   function(td,
            include_all,
            exclude_all,
            year,
            decade)
-    UseMethod("configure_year_level")
+    UseMethod("select_year_level")
 
-#' @rdname configure_year_level
+#' @rdname select_year_level
 #'
 #' @export
-configure_year_level.when <-
+select_year_level.when <-
   function(td,
            include_all = FALSE,
            exclude_all = FALSE,
            year = NULL,
            decade = NULL) {
-    configure_date_level_common(
+    select_date_level_common(
       td,
       name = 'year',
       include_all,
@@ -206,29 +206,29 @@ configure_year_level.when <-
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_week_level(week_date = FALSE)
+#'   select_week_level(week_date = FALSE)
 #'
 #' @export
-configure_week_level <-
+select_week_level <-
   function(td,
            include_all,
            exclude_all,
            week,
            year_week,
            week_date)
-    UseMethod("configure_week_level")
+    UseMethod("select_week_level")
 
-#' @rdname configure_week_level
+#' @rdname select_week_level
 #'
 #' @export
-configure_week_level.when <-
+select_week_level.when <-
   function(td,
            include_all = FALSE,
            exclude_all = FALSE,
            week = NULL,
            year_week = NULL,
            week_date = NULL) {
-    configure_date_level_common(
+    select_date_level_common(
       td,
       name = 'week',
       include_all,
@@ -271,11 +271,11 @@ configure_week_level.when <-
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_month_level(month_abbr = FALSE,
+#'   select_month_level(month_abbr = FALSE,
 #'                       month_num_abbr = FALSE)
 #'
 #' @export
-configure_month_level <-
+select_month_level <-
   function(td,
            include_all,
            exclude_all,
@@ -285,12 +285,12 @@ configure_month_level <-
            month_num_name,
            month_abbr,
            month_num_abbr)
-    UseMethod("configure_month_level")
+    UseMethod("select_month_level")
 
-#' @rdname configure_month_level
+#' @rdname select_month_level
 #'
 #' @export
-configure_month_level.when <-
+select_month_level.when <-
   function(td,
            include_all = FALSE,
            exclude_all = FALSE,
@@ -300,7 +300,7 @@ configure_month_level.when <-
            month_num_name = NULL,
            month_abbr = NULL,
            month_num_abbr = NULL) {
-    configure_date_level_common(
+    select_date_level_common(
       td,
       name = 'month',
       include_all,
@@ -337,27 +337,27 @@ configure_month_level.when <-
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_quarter_level(quarter = FALSE)
+#'   select_quarter_level(quarter = FALSE)
 #'
 #' @export
-configure_quarter_level <-
+select_quarter_level <-
   function(td,
            include_all,
            exclude_all,
            quarter,
            year_quarter)
-    UseMethod("configure_quarter_level")
+    UseMethod("select_quarter_level")
 
-#' @rdname configure_quarter_level
+#' @rdname select_quarter_level
 #'
 #' @export
-configure_quarter_level.when <-
+select_quarter_level.when <-
   function(td,
            include_all = FALSE,
            exclude_all = FALSE,
            quarter = NULL,
            year_quarter = NULL) {
-    configure_date_level_common(
+    select_date_level_common(
       td,
       name = 'quarter',
       include_all,
@@ -390,27 +390,27 @@ configure_quarter_level.when <-
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_semester_level(semester = FALSE)
+#'   select_semester_level(semester = FALSE)
 #'
 #' @export
-configure_semester_level <-
+select_semester_level <-
   function(td,
            include_all,
            exclude_all,
            semester,
            year_semester)
-    UseMethod("configure_semester_level")
+    UseMethod("select_semester_level")
 
-#' @rdname configure_semester_level
+#' @rdname select_semester_level
 #'
 #' @export
-configure_semester_level.when <-
+select_semester_level.when <-
   function(td,
            include_all = FALSE,
            exclude_all = FALSE,
            semester = NULL,
            year_semester = NULL) {
-    configure_date_level_common(
+    select_date_level_common(
       td,
       name = 'semester',
       include_all,
@@ -456,40 +456,40 @@ configure_semester_level.when <-
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_day_level(day_abbr = FALSE,
+#'   select_day_level(day_abbr = FALSE,
 #'                     day_num_abbr = FALSE)
 #'
 #' @export
-configure_day_level <- function(td,
-                                include_all,
-                                exclude_all,
-                                date,
-                                month_day,
-                                week_day,
-                                day_name,
-                                day_num_name,
-                                day_abbr,
-                                day_num_abbr,
-                                quarter_day,
-                                year_day)
-UseMethod("configure_day_level")
+select_day_level <- function(td,
+                             include_all,
+                             exclude_all,
+                             date,
+                             month_day,
+                             week_day,
+                             day_name,
+                             day_num_name,
+                             day_abbr,
+                             day_num_abbr,
+                             quarter_day,
+                             year_day)
+UseMethod("select_day_level")
 
-#' @rdname configure_day_level
+#' @rdname select_day_level
 #'
 #' @export
-configure_day_level.when <- function(td,
-                                     include_all = FALSE,
-                                     exclude_all = FALSE,
-                                     date = NULL,
-                                     month_day = NULL,
-                                     week_day = NULL,
-                                     day_name = NULL,
-                                     day_num_name = NULL,
-                                     day_abbr = NULL,
-                                     day_num_abbr = NULL,
-                                     quarter_day = NULL,
-                                     year_day = NULL) {
-  configure_date_level_common(
+select_day_level.when <- function(td,
+                                  include_all = FALSE,
+                                  exclude_all = FALSE,
+                                  date = NULL,
+                                  month_day = NULL,
+                                  week_day = NULL,
+                                  day_name = NULL,
+                                  day_num_name = NULL,
+                                  day_abbr = NULL,
+                                  day_num_abbr = NULL,
+                                  quarter_day = NULL,
+                                  year_day = NULL) {
+  select_date_level_common(
     td,
     name = 'day',
     include_all,

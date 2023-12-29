@@ -1,12 +1,12 @@
 test_that("level_month", {
   td_1 <- when() |>
-    configure_month_level(month_name = FALSE,
+    select_month_level(month_name = FALSE,
                         month_num_name = FALSE)
   td_2 <- td_1 |>
-    configure_month_level(include_all = TRUE)
+    select_month_level(include_all = TRUE)
 
   td_3 <- td_1 |>
-    configure_month_level()
+    select_month_level()
 
   expect_equal(
     td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'month'])],

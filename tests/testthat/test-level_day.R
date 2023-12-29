@@ -1,12 +1,12 @@
 test_that("level_day", {
   td_1 <- when() |>
-    configure_day_level(day_abbr = TRUE,
+    select_day_level(day_abbr = TRUE,
                       day_num_name = FALSE)
   td_2 <- td_1 |>
-    configure_day_level(include_all = TRUE)
+    select_day_level(include_all = TRUE)
 
   td_3 <- td_1 |>
-    configure_day_level()
+    select_day_level()
 
   expect_equal(
     td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'day'])],

@@ -1,28 +1,28 @@
 test_that("configure", {
   td_1 <- when()
   td_1 <- td_1 |>
-    configure_dimension(name = 'when', type = 'time')
+    define_characteristics(name = 'when', type = 'time')
 
   td_2 <- when() |>
-    configure_dimension(type = 'time')
+    define_characteristics(type = 'time')
 
   td_3 <- when() |>
-    configure_dimension()
+    define_characteristics()
 
   td_4 <- when() |>
-    configure_dimension(surrogate_key = FALSE)
+    define_characteristics(surrogate_key = FALSE)
 
   td_5 <- when(surrogate_key = FALSE)
 
   td_6 <- td_2 |>
-    configure_dimension()
+    define_characteristics()
 
   td_7 <- td_4 |>
-    configure_dimension()
+    define_characteristics()
 
   wt <- when(type = 'time')
   wt_2 <- when() |>
-    configure_dimension(type = 'time')
+    define_characteristics(type = 'time')
 
   expect_equal(
     td_1$level_include_conf,
@@ -69,4 +69,3 @@ test_that("configure", {
   expect_equal(td_4, td_7)
 
 })
-

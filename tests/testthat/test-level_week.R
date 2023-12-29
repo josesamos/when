@@ -1,12 +1,12 @@
 test_that("level_week", {
   td_1 <- when() |>
-    configure_week_level(week = FALSE)
+    select_week_level(week = FALSE)
   td_2 <- td_1 |>
-    configure_week_level(include_all = TRUE)
+    select_week_level(include_all = TRUE)
   td_3 <- td_1 |>
-    configure_week_level()
+    select_week_level()
   td_4 <- when() |>
-    configure_week_level(exclude_all = TRUE)
+    select_week_level(exclude_all = TRUE)
 
   expect_equal(
     td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'week'])],

@@ -20,10 +20,10 @@ test_that("generate", {
     generate_table()
 
   td_3 <- when() |>
-    configure_day_level(include_all = TRUE) |>
-    configure_week_level(include_all = TRUE) |>
-    configure_month_level(include_all = TRUE) |>
-    configure_year_level(include_all = TRUE) |>
+    select_day_level(include_all = TRUE) |>
+    select_week_level(include_all = TRUE) |>
+    select_month_level(include_all = TRUE) |>
+    select_year_level(include_all = TRUE) |>
     generate_table()
 
   td_4 <- when(type = 'time', minute = FALSE) |>

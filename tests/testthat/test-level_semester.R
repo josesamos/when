@@ -1,8 +1,8 @@
 test_that("level_semester", {
   td_1 <- when() |>
-    configure_semester_level(semester = FALSE)
+    select_semester_level(semester = FALSE)
   td_2 <- td_1 |>
-    configure_semester_level(include_all = TRUE)
+    select_semester_level(include_all = TRUE)
 
   expect_equal(td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'semester'])],
                c(year_semester = TRUE, semester = FALSE))

@@ -1,4 +1,4 @@
-#' Configure dimension
+#' Define dimension characteristics
 #'
 #' With this function we can define the characteristics of the dimension that do
 #' not depend on the levels it includes, such as the name, type, location or the
@@ -33,27 +33,27 @@
 #' @examples
 #'
 #' td <- when() |>
-#'   configure_dimension(name = 'time', type = 'time')
+#'   define_characteristics(name = 'time', type = 'time')
 #'
 #' @export
-configure_dimension <-
+define_characteristics <-
   function(td,
            name,
            surrogate_key,
            type,
            locale,
            week_starts_monday)
-    UseMethod("configure_dimension")
+    UseMethod("define_characteristics")
 
-#' @rdname configure_dimension
+#' @rdname define_characteristics
 #'
 #' @export
-configure_dimension.when <- function(td,
-                                name = NULL,
-                                surrogate_key = NULL,
-                                type = NULL,
-                                locale = Sys.getlocale("LC_TIME"),
-                                week_starts_monday = NULL) {
+define_characteristics.when <- function(td,
+                                     name = NULL,
+                                     surrogate_key = NULL,
+                                     type = NULL,
+                                     locale = Sys.getlocale("LC_TIME"),
+                                     week_starts_monday = NULL) {
   if (!is.null(name)) {
     stopifnot("'name' must have a single value." = length(name) == 1)
     td$table_name = name
@@ -115,7 +115,8 @@ define_instances.when <-
            start = NULL,
            end = NULL,
            values = NULL) {
-    if (is.null(start) & is.null(end) & !is.null(td$start) & !is.null(td$end)) {
+    if (is.null(start) &
+        is.null(end) & !is.null(td$start) & !is.null(td$end)) {
       td$start <- NULL
       td$end <- NULL
     }
@@ -161,4 +162,3 @@ validate_type <- function(td, type) {
   }
   td
 }
-

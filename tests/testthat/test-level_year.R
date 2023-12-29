@@ -1,18 +1,18 @@
 test_that("level_year", {
   td_1 <- when() |>
-    configure_year_level(year = FALSE)
+    select_year_level(year = FALSE)
 
   td_2 <- td_1 |>
-    configure_year_level(include_all = TRUE)
+    select_year_level(include_all = TRUE)
 
   td_3 <- td_1 |>
-    configure_year_level(include_all = TRUE, decade = FALSE)
+    select_year_level(include_all = TRUE, decade = FALSE)
 
   td_4 <- when() |>
-    configure_year_level(exclude_all = TRUE, year = TRUE)
+    select_year_level(exclude_all = TRUE, year = TRUE)
 
   td_5 <- when() |>
-    configure_year_level(exclude_all = TRUE)
+    select_year_level(exclude_all = TRUE)
 
   expect_equal(
     td_1$att_include_conf[names(td_1$att_levels[td_1$att_levels == 'year'])],

@@ -1,17 +1,17 @@
 test_that("level_time", {
   td_1 <- when() |>
-    configure_time_level(minute = FALSE)
+    select_time_level(minute = FALSE)
   td_2 <- td_1 |>
-    configure_time_level()
+    select_time_level()
 
   td_5 <- td_1 |>
-    configure_time_level(include_all = TRUE)
+    select_time_level(include_all = TRUE)
 
   td_4 <- td_1 |>
-    configure_time_level(exclude_all = TRUE)
+    select_time_level(exclude_all = TRUE)
 
   td_6 <- td_1 |>
-    configure_time_level(include_all = TRUE, minute = FALSE)
+    select_time_level(include_all = TRUE, minute = FALSE)
 
   td_3 <- td_1 |>
     set_day_part(hour = c(21:23, 0:5), name = "Noche")

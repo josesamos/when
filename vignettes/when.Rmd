@@ -1,6 +1,6 @@
 ---
 title: "Generating the *When Dimension* based on date and time tables"
-date: "2023-12-26"
+date: "2024-01-08"
 output: rmarkdown::html_vignette
 bibliography: bibliography.bib
 vignette: >
@@ -38,16 +38,16 @@ The purpose of the `when` package is to assist in the implementation of the ***W
 
 - We can obtain the tables in `tibble` format and in other formats (*xlsx*, *csv* or *Relational DBMS* table).
 
-The rest of this document is structured as follows: The general process of defining these dimensions is presented. Then, the document ends with conclusions and bibliography.
+The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, we present dimension-specific aspects that we can configure, both for date-based and time-based dimensions. Finally, the document ends with conclusions and bibliography.
 
 # Definition process
 
 The definition process consists of the following steps:
 
 1. Creating an object.
-1. Configuration of general aspects.
+1. Definition  of general aspects.
 1. Definition of instances.
-1. Selection and definition of levels.
+1. Selection of levels and attributes.
 1. Generation of the result.
 1. Getting the table.
 
@@ -73,13 +73,13 @@ w_time <- when(type = 'time')
 
 Virtually all configuration options can be defined using the object creation function. They can also be defined later using specific functions, as shown in the following section.
 
-## Configuration of general aspects
+## Definition  of general aspects
 
 For example, using the following combination of functions we get the same result as defining the type when we create the object.
 
 ```{r}
 w_time_2 <- when() |>
-  configure_dimension(type = 'time')
+  define_characteristics(type = 'time')
 
 identical(w_time, w_time_2)
 ```
@@ -88,21 +88,7 @@ By default it considers the system language. Since our system is Spanish, for th
 
 ```{r}
 w_date <- w_date |>
-  configure_dimension(locale = Sys.setlocale("LC_TIME", "English"))
-```
-
-By default the dimension table will include a surrogate key: Through the `surrogate_key` parameter of this function we can indicate that it is not included. Using the `name` parameter, also of this function, we can assign a name to the dimension table.
-
-We have associated each hour with the usual part of the day in English. We can consult them and change them if necessary (for example, to define them in another language) using the `get_day_part()` and `set_day_part()` functions, as shown below.
-
-```{r}
-when() |>
-  get_day_part()
-
-when() |>
-  set_day_part(hour = c(21:23, 0:4), name = "Noche") |>
-  set_day_part(hour = c(13:20), name = "Tarde") |>
-  get_day_part()
+  define_characteristics(locale = Sys.setlocale("LC_TIME", "English"))
 ```
 
 Next we have to select and configure the levels and define the instances. These operations, along with the current one, can be performed in any order.
@@ -172,7 +158,7 @@ identical(w_time_4, w_time_5)
 ```
 
 
-## Selection and definition of levels
+## Selection of levels and attributes
 
 In the definition, by default, the attributes that we have considered to be most frequently used have been included. We can consult them for each level using the `get_level_attribute_names()` function with the parameter `selected = TRUE`. If we define the parameter as `selected = FALSE` (default option), it will return all available attributes. We can indicate the name of the level or, if we do not indicate any, it will obtain the attributes of all the levels. We obtain the level names using the `get_level_names()` function. Below are examples of using these functions for the date-based dimension.
 
@@ -202,11 +188,11 @@ w_time |>
 
 There is a function to configure each level. We can select or deselect each attribute individually using the attribute name as a boolean parameter of the function. We can also select or deselect all attributes defined at the level using the special `include_all` and `exclude_all` parameters: Once all the attributes have been updated with these special parameters, in the same function call, we can select or deselect the attributes we want.
 
-For example, if we do not want to include the name of the month, we can configure it using the `configure_month_level()` function or at the time of object creation with a parameter of the same name, as shown below.
+For example, if we do not want to include the name of the month, we can configure it using the `select_month_level()` function or at the time of object creation with a parameter of the same name, as shown below.
 
 ```{r}
 w_date_5 <- w_date |>
-  configure_month_level(month_name = FALSE)
+  select_month_level(month_name = FALSE)
 
 w_date_6 <- when(
   start = lubridate::today(),
@@ -224,7 +210,7 @@ If we only want to include the name of the month, we can do it as follows.
 
 ```{r}
 w_date_7 <- w_date |>
-  configure_month_level(exclude_all = TRUE, month_name = TRUE)
+  select_month_level(exclude_all = TRUE, month_name = TRUE)
 
 w_date_7 |>
   get_level_attribute_names(name = 'month', selected = TRUE)
@@ -232,11 +218,11 @@ w_date_7 |>
 
 There is available a similar function for each level: time, date, week, month, quarter, semester and year. 
 
-In the case of the date-based dimension levels, we can select or deselect them directly using the `configure_date_levels()` function. It allows us to treat the levels globally in the same way that we have been treating the attributes. For example, to exclude the month level we can do the following.
+In the case of the date-based dimension levels, we can select or deselect them directly using the `select_date_levels()` function. It allows us to treat the levels globally in the same way that we have been treating the attributes. For example, to exclude the month level we can do the following.
 
 ```{r}
 w_date_8 <- w_date |>
-  configure_date_levels(month_level = FALSE)
+  select_date_levels(month_level = FALSE)
 
 w_date_8 |>
   get_level_attribute_names(name = 'month', selected = TRUE)
@@ -261,17 +247,17 @@ w_time |>
   get_level_names()
 ```
 
-We can configure the attributes it includes using the `configure_time_level()` function. The attribute called "hour" must always be included. If we do not include the "minute" attribute then "second" will not be included either. Below are some examples of definition and the result obtained.
+We can configure the attributes it includes using the `select_time_level()` function. The attribute called "hour" must always be included. If we do not include the "minute" attribute then "second" will not be included either. Below are some examples of definition and the result obtained.
 
 ```{r}
 w_time_6 <- w_time |>
-  configure_time_level(exclude_all = TRUE)
+  select_time_level(exclude_all = TRUE)
 
 w_time_6 |>
   get_level_attribute_names(selected = TRUE)
 
 w_time_7 <- w_time |>
-  configure_time_level(minute = FALSE)
+  select_time_level(minute = FALSE)
 
 w_time_7 |>
   get_level_attribute_names(selected = TRUE)
@@ -361,13 +347,31 @@ In the previous example, since we have not explicitly defined any names for the 
 Functions to get the tables in *xlsx* and *csv* format are also available: `get_table_xlsx()` and `get_table_csv()`.
 
 
+# Other configuration options
+
+By default the dimension table will include a surrogate key: Through the `surrogate_key` parameter of this function we can indicate that it is not included. Using the `name` parameter, also of this function, we can assign a name to the dimension table.
+
+We have associated each hour with the usual part of the day in English. We can consult them and change them if necessary (for example, to define them in another language) using the `get_day_part()` and `set_day_part()` functions, as shown below.
+
+```{r}
+when() |>
+  get_day_part()
+
+when() |>
+  set_day_part(hour = c(21:23, 0:4), name = "Noche") |>
+  set_day_part(hour = c(13:20), name = "Tarde") |>
+  get_day_part()
+```
+
+
+
 # Conclusions
 
-`when` package offers a set of operations that allow us to
+`when` package offers a set of operations that allow us to generate the *When Dimension* based on date or time at the level of detail we need.
 
-Operations have been designed to be intuitive and easy to use. The result greatly facilitates the data transformation process for the exposed situation.
+We create an object of the `when` class and, from it, we configure the instances and characteristics of the levels and attributes of the dimension. To define the instances we can indicate a range of values or provide the specific values from which to generate the rest of the attributes.
 
-The implementation of the multidimensional database obtained can be exported to work with multidimensional analysis tools on spreadsheets or RDBMS.
+TAs a result, we can obtain tables for this dimension to work from R, for example with the [`rolap`](https://CRAN.R-project.org/package=rolap) package, or work in other environments, including Relational DBMSs.
 
 # Bibliography
 

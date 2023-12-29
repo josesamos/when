@@ -1,11 +1,11 @@
 test_that("levels_date", {
   td_1 <- when() |>
-    configure_date_levels(day_level = FALSE)
+    select_date_levels(day_level = FALSE)
   td_2 <- td_1 |>
-    configure_date_levels(include_all = TRUE, month_level = FALSE)
+    select_date_levels(include_all = TRUE, month_level = FALSE)
 
   td_3 <- td_1 |>
-    configure_date_levels(exclude_all = TRUE, month_level = TRUE)
+    select_date_levels(exclude_all = TRUE, month_level = TRUE)
 
   expect_equal(
     td_1$level_include_conf,

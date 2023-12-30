@@ -1,113 +1,113 @@
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_date <- function(data, values, ...) {
-  data[['date']] <- values
-  data
+get_table_date <- function(table, values, ...) {
+  table[['date']] <- values
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_year_day <- function(data, values, ...) {
-  data[['year_day']] <- sprintf("%03d", lubridate::yday(values))
-  data
+get_table_year_day <- function(table, values, ...) {
+  table[['year_day']] <- sprintf("%03d", lubridate::yday(values))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_quarter_day <- function(data, values, ...) {
-  data[['quarter_day']] <- sprintf("%02d", lubridate::qday(values))
-  data
+get_table_quarter_day <- function(table, values, ...) {
+  table[['quarter_day']] <- sprintf("%02d", lubridate::qday(values))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_month_day <- function(data, values, ...) {
-  data[['month_day']] <- sprintf("%02d", lubridate::mday(values))
-  data
+get_table_month_day <- function(table, values, ...) {
+  table[['month_day']] <- sprintf("%02d", lubridate::mday(values))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_week_day <- function(data, values, ...) {
+get_table_week_day <- function(table, values, ...) {
   dots <- list(...)
   if (dots[['week_starts_monday']]) {
     v <- 1
   } else {
     v <- 7
   }
-  data[['week_day']] <-
+  table[['week_day']] <-
     as.character(lubridate::wday(values,
                                  week_start = getOption("lubridate.week.start", v)))
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_day_name <- function(data, values, ...) {
+get_table_day_name <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  data[['day_name']] <- as.character(lubridate::wday(
+  table[['day_name']] <- as.character(lubridate::wday(
     values,
     label = TRUE,
     abbr = FALSE,
     locale = locale
   ))
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_day_num_name <- function(data, values, ...) {
+get_table_day_num_name <- function(table, values, ...) {
   dots <- list(...)
   if (dots[['week_starts_monday']]) {
     v <- 1
@@ -115,7 +115,7 @@ get_data_day_num_name <- function(data, values, ...) {
     v <- 7
   }
   locale <- dots[['locale']]
-  data[['day_num_name']] <- paste0(
+  table[['day_num_name']] <- paste0(
     lubridate::wday(values,
                     week_start = getOption("lubridate.week.start", v)),
     '-',
@@ -126,22 +126,22 @@ get_data_day_num_name <- function(data, values, ...) {
       locale = locale
     )
   )
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_day_abbr <- function(data, values, ...) {
+get_table_day_abbr <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  data[['day_abbr']] <- gsub("\\\\.", "", as.character(
+  table[['day_abbr']] <- gsub("\\\\.", "", as.character(
     lubridate::wday(
       values,
       label = TRUE,
@@ -149,19 +149,19 @@ get_data_day_abbr <- function(data, values, ...) {
       locale = locale
     )
   ))
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_day_num_abbr <- function(data, values, ...) {
+get_table_day_num_abbr <- function(table, values, ...) {
   dots <- list(...)
   if (dots[['week_starts_monday']]) {
     v <- 1
@@ -169,7 +169,7 @@ get_data_day_num_abbr <- function(data, values, ...) {
     v <- 7
   }
   locale <- dots[['locale']]
-  data[['day_num_abbr']] <- paste0(
+  table[['day_num_abbr']] <- paste0(
     lubridate::wday(values,
                     week_start = getOption("lubridate.week.start", v)),
     '-',
@@ -182,19 +182,19 @@ get_data_day_num_abbr <- function(data, values, ...) {
       )
     ))
   )
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_year_week <- function(data, values, ...) {
+get_table_year_week <- function(table, values, ...) {
   dots <- list(...)
   type <- dots[['type']]
   switch(type,
@@ -210,20 +210,20 @@ get_data_year_week <- function(data, values, ...) {
            year <- lubridate::year(values)
            week <- lubridate::week(values)
          })
-  data[['year_week']] <- paste0(year, '-', sprintf("%02d", week))
-  data
+  table[['year_week']] <- paste0(year, '-', sprintf("%02d", week))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_week <- function(data, values, ...) {
+get_table_week <- function(table, values, ...) {
   dots <- list(...)
   type <- dots[['type']]
   switch(type,
@@ -236,148 +236,148 @@ get_data_week <- function(data, values, ...) {
          {
            week <- lubridate::week(values)
          })
-  data[['week']] <- sprintf("%02d", week)
-  data
+  table[['week']] <- sprintf("%02d", week)
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_week_date <- function(data, values, ...) {
-  data[['week_date']] <- values
-  data
+get_table_week_date <- function(table, values, ...) {
+  table[['week_date']] <- values
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_year_semester <- function(data, values, ...) {
-  data[['year_semester']] <- paste0(lubridate::year(values),
+get_table_year_semester <- function(table, values, ...) {
+  table[['year_semester']] <- paste0(lubridate::year(values),
                                     '-',
                                     lubridate::semester(values))
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_semester <- function(data, values, ...) {
-  data[['semester']] <- as.character(lubridate::semester(values))
-  data
+get_table_semester <- function(table, values, ...) {
+  table[['semester']] <- as.character(lubridate::semester(values))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_year_quarter <- function(data, values, ...) {
-  data[['year_quarter']] <- paste0(lubridate::year(values),
+get_table_year_quarter <- function(table, values, ...) {
+  table[['year_quarter']] <- paste0(lubridate::year(values),
                                    '-',
                                    lubridate::quarter(values))
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_quarter <- function(data, values, ...) {
-  data[['quarter']] <- as.character(lubridate::quarter(values))
-  data
+get_table_quarter <- function(table, values, ...) {
+  table[['quarter']] <- as.character(lubridate::quarter(values))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_year_month <- function(data, values, ...) {
-  data[['year_month']] <- paste0(lubridate::year(values),
+get_table_year_month <- function(table, values, ...) {
+  table[['year_month']] <- paste0(lubridate::year(values),
                                  '-',
                                  sprintf("%02d", lubridate::month(values)))
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_month <- function(data, values, ...) {
-  data[['month']] <- sprintf("%02d", lubridate::month(values))
-  data
+get_table_month <- function(table, values, ...) {
+  table[['month']] <- sprintf("%02d", lubridate::month(values))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_month_name <- function(data, values, ...) {
+get_table_month_name <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  data[['month_name']] <- as.character(lubridate::month(
+  table[['month_name']] <- as.character(lubridate::month(
     values,
     label = TRUE,
     abbr = FALSE,
     locale = locale
   ))
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_month_num_name <- function(data, values, ...) {
+get_table_month_num_name <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  data[['month_num_name']] <- paste0(
+  table[['month_num_name']] <- paste0(
     sprintf("%02d", lubridate::month(values)),
     '-',
     lubridate::month(
@@ -387,43 +387,43 @@ get_data_month_num_name <- function(data, values, ...) {
       locale = locale
     )
   )
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_month_abbr <- function(data, values, ...) {
+get_table_month_abbr <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  data[['month_abbr']] <- as.character(lubridate::month(
+  table[['month_abbr']] <- as.character(lubridate::month(
     values,
     label = TRUE,
     abbr = TRUE,
     locale = locale
   ))
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_month_num_abbr <- function(data, values, ...) {
+get_table_month_num_abbr <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  data[['month_num_abbr']] <- paste0(
+  table[['month_num_abbr']] <- paste0(
     sprintf("%02d", lubridate::month(values)),
     '-',
     lubridate::month(
@@ -433,107 +433,105 @@ get_data_month_num_abbr <- function(data, values, ...) {
       locale = locale
     )
   )
-  data
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_year <- function(data, values, ...) {
-  data[['year']] <- as.character(lubridate::year(values))
-  data
+get_table_year <- function(table, values, ...) {
+  table[['year']] <- as.character(lubridate::year(values))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_decade <- function(data, values, ...) {
-  data[['decade']] <- as.character(10 * (lubridate::year(values) %/% 10))
-  data
+get_table_decade <- function(table, values, ...) {
+  table[['decade']] <- as.character(10 * (lubridate::year(values) %/% 10))
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_time <- function(data, values, ...) {
-  data[['time']] <- values
-  data
+get_table_time <- function(table, values, ...) {
+  table[['time']] <- values
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_hour <- function(data, values, ...) {
-  data[['hour']] <- substr(values, 1, 2)
-  data
+get_table_hour <- function(table, values, ...) {
+  table[['hour']] <- substr(values, 1, 2)
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_minute <- function(data, values, ...) {
-  data[['minute']] <- substr(values, 4, 5)
-  data
+get_table_minute <- function(table, values, ...) {
+  table[['minute']] <- substr(values, 4, 5)
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_second <- function(data, values, ...) {
-  data[['second']] <- substr(values, 7, 8)
-  data
+get_table_second <- function(table, values, ...) {
+  table[['second']] <- substr(values, 7, 8)
+  table
 }
 
-#' Get the data from values and fields
+#' Get the table from values and fields
 #'
-#' @param data A `tibble`.
+#' @param table A `tibble`.
 #' @param values A vector of strings.
 #' @param ... Rest of configuration parameters.
 #'
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_data_day_part <- function(data, values, ...) {
+get_table_day_part <- function(table, values, ...) {
   dots <- list(...)
   day_part <- dots[['day_part']]
-  data[['day_part']] <- day_part[substr(values, 1, 2)]
-  data
+  table[['day_part']] <- day_part[substr(values, 1, 2)]
+  table
 }
-
-

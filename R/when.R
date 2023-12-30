@@ -122,7 +122,7 @@ when <- function(name = NULL,
   att_function <- vector("list", length = length(att))
   names(att_function) <- att
   for (n in att) {
-    att_function[[n]] <- eval(parse(text = paste0("get_data_", n)))
+    att_function[[n]] <- eval(parse(text = paste0("get_table_", n)))
   }
 
   surrogate_key <- TRUE

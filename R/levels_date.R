@@ -180,7 +180,7 @@ select_year_level.when <-
 #' be different from the year of the date, depending on the date type selected.
 #'
 #' The week number associated with each date depends on the type of date dimension
-#' selected: standard (NULL), ISO 8601 ('iso') or epidemiological ('epi').
+#' selected: standard ('date'), ISO 8601 ('iso') or epidemiological ('epi').
 #'
 #' The standard week numbers blocks of 7 days beginning on January 1. The last week
 #' of the year can be less than 7 days long.

@@ -1,3 +1,78 @@
+#' Get attribute definition function
+#'
+#' Each attribute is defined by a function that adds a column to a table based on
+#' the parameter that contains the date or time. This function returns the definition
+#' function for the attribute whose name is given.
+#'
+#' @param td A `when` object.
+#' @param name A string, attribute name.
+#'
+#' @return A function.
+#'
+#' @family dimension definition
+#'
+#' @examples
+#'
+#' f <- when() |>
+#'   get_attribute_definition_function(name = "year")
+#'
+#' @export
+get_attribute_definition_function <-
+  function(td, name)
+    UseMethod("get_attribute_definition_function")
+
+#' @rdname get_attribute_definition_function
+#'
+#' @export
+get_attribute_definition_function.when <-
+  function(td, name = NULL) {
+    stopifnot("The name of an attribute must be indicated." = !is.null(name))
+    stopifnot("The name is not that of one of the defined attributes." = name %in% names(td$att_function))
+    td$att_function[[name]]
+  }
+
+
+#' Set attribute definition function
+#'
+#' Each attribute is defined by a function that adds a column to a table based on
+#' the parameter that contains the date or time. This function sets the definition
+#' function for the attribute whose name is given.
+#'
+#' @param td A `when` object.
+#' @param name A string, attribute name.
+#' @param f A function.
+#'
+#' @return A `when` object.
+#'
+#' @family dimension definition
+#'
+#' @examples
+#'
+#' f <- function(table, values, ...) {
+#'   table[['year']] <- 'Not defined'
+#'   table
+#' }
+#'
+#' wd <- when() |>
+#'   set_attribute_definition_function(name = "year", f)
+#'
+#' @export
+set_attribute_definition_function <-
+  function(td, name, f)
+    UseMethod("set_attribute_definition_function")
+
+#' @rdname set_attribute_definition_function
+#'
+#' @export
+set_attribute_definition_function.when <-
+  function(td, name = NULL, f = NULL) {
+    stopifnot("The name of an attribute must be indicated." = !is.null(name))
+    stopifnot("The name is not that of one of the defined attributes." = name %in% names(td$att_function))
+    td$att_function[[name]] <- f
+    td
+  }
+
+
 
 #' Get the table from values and fields
 #'

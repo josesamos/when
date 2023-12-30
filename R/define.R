@@ -49,11 +49,11 @@ define_characteristics <-
 #'
 #' @export
 define_characteristics.when <- function(td,
-                                     name = NULL,
-                                     surrogate_key = NULL,
-                                     type = NULL,
-                                     locale = Sys.getlocale("LC_TIME"),
-                                     week_starts_monday = NULL) {
+                                        name = NULL,
+                                        surrogate_key = NULL,
+                                        type = NULL,
+                                        locale = Sys.getlocale("LC_TIME"),
+                                        week_starts_monday = NULL) {
   if (!is.null(name)) {
     stopifnot("'name' must have a single value." = length(name) == 1)
     td$table_name = name

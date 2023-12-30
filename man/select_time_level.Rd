@@ -53,6 +53,7 @@ td <- when() |>
 Other dimension definition: 
 \code{\link{define_characteristics}()},
 \code{\link{define_instances}()},
+\code{\link{get_attribute_definition_function}()},
 \code{\link{get_day_part}()},
 \code{\link{select_date_levels}()},
 \code{\link{select_day_level}()},
@@ -61,6 +62,7 @@ Other dimension definition:
 \code{\link{select_semester_level}()},
 \code{\link{select_week_level}()},
 \code{\link{select_year_level}()},
+\code{\link{set_attribute_definition_function}()},
 \code{\link{set_day_part}()},
 \code{\link{when}()}
 }

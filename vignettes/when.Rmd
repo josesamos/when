@@ -473,7 +473,23 @@ when() |>
 
 ## Configuration of day and week levels
 
+This section shows the configuration options available for the day and week levels.
+
 ### The first day of the week
+
+For days, in addition to the language of the name of the day of the week, we can define the start day of the week. There are two possibilities: that the first day of the week is Monday or that it is Sunday. This influences the numbering of the days.
+
+We can define it using the parameter `week_starts_monday` (which by default has the value TRUE) in the functions `define_characteristics()` or `when()`, as shown below.
+
+```{r}
+wd_1 <- when(week_starts_monday = FALSE)
+
+wd_2 <- when() |>
+  define_characteristics(week_starts_monday = FALSE)
+
+identical(wd_1, wd_2)
+```
+
 
 ### Numbering of weeks in the year
 
@@ -490,10 +506,30 @@ The epidemiological week is like ISO 8601 only that it considers that the week b
 
 ### Inclusion of the date associated with the week
 
-## Change the generation function of an attribute
+## Change the definition function of an attribute
 
-get_attribute_function
-set_attribute_function
+Each attribute is defined by a specific function. All definition functions have the same structure: they receive a *table*, a column with the date or time *values*, possibly additional configuration parameters, and return the *table* to which a new column with the attribute name and values has been added, calculated from the instances.
+
+We can get the definition function of any attribute using the `get_attribute_definition_function()` function. Below is the function for the "year" attribute.
+
+```{r}
+wd <- when()
+
+wd |>
+  get_attribute_definition_function(name = "year")
+```
+
+In view of the function, we can define one with the same structure and establish it as a new attribute definition function using the `set_attribute_definition_function()` function. For example, below shows how to change the year attribute definition function using another of the functions from the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package.
+
+```{r}
+f <- function(table, values, ...) {
+  table[['year']] <- as.character(lubridate::epiyear(values))
+  table
+}
+
+wd <- wd |>
+  set_attribute_definition_function(name = "year", f)
+```
 
 
 # Conclusions

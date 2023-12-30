@@ -146,8 +146,29 @@ get_level_attribute_names.when <-
 #'
 #' @examples
 #'
-#' table <- when() |>
-#'   set_table_attribute_names()
+#' wd <- when() |>
+#'   generate_table()
+#' wd |>
+#'   get_table_attribute_names()
+#'
+#' wd <- wd |>
+#'   set_table_attribute_names(
+#'     c(
+#'       'id_when',
+#'       'date',
+#'       'month_day',
+#'       'week_day',
+#'       'day_name',
+#'       'day_num_name',
+#'       'year_week',
+#'       'week',
+#'       'year_month',
+#'       'month',
+#'       'month_name',
+#'       'month_num_name',
+#'       'year'
+#'     )
+#'   )
 #'
 #' @export
 set_table_attribute_names <-

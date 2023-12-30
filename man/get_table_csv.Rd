@@ -5,14 +5,14 @@
 \alias{get_table_csv.when}
 \title{Store the table in a csv files}
 \usage{
-get_table_csv(td, file, type)
+get_table_csv(td, dir, type)
 
-\method{get_table_csv}{when}(td, file = NULL, type = 1)
+\method{get_table_csv}{when}(td, dir = NULL, type = 1)
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{file}{A string, name of a file.}
+\item{dir}{A string, name of a dir.}
 
 \item{type}{An integer, 1: uses "." for the decimal point and a comma for the
 separator; 2: uses a comma for the decimal point and a semicolon for the
@@ -26,7 +26,7 @@ Once all the configuration elements have been defined and the dimension table
 has been generated, using this function we can obtain it in csv format.
 }
 \details{
-If no file name is given, stores the table in a temporary one.
+If no dir name is given, stores the table in a temporary one.
 }
 \examples{
 

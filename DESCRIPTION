@@ -23,7 +23,6 @@ Imports:
     rlang,
     snakecase,
     tibble,
-    tools,
     utils,
     xlsx
 Suggests: 

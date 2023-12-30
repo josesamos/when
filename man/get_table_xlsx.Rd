@@ -5,24 +5,24 @@
 \alias{get_table_xlsx.when}
 \title{Store the table in a xlsx file}
 \usage{
-get_table_xlsx(td, file)
+get_table_xlsx(td, dir)
 
-\method{get_table_xlsx}{when}(td, file = NULL)
+\method{get_table_xlsx}{when}(td, dir = NULL)
 }
 \arguments{
 \item{td}{A \code{when} object.}
 
-\item{file}{A string, name of a file.}
+\item{dir}{A string, name of a dir.}
 }
 \value{
 A string, name of a file.
 }
 \description{
 Once all the configuration elements have been defined and the dimension table
-has been generated, using this function we can obtain it in xlsx format.
+has been generated, using this function we can obtain it in \emph{xlsx} format.
 }
 \details{
-If no file name is given, stores the table in a temporary one.
+If no dir name is given, stores the table in a temporary one.
 }
 \examples{
 

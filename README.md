@@ -12,9 +12,12 @@ attention have occurred.
 
 The purpose of the `when` package is to assist in the implementation of
 the When Dimension. In particular, it supports the generation of tables
-with the granularity needed (second, minute, hour, date, week, month or
-year) in Multidimensional Systems implemented on a ROLAP (*Relational
-On-Line Analytical Processing*) star database.
+with the granularity needed (second, minute, hour, date, week, month,
+quarter, semester or year) in Multidimensional Systems implemented on a
+ROLAP (*Relational On-Line Analytical Processing*) star database. It
+relies on the functions offered by the
+[`lubridate`](https://CRAN.R-project.org/package=lubridate) package to
+obtain the components from the date and time.
 
 ## Installation
 
@@ -57,16 +60,16 @@ pander::pandoc.table(rbind(head(date, 5), tail(date, 5)),
 
 |  id  |    date    | month_day | week_day | day_name  | day_num_name | year_week | week | year_month | month | month_name | month_num_name | year |
 |:----:|:----------:|:---------:|:--------:|:---------:|:------------:|:---------:|:----:|:----------:|:-----:|:----------:|:--------------:|:----:|
-|  1   | 2023-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  2   | 2023-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  3   | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  4   | 2024-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  5   | 2024-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-| 1824 | 2028-12-25 |    25     |    1     |  Monday   |   1-Monday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
-| 1825 | 2028-12-26 |    26     |    2     |  Tuesday  |  2-Tuesday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
-| 1826 | 2028-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
-| 1827 | 2028-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
-| 1828 | 2028-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+|  1   | 2023-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2023-52  |  52  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  2   | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
+|  3   | 2024-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  4   | 2024-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  5   | 2024-01-03 |    03     |    3     | Wednesday | 3-Wednesday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+| 1824 | 2028-12-26 |    26     |    2     |  Tuesday  |  2-Tuesday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1825 | 2028-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1826 | 2028-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1827 | 2028-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1828 | 2028-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2028-53  |  53  |  2028-12   |  12   |  December  |  12-December   | 2028 |
 
 If we want a table with time, we indicate the type using a parameter. By
 default we get all the seconds of a day but we can also configure a
@@ -99,8 +102,8 @@ pander::pandoc.table(rbind(head(time, 5), tail(time, 5)),
 | 32400 | 16:59:59 |  16  |   59   |   59   | Afternoon |
 | 32401 | 17:00:00 |  17  |   00   |   00   |  Evening  |
 
-`day_part` is predefined in English. Literals or associated hours can be
-changed using a configuration function.
+The `day_part` attribute is predefined in English. Literals or
+associated hours can be changed using a configuration function.
 
 In addition to obtaining them as `tibble`, we can export the tables to
 files in *csv* or *xlsx* format. They can also be exported directly to

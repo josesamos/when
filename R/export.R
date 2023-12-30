@@ -93,12 +93,12 @@ get_table_rdb.when <- function(td, con, overwrite = FALSE) {
 #' Store the table in a xlsx file
 #'
 #' Once all the configuration elements have been defined and the dimension table
-#' has been generated, using this function we can obtain it in xlsx format.
+#' has been generated, using this function we can obtain it in *xlsx* format.
 #'
-#' If no file name is given, stores the table in a temporary one.
+#' If no dir name is given, stores the table in a temporary one.
 #'
 #' @param td A `when` object.
-#' @param file A string, name of a file.
+#' @param dir A string, name of a dir.
 #'
 #' @return A string, name of a file.
 #'
@@ -111,19 +111,18 @@ get_table_rdb.when <- function(td, con, overwrite = FALSE) {
 #'   get_table_xlsx()
 #'
 #' @export
-get_table_xlsx <- function(td, file)
+get_table_xlsx <- function(td, dir)
   UseMethod("get_table_xlsx")
 
 #' @rdname get_table_xlsx
 #'
 #' @export
-get_table_xlsx.when <- function(td, file = NULL) {
-  if (is.null(file)) {
-    file <- paste0(tempdir(), '/', td$table_name, '.xlsx')
+get_table_xlsx.when <- function(td, dir = NULL) {
+  if (is.null(dir)) {
+    dir <- tempdir()
   }
-  file <- tools::file_path_sans_ext(file)
-  file <- paste0(file, '.xlsx')
-
+  nexus <- get_nexus(dir)
+  file <- paste0(dir, nexus, td$table_name, '.xlsx')
   table <- get_table(td)
   xlsx::write.xlsx(
     as.data.frame(table),
@@ -141,10 +140,10 @@ get_table_xlsx.when <- function(td, file = NULL) {
 #' Once all the configuration elements have been defined and the dimension table
 #' has been generated, using this function we can obtain it in csv format.
 #'
-#' If no file name is given, stores the table in a temporary one.
+#' If no dir name is given, stores the table in a temporary one.
 #'
 #' @param td A `when` object.
-#' @param file A string, name of a file.
+#' @param dir A string, name of a dir.
 #' @param type An integer, 1: uses "." for the decimal point and a comma for the
 #' separator; 2: uses a comma for the decimal point and a semicolon for the
 #' separator.
@@ -160,19 +159,18 @@ get_table_xlsx.when <- function(td, file = NULL) {
 #'   get_table_csv()
 #'
 #' @export
-get_table_csv <- function(td, file, type)
+get_table_csv <- function(td, dir, type)
   UseMethod("get_table_csv")
 
 #' @rdname get_table_csv
 #'
 #' @export
-get_table_csv.when <- function(td, file = NULL, type = 1) {
-  if (is.null(file)) {
-    file <- paste0(tempdir(), '/', td$table_name, '.csv')
+get_table_csv.when <- function(td, dir = NULL, type = 1) {
+  if (is.null(dir)) {
+    dir <- tempdir()
   }
-  file <- tools::file_path_sans_ext(file)
-  file <- paste0(file, '.csv')
-
+  nexus <- get_nexus(dir)
+  file <- paste0(dir, nexus, td$table_name, '.csv')
   table <- get_table(td)
   if (type == 1) {
     utils::write.csv(table, file = file, row.names = FALSE)
@@ -180,4 +178,26 @@ get_table_csv.when <- function(td, file = NULL, type = 1) {
     utils::write.csv2(table, file = file, row.names = FALSE)
   }
   file
+}
+
+
+#' Get nexus
+#'
+#' Given a name, if it ends in "/" the nexus is the empty string, otherwise it
+#' is "/".
+#'
+#' @param name A string.
+#'
+#' @return A string.
+#'
+#' @keywords internal
+get_nexus <- function(name) {
+  l <- nchar(name)
+  c <- substr(name, start = l, stop = l)
+  if (c == "/") {
+    nexus <- ""
+  } else {
+    nexus <- "/"
+  }
+  nexus
 }

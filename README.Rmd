@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 The *When Dimension*^[Often called "Time Dimension" or "Date Dimension".] plays a fundamental role in *Multidimensional Systems*, it allows us to express **when** the analysed focus of attention have occurred.
 
-The purpose of the `when` package is to assist in the implementation of the When Dimension. In particular, it supports the generation of tables with the granularity needed (second, minute, hour, date, week, month or year)  in Multidimensional Systems implemented on a ROLAP (*Relational On-Line Analytical Processing*) star database.
+The purpose of the `when` package is to assist in the implementation of the When Dimension. In particular, it supports the generation of tables with the granularity needed (second, minute, hour, date, week, month, quarter, semester or year)  in Multidimensional Systems implemented on a ROLAP (*Relational On-Line Analytical Processing*) star database. It relies on the functions offered by the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package to obtain the components from the date and time.
 
 ## Installation
 
@@ -72,6 +72,6 @@ pander::pandoc.table(rbind(head(time, 5), tail(time, 5)),
                      split.table = Inf)
 ```
 
-`day_part` is predefined in English. Literals or associated hours can be changed using a configuration function.
+The `day_part` attribute is predefined in English. Literals or associated hours can be changed using a configuration function.
 
 In addition to obtaining them as `tibble`, we can export the tables to files in *csv* or *xlsx* format. They can also be exported directly to any Relational DBMS.

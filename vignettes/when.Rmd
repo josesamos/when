@@ -1,10 +1,10 @@
 ---
-title: "Generating the *When Dimension* based on date and time tables"
+title: "Generating the When Dimension based on date and time tables"
 date: "2024-01-08"
 output: rmarkdown::html_vignette
 bibliography: bibliography.bib
 vignette: >
-  %\VignetteIndexEntry{Generating the *When Dimension* based on date and time tables}
+  %\VignetteIndexEntry{Generating the When Dimension based on date and time tables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -38,6 +38,8 @@ The purpose of the `when` package is to assist in the implementation of the ***W
 
 - We can obtain the tables in `tibble` format and in other formats (*xlsx*, *csv* or *Relational DBMS* table).
 
+It relies on the functions offered by the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package to obtain the components from the date and time.
+
 The rest of this document is structured as follows: First, the general process of defining these dimensions is presented. Next, we present dimension-specific aspects that we can define, both for date-based and time-based dimensions. Finally, the document ends with conclusions and bibliography.
 
 # Definition process
@@ -45,7 +47,7 @@ The rest of this document is structured as follows: First, the general process o
 The definition process consists of the following steps:
 
 1. Creating an object.
-1. Definition  of general aspects.
+1. Definition of general aspects.
 1. Definition of instances.
 1. Selection of levels and attributes.
 1. Generation of the result.
@@ -90,6 +92,8 @@ By default it considers the system language. Since our system is Spanish, for th
 w_date <- w_date |>
   define_characteristics(locale = Sys.setlocale("LC_TIME", "English"))
 ```
+
+In section [Other configuration options](#other_config_options) we present the rest of the configuration options for dimension generation. For the examples that we are going to use, the default options of the package are enough.
 
 Next we have to select and configure the levels and define the instances. These operations, along with the current one, can be performed in any order.
 
@@ -264,7 +268,6 @@ w_time_7 |>
 ```
 
 
-
 ## Generation of the result
 
 Once the characteristics of the dimension are defined, we can generate its table.
@@ -292,7 +295,7 @@ Once the table is generated, we can export it. If we want to access the table an
 
 If we make changes to the configuration, it is our responsibility to generate the table again.
 
-## Getting the dimension table
+## Getting the dimension table {#getting_dim_table}
 
 We can access the dimension table to work with it in R (for example using the [`rolap`](https://CRAN.R-project.org/package=rolap) package), or export it in the format that is most convenient for us to work with other tools.
 
@@ -328,7 +331,7 @@ pander::pandoc.table(rbind(head(t_time, 5), tail(t_time, 5)),
 
 We can take the generated tables to any Relational DBMS, as shown below, we just have to pass a connection to the database as a parameter.
 
-```{r}
+```{r database}
 my_db <- DBI::dbConnect(RSQLite::SQLite())
 
 w_date |>
@@ -347,37 +350,133 @@ In the previous example, since we have not explicitly defined any names for the 
 Functions to get the tables in *xlsx* and *csv* format are also available: `get_table_xlsx()` and `get_table_csv()`.
 
 
-# Other configuration options
+# Other configuration options {#other_config_options}
 
-In section [Definition  of general aspects](#general_aspects) we have presented the necessary configuration options for the examples we have used. In particular, we have only needed to define the type on which the dimension is based and the language for naming days and months (because it is different from the language of our operating system). The default options have been adequate for the examples shown.
+In section [Definition of general aspects](#general_aspects) we have presented the necessary configuration options for the examples we have used. In particular, we have only needed to define the type on which the dimension is based (time or date) and the language for naming days and months (because it is different from the language of our operating system). The default options have been adequate for the examples shown.
 
-In this section we are going to show other configuration options that may be necessary to define our dimensions. Likewise, we will comment on some elements of the package's operation that may be less obvious than those presented so far.
-
+In this section we are going to show other configuration options that may be necessary to define our dimensions. 
 
 ## Dimension table features
 
-By default the dimension table will include a surrogate key: Through the `surrogate_key` parameter of this function we can indicate that it is not included. Using the `name` parameter, also of this function, we can assign a name to the dimension table.
+The result of a definition operation performed with the `where` package is a table of a dimension at a given level of granularity, with the attributes selected for that level or associated coarser levels. So far we have focused on level attributes and table instances. In this section we are going to configure other characteristics of it.
+
+### Table name
+
+By default, the table is assigned the name of the base component used to generate the dimension: date or time. We have seen it in the tables that we have stored in the database, in the example of the section [Getting the dimension table](#getting_dim_table).
+
+We can define the name of the dimension at the time of object creation or through the `define_characteristics()` function, as shown below.
+
+```{r}
+wd_1 <- when(name = 'dim_where')
+
+wd_2 <- when() |>
+  define_characteristics(name = 'dim_where')
+
+identical(wd_1, wd_2)
+```
+
+This name is the one that will be assigned to the database table where we store it or to the files we obtain. Below is the case for a relational database.
+
+```{r}
+my_db <- DBI::dbConnect(RSQLite::SQLite())
+
+wd_1 |>
+  generate_table() |>
+  get_table_rdb(my_db)
+
+DBI::dbListTables(my_db)
+
+DBI::dbDisconnect(my_db)
+```
+
+Also the case of obtaining it in *csv* format (if we do not indicate a location, it stores it in one by default).
+
+```{r}
+wd_2 |>
+  generate_table() |>
+  get_table_csv()
+```
+
+
+### Surrogate key
+
+By default the dimension table will include a surrogate key. In some situations we may be interested in the table having the date itself as its primary key (for example if we want to partition the fact table by the date).
+
+Through the `surrogate_key` parameter, included in the `define_characteristics()` function and also the `when()` function, we can indicate that a surrogate key is not created, as it's shown in the following.
+
+```{r}
+when() |>
+  get_table_attribute_names(as_string = FALSE)
+
+when(surrogate_key = FALSE) |>
+  get_table_attribute_names(as_string = FALSE)
+```
+
+The name of the surrogate key is `id`, is the first attribute of the table. If necessary, we can rename the attributes, including the surrogate key as shown in the next section.
+
+### Renaming the attributes
+
+If we get a table in `tibble` format, we can rename its attributes using the functions of this class. But if we want to obtain it in a file or in a database, we may be interested in renaming its attributes before obtaining it.
+
+In order to rename the attributes, we first have to generate the table.
+
+```{r}
+wd_3 <- when() |>
+  generate_table()
+```
+
+We can rename them using the `set_table_attribute_names()` function, passing a name for each of the available attributes. To facilitate the operation, using the `get_table_attribute_names()` function, we can obtain the attributes in string format. With this we only have to replace the names that we want to change, as shown below.
+
+```{r}
+wd_3 |>
+  get_table_attribute_names()
+
+wd_3 <- wd_3 |>
+  set_table_attribute_names(
+    c(
+      'id_when',
+      'date',
+      'month_day',
+      'week_day',
+      'day_name',
+      'day_num_name',
+      'year_week',
+      'week',
+      'year_month',
+      'month',
+      'month_name',
+      'month_num_name',
+      'year'
+    )
+  )
+
+wd_3 |>
+  get_table_attribute_names(as_string = FALSE)
+```
 
 
 ## Names of the parts of the day
 
-We have associated each hour with the usual part of the day in English. We can consult them and change them if necessary (for example, to define them in another language) using the `get_day_part()` and `set_day_part()` functions, as shown below.
+We have associated each hour with the usual part of the day in English. We can consult them and change them if necessary (for example, to define them in another language) using the `get_day_part()` and `set_day_part()` functions.
+
+Below is an example where the definition is modified to consider only two parts in the day.
 
 ```{r}
 when() |>
   get_day_part()
 
 when() |>
-  set_day_part(hour = c(21:23, 0:4), name = "Noche") |>
-  set_day_part(hour = c(13:20), name = "Tarde") |>
+  set_day_part(hour = c(20:23, 0:5), name = "Night") |>
+  set_day_part(hour = c(6:19), name = "Day") |>
   get_day_part()
 ```
 
-## Numbering of weeks in the year
+## Week level configuration
+
+### Numbering of weeks in the year
 
 
-## Inclusion of the date associated with the week
-
+### Inclusion of the date associated with the week
 
 
 

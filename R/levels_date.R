@@ -189,7 +189,7 @@ select_year_level.when <-
 #' last week of the year can contain days from the previous or next year.
 #'
 #' The epidemiological week is like ISO 8601 only that it considers that the week
-#' begins on Sunday, it numbers blocks from Sunday to Monday.
+#' begins on Sunday.
 #'
 #' @param td A `when` object.
 #' @param include_all A boolean, include all fields of the level.

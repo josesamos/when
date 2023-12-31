@@ -22,7 +22,7 @@ The *When Dimension* plays a fundamental role in *Multidimensional Systems*, it 
 
 This dimension corresponds to the generically called “Time Dimension”, as named in @kimball1996data and @adamson2010star. Later it has also been called "Date Dimension" (date-based dimension) and "Time Dimension" (time-of-day-based dimension) to express granularity [@kimball2013data]. We prefer to call it "When Dimension" because granularity is not involved in that term.
 
-Although conceptually the date and time can be represented together in a single dimension, in ROLAP (*Relational On-Line Analytical Processing*) systems, it is common to implement these concepts separately, sometimes in separate tables "to avoid a row count explosion in the date dimension" [@kimball2013data] by adding the time for each day.
+Although conceptually the date and time can be represented together in a single dimension, in ROLAP (*Relational On-Line Analytical Processing*) star systems, it is common to implement these concepts separately, sometimes in separate tables "to avoid a row count explosion in the date dimension" [@kimball2013data] by adding the time for each day.
 
 In @kimball2013data these dimensions are considered *static dimensions*: they are built at the beginning of the project for the period under consideration and are referenced when adding the instances to the fact table. As mentioned there: "Typically, these dimensions are built in an afternoon with a spreadsheet."
 
@@ -107,7 +107,7 @@ We can indicate these values at the time of creating the class object or through
 
 - In the case of time, we can indicate an hour, hour and minute (with the format `hh:mm`), or hour, minute and second (`hh:mm:ss`).
 
-In both cases we can use the string format, the one provided by the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package or, when it is a single number (year or hour) we can use an integer value. Then it will be transformed appropriately.
+In both cases we can use the string format, the one provided by the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package or, when it is a single number (year or hour), we can use an integer value. 
 
 For example, below they are used with the format of `lubridate`.
 
@@ -240,8 +240,6 @@ w_date_9 <- when(
   end = lubridate::today() + lubridate::years(5),
   month_level = FALSE
 )
-
-identical(w_date_8, w_date_9)
 ```
 
 In the case of a time-based dimension, as we have seen, we only consider one level called "time", as shown again below.
@@ -279,7 +277,7 @@ w_date |>
   get_table_attribute_names(as_string = FALSE)
 ```
 
-If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function, if deemed necessary.
+If it is generated in the form of a string (`as_string = TRUE`, default option), the result can be used to easily change the name of the attributes, when the table is generated, using the `set_table_attribute_names()` function, if deemed necessary, as shown in section [Renaming the attributes](#rename_att).
 
 When we consider that the dimension is already properly defined, we can generate its corresponding table using the `generate_table()` function. We update the definition of the object. Any errors found will be notified to us.
 
@@ -313,6 +311,25 @@ pander::pandoc.table(rbind(head(t_date, 5), tail(t_date, 5)),
                      split.table = Inf)
 ```
 
+Let's generate the dimension at the week level including all its attributes (if we change the definition, we have to generate the table again).
+
+```{r}
+t_date <- w_date |>
+  select_date_levels(day_level = FALSE) |>
+  select_week_level(include_all = TRUE) |>
+  generate_table() |>
+  get_table()
+```
+
+The first and last rows of the obtained result are shown below.
+
+```{r, results = "asis"}
+pander::pandoc.table(rbind(head(t_date, 5), tail(t_date, 5)),
+                     split.table = Inf)
+```
+
+The "week_date" attribute tells us the date that has been considered to obtain the data for the week (and the rest of the attributes). It is important to take this into account if we jointly include the week and month levels without including the day level.
+
 Next for the time.
 
 ```{r}
@@ -327,7 +344,7 @@ pander::pandoc.table(rbind(head(t_time, 5), tail(t_time, 5)),
                      split.table = Inf)
 ```
 
-`day_part` is predefined in English. Literals or associated hours can be accessed and changed using the `get_day_part()` and `set_day_part()` functions.
+`day_part` is predefined in English. Literals or associated hours can be accessed and changed using the `get_day_part()` and `set_day_part()` functions, as shown in section [Names of the parts of the day](#name_parts_day).
 
 We can take the generated tables to any Relational DBMS, as shown below, we just have to pass a connection to the database as a parameter.
 
@@ -345,7 +362,7 @@ DBI::dbListTables(my_db)
 DBI::dbDisconnect(my_db)
 ```
 
-In the previous example, since we have not explicitly defined any names for the tables in the configuration, they have been assigned as a name the element on which they are based (date or time).
+In the previous example, since we have not explicitly defined any names for the tables in the configuration, they have been assigned as a name the element on which they are based (date or time). We can define these names, as shown in section [Table name](#table_name).
 
 Functions to get the tables in *xlsx* and *csv* format are also available: `get_table_xlsx()` and `get_table_csv()`.
 
@@ -360,7 +377,7 @@ In this section we are going to show other configuration options that may be nec
 
 The result of a definition operation performed with the `where` package is a table of a dimension at a given level of granularity, with the attributes selected for that level or associated coarser levels. So far we have focused on level attributes and table instances. In this section we are going to configure other characteristics of it.
 
-### Table name
+### Table name {#table_name}
 
 By default, the table is assigned the name of the base component used to generate the dimension: date or time. We have seen it in the tables that we have stored in the database, in the example of the section [Getting the dimension table](#getting_dim_table).
 
@@ -371,8 +388,6 @@ wd_1 <- when(name = 'dim_where')
 
 wd_2 <- when() |>
   define_characteristics(name = 'dim_where')
-
-identical(wd_1, wd_2)
 ```
 
 This name is the one that will be assigned to the database table where we store it or to the files we obtain. Below is the case for a relational database.
@@ -414,7 +429,7 @@ when(surrogate_key = FALSE) |>
 
 The name of the surrogate key is `id`, is the first attribute of the table. If necessary, we can rename the attributes, including the surrogate key as shown in the next section.
 
-### Renaming the attributes
+### Renaming the attributes {#rename_att}
 
 If we get a table in `tibble` format, we can rename its attributes using the functions of this class. But if we want to obtain it in a file or in a database, we may be interested in renaming its attributes before obtaining it.
 
@@ -455,7 +470,7 @@ wd_3 |>
 ```
 
 
-## Names of the parts of the day
+## Names of the parts of the day {#name_parts_day}
 
 We have associated each hour with the usual part of the day in English. We can consult them and change them if necessary (for example, to define them in another language) using the `get_day_part()` and `set_day_part()` functions.
 
@@ -486,8 +501,6 @@ wd_1 <- when(week_starts_monday = FALSE)
 
 wd_2 <- when() |>
   define_characteristics(week_starts_monday = FALSE)
-
-identical(wd_1, wd_2)
 ```
 
 
@@ -497,23 +510,23 @@ Using the value of the `type` parameter (`type = "date"` or `type = "time"`) in 
 
 This parameter can additionally take two more values: "iso" and "epi". Using these values (together with the "date" value) we can indicate the type of numbering of the weeks in the year. That is, the week number associated with each date depends on the type of date dimension selected: 
 
-- Default (`type = "date"`): It numbers blocks of 7 days beginning on January 1 (regardless of what day of the week it is). The last week of the year can be less than 7 days long.
+- Default (`type = "date"`): It numbers blocks of 7 days beginning on January 1 (regardless of what day of the week it is). The last week of the year will last less than 7 days.
 
 - ISO 8601 (`type = "iso"`): It numbers blocks of 7 days from Monday to Sunday. The first and last week of the year can contain days from the previous or next year.
 
-- Epidemiological (`type = "epi"`): This week is like ISO 8601 only that it considers that the week begins on Sunday, it numbers blocks from Sunday to Monday.
+- Epidemiological (`type = "epi"`): This week is like ISO 8601 only that it considers that the week begins on Sunday.
 
-For the first and last days of the year, the year associated with the week may be different from the year of the date, depending on the type selected. 
+For the first and last days of the year, the year associated with the week may be different from the year of the date, depending on the type selected ("iso" or "epi"). 
 
-The "year" attribute (alone or in combination with other attributes) displays the year associated with the date, regardless of the type selected. Only the "year_week" attribute displays the year of the week.
+The "year" attribute (alone or in combination with other attributes) displays the year associated with the date, regardless of the type selected. Only the "year_week" attribute displays the year of the week according to the selected type.
 
 The next section shows how to obtain the attribute obtaining function and how to change it if we consider it necessary (for example, to get the different year types together).
 
 ## Change the definition function of an attribute {#change_def_function_att}
 
-Each attribute is defined by a specific function. All definition functions have the same structure: they receive a *table*, a column with the date or time *values*, possibly additional configuration parameters, and return the *table* to which a new column with the attribute name and values has been added, calculated from the instances.
+Each attribute is defined by a specific function. All definition functions have the same structure: they receive a *table*, a column with the date or time *values*, possibly additional configuration parameters, and return the *table* to which a new column with the attribute name and values has been added, calculated from the values.
 
-We can get the definition function of any attribute using the `get_attribute_definition_function()` function. Below is the function for the "year" attribute and also the function of the year and week combination, "year_week" attribute.
+We can get the definition function of any attribute using the `get_attribute_definition_function()` function. Below is the function for the "year" attribute and also the function of the year and week combination, "year_week" attribute (it uses one of the additional parameters available, the dimension type).
 
 ```{r}
 wd <- when()
@@ -525,7 +538,7 @@ wd |>
   get_attribute_definition_function(name = "year_week")
 ```
 
-In view of the functions, we can define one with the same structure and establish it as a new attribute definition function using the `set_attribute_definition_function()` function. For example, below shows how to change the year attribute definition function using some of the functions from the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package.
+In view of the functions, we can define one with the same structure and establish it as a new attribute definition function using the `set_attribute_definition_function()` function. For example, below shows how to change the year attribute definition function to get an additional attribute if the year associated with the week can be different from the year of the date.
 
 ```{r}
 f <- function(table, values, ...) {
@@ -558,7 +571,7 @@ names(t)
 
 # Conclusions
 
-`when` package offers a set of operations that allow us to generate the *When Dimension* based on date or time at the level of detail we need.
+The `when` package offers a set of operations that allow us to generate the *When Dimension* based on date or time at the level of detail we need.
 
 We create an object of the `when` class and, from it, we configure the instances and characteristics of the levels and attributes of the dimension. To define the instances we can indicate a range of values or provide the specific values from which to generate the rest of the attributes.
 

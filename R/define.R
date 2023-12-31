@@ -17,7 +17,7 @@
 #' last week of the year can contain days from the previous or next year.
 #'
 #' The epidemiological week is like ISO 8601 only that it considers that the week
-#' begins on Sunday, it numbers blocks from Sunday to Monday.
+#' begins on Sunday.
 #'
 #' @param td A `when` object.
 #' @param name A string, table name.

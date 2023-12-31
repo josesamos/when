@@ -305,11 +305,10 @@ get_values <- function(td) {
           time_seconds[time_seconds >= as.character(td$start) &
                          time_seconds <= as.character(td$end)]
       } else {
-        while (val < end) {
+        while (val <= end) {
           values <- c(values, as.character(val))
           val <- hms::as_hms(val + inc)
         }
-        values <- c(values, as.character(end))
       }
     } else {
       if (td$level_include_conf['day']) {
@@ -318,6 +317,26 @@ get_values <- function(td) {
         inc <- lubridate::weeks(1)
       } else if (td$level_include_conf['month']) {
         inc <- base::months(1)
+        val <-
+          lubridate::ymd(paste0(
+            lubridate::year(val),
+            "-",
+            lubridate::month(val),
+            "-",
+            "01"
+          ))
+      } else if (td$level_include_conf['quarter']) {
+        inc <- base::months(3)
+        val <-
+          lubridate::ymd(paste0(
+            lubridate::year(val),
+            "-",
+            lubridate::month(val),
+            "-",
+            "01"
+          ))
+      } else if (td$level_include_conf['semester']) {
+        inc <- base::months(6)
         val <-
           lubridate::ymd(paste0(
             lubridate::year(val),

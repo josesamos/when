@@ -358,6 +358,24 @@ pander::pandoc.table(rbind(head(t_time, 5), tail(t_time, 5)),
 
 `day_part` is predefined in English. Literals or associated hours can be accessed and changed using the `get_day_part()` and `set_day_part()` functions, as shown in section [Names of the parts of the day](#name_parts_day).
 
+Now we are going to generate it at the minute level.
+
+```{r}
+t_time <- w_time |>
+  select_time_level(second = FALSE) |>
+  generate_table() |>
+  get_table()
+```
+
+The start and end from the new result table is shown below.
+
+```{r, results = "asis"}
+pander::pandoc.table(rbind(head(t_time, 5), tail(t_time, 5)),
+                     split.table = Inf)
+```
+
+
+
 We can take the generated tables to any Relational DBMS, as shown below, we just have to pass a connection to the database as a parameter.
 
 ```{r database}

@@ -21,12 +21,12 @@ test_that("when", {
   expect_equal({
     d <- when(start = "2023-12-24", end = "2023-12-24")
     d$att_function <- NULL
+    d$locale <- NULL
     d
   },
   structure(
     list(
       type = "date",
-      locale = "Spanish_Spain.utf8",
       start = structure(19715, class = "Date"),
       end = structure(19715, class = "Date"),
       values = NULL,

@@ -4,14 +4,11 @@
 # when <a href="https://josesamos.github.io/when/"><img src="man/figures/logo.png" align="right" height="139" alt="when website" /></a>
 
 <!-- badges: start -->
-
-[![CRAN
-status](https://www.r-pkg.org/badges/version/when)](https://CRAN.R-project.org/package=when)
-[![R-CMD-check](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/josesamos/when/branch/main/graph/badge.svg)](https://app.codecov.io/gh/josesamos/when?branch=main)
-[![Downloads](http://cranlogs.r-pkg.org/badges/when?color=brightgreen)](https://www.r-pkg.org:443/pkg/when)
-[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/when?color=brightgreen)](https://www.r-pkg.org:443/pkg/when)
+<!-- [![CRAN status](https://www.r-pkg.org/badges/version/when)](https://CRAN.R-project.org/package=when) -->
+<!-- [![R-CMD-check](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml) -->
+<!-- [![Codecov test coverage](https://codecov.io/gh/josesamos/when/branch/main/graph/badge.svg)](https://app.codecov.io/gh/josesamos/when?branch=main) -->
+<!-- [![Downloads](http://cranlogs.r-pkg.org/badges/when?color=brightgreen)](https://www.r-pkg.org:443/pkg/when) -->
+<!-- [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/when?color=brightgreen)](https://www.r-pkg.org:443/pkg/when) -->
 <!-- badges: end -->
 
 The *When Dimension*[^1] plays a fundamental role in *Multidimensional

@@ -26,6 +26,12 @@ obtain the components from the date and time.
 
 ## Installation
 
+<!-- You can install the released version of `when` from [CRAN](https://CRAN.R-project.org) with: -->
+<!-- ``` r -->
+<!-- install.packages("when") -->
+<!-- ``` -->
+<!-- And the development version from [GitHub](https://github.com/) with: -->
+
 You can install the development version of `when` from
 [GitHub](https://github.com/) with:
 

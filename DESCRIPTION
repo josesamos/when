@@ -9,7 +9,7 @@ Description: In Multidimensional Systems the When dimension allows us to
     express when the analysed facts have occurred. The purpose of this
     package is to provide support for implementing this dimension in the
     form of date and time tables for ROLAP (Relational On-Line Analytical
-    Processing) systems.
+    Processing) star database systems.
 License: MIT + file LICENSE
 URL: https://josesamos.github.io/when/, https://github.com/josesamos/when
 BugReports: https://github.com/josesamos/when/issues

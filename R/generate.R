@@ -253,14 +253,18 @@ get_table_attribute_names.when <-
 #'
 #' @keywords internal
 get_fields <- function(td) {
-  if (!td$level_include_conf['day'] &
-      td$level_include_conf['week'] &
-      (td$level_include_conf['month'] | td$level_include_conf['year'])) {
-    td$att_include_conf['week_date'] <- TRUE
-  }
   levels <- names(td$level_include_conf[td$level_include_conf])
   fields <- names(td$att_levels[td$att_levels %in% levels])
   fields <- fields[td$att_include_conf[fields]]
+  if (td$type == 'iso' | td$type == 'epi') {
+    if (!('date' %in% fields) &
+        any(c('week', 'year_week') %in% fields) &
+        any(c('year_month', 'year_semester', 'year_quarter', 'year') %in% fields)) {
+      td$att_include_conf['week_date'] <- TRUE
+      fields <- names(td$att_levels[td$att_levels %in% levels])
+      fields <- fields[td$att_include_conf[fields]]
+    }
+  }
   if (!('minute' %in% fields)) {
     fields <- setdiff(fields, "second")
   }

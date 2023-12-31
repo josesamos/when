@@ -477,7 +477,7 @@ This section shows the configuration options available for the day and week leve
 
 ### The first day of the week
 
-For days, in addition to the language of the name of the day of the week, we can define the start day of the week. There are two possibilities: that the first day of the week is Monday or that it is Sunday. This influences the numbering of the days.
+For days, in addition to the language of the name of the day of the week, we can define the start day of the week. There are two possibilities: Monday or Sunday. This determines the numbering of the days.
 
 We can define it using the parameter `week_starts_monday` (which by default has the value TRUE) in the functions `define_characteristics()` or `when()`, as shown below.
 
@@ -493,42 +493,66 @@ identical(wd_1, wd_2)
 
 ### Numbering of weeks in the year
 
-For the first and last days of the year, the year associated with the week may be different from the year of the date, depending on the date type selected.
- 
-The week number associated with each date depends on the type of date dimension selected: standard (NULL), ISO 8601 ('iso') or epidemiological ('epi').
- 
-The standard week numbers blocks of 7 days beginning on January 1. The last week of the year can be less than 7 days long.
- 
-The ISO 8601 week numbers blocks of 7 days from Monday to Sunday. The first and last week of the year can contain days from the previous or next year.
- 
-The epidemiological week is like ISO 8601 only that it considers that the week begins on Sunday, it numbers blocks from Sunday to Monday.
+Using the value of the `type` parameter (`type = "date"` or `type = "time"`) in the `define_characteristics()` or `when()` functions we can indicate whether the dimension is based on date or time.
 
+This parameter can additionally take two more values: "iso" and "epi". Using these values (together with the "date" value) we can indicate the type of numbering of the weeks in the year. That is, the week number associated with each date depends on the type of date dimension selected: 
 
-### Inclusion of the date associated with the week
+- Default (`type = "date"`): It numbers blocks of 7 days beginning on January 1 (regardless of what day of the week it is). The last week of the year can be less than 7 days long.
 
-## Change the definition function of an attribute
+- ISO 8601 (`type = "iso"`): It numbers blocks of 7 days from Monday to Sunday. The first and last week of the year can contain days from the previous or next year.
+
+- Epidemiological (`type = "epi"`): This week is like ISO 8601 only that it considers that the week begins on Sunday, it numbers blocks from Sunday to Monday.
+
+For the first and last days of the year, the year associated with the week may be different from the year of the date, depending on the type selected. 
+
+The "year" attribute (alone or in combination with other attributes) displays the year associated with the date, regardless of the type selected. Only the "year_week" attribute displays the year of the week.
+
+The next section shows how to obtain the attribute obtaining function and how to change it if we consider it necessary (for example, to get the different year types together).
+
+## Change the definition function of an attribute {#change_def_function_att}
 
 Each attribute is defined by a specific function. All definition functions have the same structure: they receive a *table*, a column with the date or time *values*, possibly additional configuration parameters, and return the *table* to which a new column with the attribute name and values has been added, calculated from the instances.
 
-We can get the definition function of any attribute using the `get_attribute_definition_function()` function. Below is the function for the "year" attribute.
+We can get the definition function of any attribute using the `get_attribute_definition_function()` function. Below is the function for the "year" attribute and also the function of the year and week combination, "year_week" attribute.
 
 ```{r}
 wd <- when()
 
 wd |>
   get_attribute_definition_function(name = "year")
+
+wd |>
+  get_attribute_definition_function(name = "year_week")
 ```
 
-In view of the function, we can define one with the same structure and establish it as a new attribute definition function using the `set_attribute_definition_function()` function. For example, below shows how to change the year attribute definition function using another of the functions from the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package.
+In view of the functions, we can define one with the same structure and establish it as a new attribute definition function using the `set_attribute_definition_function()` function. For example, below shows how to change the year attribute definition function using some of the functions from the [`lubridate`](https://CRAN.R-project.org/package=lubridate) package.
 
 ```{r}
 f <- function(table, values, ...) {
-  table[['year']] <- as.character(lubridate::epiyear(values))
+  dots <- list(...)
+  type <- dots[['type']]
+  table[['year']] <- as.character(lubridate::year(values))
+  if (type == 'iso') {
+    table[['week_year']] <- as.character(lubridate::isoyear(values))
+  } else if (type == 'epi') {
+    table[['week_year']] <- as.character(lubridate::epiyear(values))
+  }
   table
 }
 
 wd <- wd |>
   set_attribute_definition_function(name = "year", f)
+```
+
+In this case, what we do is add two columns for the year: one with the year of the date and another with the year of the week if this can be different from the first. We can see the result by changing the type of the dimension and generating the table, as shown below (the two year attributes have been added).
+
+```{r}
+t <- wd |>
+  define_characteristics(type = 'iso') |>
+  generate_table() |>
+  get_table()
+
+names(t)
 ```
 
 

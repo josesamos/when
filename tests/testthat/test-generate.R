@@ -29,7 +29,7 @@ test_that("generate", {
   td_4 <- when(type = 'time', minute = FALSE) |>
     generate_table()
 
-  td_5 <- when(day_level = FALSE) |>
+  td_5 <- when(type = 'iso', day_level = FALSE) |>
     generate_table()
 
   td_6 <- when(type = 'time',
@@ -58,7 +58,8 @@ test_that("generate", {
   td_9 <- when(start = 2023, end = 2024) |>
     generate_table()
 
-  td_10 <- when(start = 2023,
+  td_10 <- when(type = 'iso',
+                start = 2023,
                 end = 2024,
                 day_level = FALSE) |>
     generate_table()
@@ -97,7 +98,7 @@ test_that("generate", {
          week_level = FALSE) |>
     generate_table()
 
-  td_15 <- when(values = 2023:2024, day_level = FALSE) |>
+  td_15 <- when(type = 'iso', values = 2023:2024, day_level = FALSE) |>
     generate_table()
 
   td_16 <- when(values = 2023:2024) |>

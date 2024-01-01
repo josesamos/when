@@ -373,7 +373,6 @@ pander::pandoc.table(rbind(head(t_time, 5), tail(t_time, 5)),
 ```
 
 
-
 We can take the generated tables to any Relational DBMS, as shown below, we just have to pass a connection to the database as a parameter.
 
 ```{r database}
@@ -549,6 +548,40 @@ For the first and last days of the year, the year associated with the week may b
 The "year" attribute (alone or in combination with other attributes) displays the year associated with the date, regardless of the type selected. Only the "year_week" attribute displays the year of the week according to the selected type.
 
 The next section shows how to obtain the attribute obtaining function and how to change it if we consider it necessary (for example, to get the different year types together).
+
+
+### Get date range of weeks
+
+If we want to work with the dimension at the week level, we may be interested in having the start or end date for each one. To obtain them and be able to use them to generate the dimension, we have the `get_week_date_range()` function.
+
+```{r}
+t <- get_week_date_range(start = "2024-01-01", end = "2029-12-31")
+```
+
+A period and the type of week numbering ("date", "iso" or "epi") are indicated (by default it is "date"). Returns the result in "tibble" form.
+
+The start and end from the new result is shown below.
+
+```{r, results = "asis"}
+pander::pandoc.table(rbind(head(t, 5), tail(t, 5)),
+                     split.table = Inf)
+```
+
+We can use the column of the dates that interest us to generate the dimension. Additionally, we leave only the date and the levels that interest us (week and year).
+
+```{r}
+tw <- when(values = t[["last"]], month_level = FALSE) |>
+  select_day_level(exclude_all = TRUE, date = TRUE) |>
+  generate_table() |>
+  get_table()
+```
+
+The start and end from the new result table is shown below.
+
+```{r, results = "asis"}
+pander::pandoc.table(rbind(head(tw, 5), tail(tw, 5)),
+                     split.table = Inf)
+```
 
 ## Change the definition function of an attribute {#change_def_function_att}
 

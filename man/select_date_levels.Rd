@@ -67,6 +67,7 @@ Other dimension definition:
 \code{\link{define_instances}()},
 \code{\link{get_attribute_definition_function}()},
 \code{\link{get_day_part}()},
+\code{\link{get_week_date_range}()},
 \code{\link{select_day_level}()},
 \code{\link{select_month_level}()},
 \code{\link{select_quarter_level}()},

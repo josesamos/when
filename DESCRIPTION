@@ -18,6 +18,7 @@ Depends:
 Imports: 
     DBI,
     dm,
+    dplyr,
     hms,
     lubridate,
     rlang,

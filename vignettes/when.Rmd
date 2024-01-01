@@ -340,8 +340,6 @@ pander::pandoc.table(rbind(head(t_date, 5), tail(t_date, 5)),
                      split.table = Inf)
 ```
 
-The "week_date" attribute tells us the date that has been considered to obtain the data for the week (and the rest of the attributes). It is important to take this into account if we jointly include the week and month levels without including the day level.
-
 Next for the time.
 
 ```{r}

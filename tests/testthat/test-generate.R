@@ -192,7 +192,6 @@ test_that("generate", {
       "quarter_day",
       "year_week",
       "week",
-      "week_date",
       "year_month",
       "month",
       "month_name",
@@ -262,7 +261,7 @@ test_that("generate", {
   )
 
   expect_equal(nrow(td_10$table),
-               53)
+               64)
 
   expect_equal(
     names(td_10$table),
@@ -390,7 +389,6 @@ test_that("generate", {
       "quarter_day",
       "year_week",
       "week",
-      "week_date",
       "year_month",
       "month",
       "month_name",

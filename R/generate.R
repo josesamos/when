@@ -273,98 +273,70 @@ get_values <- function(td) {
   if (!is.null(td$values)) {
     values <- td$values
   } else {
-    values <- NULL
-    val <- td$start
-    end <- td$end
     if (td$type == 'time') {
-      if (val == end) {
-        val <- hms::as_hms("00:00:00")
-        if (td$att_include_conf['minute']) {
-          if (td$att_include_conf['second']) {
-            end <- hms::as_hms("23:59:59")
-            td$start <- "00:00:00"
-            td$end <- "23:59:59"
-          } else {
-            end <- hms::as_hms("23:59:00")
-          }
-        } else {
-          end <- hms::as_hms("23:00:00")
-        }
+      if (td$start == td$end) {
+        td$start <- "00:00:00"
+        td$end <- "23:59:59"
       }
-      if (td$att_include_conf['minute']) {
-        if (td$att_include_conf['second']) {
-          inc <- 1
-        } else {
-          inc <- 60
-        }
-      } else {
-        inc <- 3600
-      }
-      if (inc == 1) {
-        values <-
-          time_seconds[time_seconds >= as.character(td$start) &
-                         time_seconds <= as.character(td$end)]
-      } else {
-        while (val <= end) {
-          values <- c(values, as.character(val))
-          val <- hms::as_hms(val + inc)
-        }
-      }
+      values <-
+        time_seconds[time_seconds >= as.character(td$start) &
+                       time_seconds <= as.character(td$end)]
     } else {
-      if (td$level_include_conf['day']) {
+      values <-
+        date_days[date_days >= as.character(td$start) &
+                    date_days <= as.character(td$end)]
+      if (td$level_include_conf['day'] |
+          td$level_include_conf['week']) {
         inc <- lubridate::days(1)
-      } else if (td$level_include_conf['week']) {
-        inc <- lubridate::weeks(1)
-      } else if (td$level_include_conf['month']) {
+      } else if (td$level_include_conf['month'] |
+                 td$level_include_conf['quarter'] |
+                 td$level_include_conf['semester']) {
         inc <- base::months(1)
-        val <-
-          lubridate::ymd(paste0(
-            lubridate::year(val),
-            "-",
-            lubridate::month(val),
-            "-",
-            "01"
-          ))
-      } else if (td$level_include_conf['quarter']) {
-        inc <- base::months(3)
-        val <-
-          lubridate::ymd(paste0(
-            lubridate::year(val),
-            "-",
-            lubridate::month(val),
-            "-",
-            "01"
-          ))
-      } else if (td$level_include_conf['semester']) {
-        inc <- base::months(6)
-        val <-
-          lubridate::ymd(paste0(
-            lubridate::year(val),
-            "-",
-            lubridate::month(val),
-            "-",
-            "01"
-          ))
+        td$start <- paste0(substr(td$start, 1, 8), "01")
+        td$end <- paste0(substr(td$end, 1, 8), "01")
       } else if (td$level_include_conf['year']) {
         inc <- lubridate::years(1)
-        val <-
-          lubridate::ymd(paste0(lubridate::year(val), "-", "01", "-", "01"))
+        td$start <- paste0(substr(td$start, 1, 5), "01-01")
+        td$end <- paste0(substr(td$end, 1, 5), "01-01")
       }
-      if (inc == lubridate::days(1) &
-          as.character(td$start) >= date_days[1] &
-          as.character(td$end) <= date_days[length(date_days)]) {
-        values <-
-          date_days[date_days >= as.character(td$start) &
-                      date_days <= as.character(td$end)]
-      } else {
-        while (val <= end) {
+
+      if (td$start < date_days[1]) {
+        val <- lubridate::ymd(td$start)
+        while (val < date_days[1]) {
+          values <- c(values, as.character(val))
+          val <- lubridate::ymd(val) + inc
+        }
+      }
+      if (td$end > date_days[length(date_days)]) {
+        val <- lubridate::ymd(date_days[length(date_days)]) + inc
+        while (val <= td$end) {
           values <- c(values, as.character(val))
           val <- lubridate::ymd(val) + inc
         }
       }
     }
   }
-  values
+  if (td$type == 'time') {
+    if (td$att_include_conf['minute']) {
+      if (!td$att_include_conf['second']) {
+        values <- paste0(substr(values, 1, 6), "00")
+      }
+    } else {
+      values <- paste0(substr(values, 1, 3), "00:00")
+    }
+  } else {
+    if (!td$level_include_conf['day'] &
+        !td$level_include_conf['week']) {
+      if (td$level_include_conf['month'] |
+          td$level_include_conf['quarter'] |
+          td$level_include_conf['semester']) {
+        values <- paste0(substr(values, 1, 8), "01")
+      } else if (td$level_include_conf['year']) {
+        values <- paste0(substr(values, 1, 5), "01-01")
+      }
+    }
+  }
+  sort(unique(values))
 }
 
 

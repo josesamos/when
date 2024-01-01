@@ -369,7 +369,6 @@ test_that("vignette_when", {
       "id",
       "year_week",
       "week",
-      "week_date",
       "year_month",
       "month",
       "month_name",

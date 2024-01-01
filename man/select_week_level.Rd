@@ -5,15 +5,14 @@
 \alias{select_week_level.when}
 \title{Configure week level}
 \usage{
-select_week_level(td, include_all, exclude_all, week, year_week, week_date)
+select_week_level(td, include_all, exclude_all, week, year_week)
 
 \method{select_week_level}{when}(
   td,
   include_all = FALSE,
   exclude_all = FALSE,
   week = NULL,
-  year_week = NULL,
-  week_date = NULL
+  year_week = NULL
 )
 }
 \arguments{
@@ -26,16 +25,13 @@ select_week_level(td, include_all, exclude_all, week, year_week, week_date)
 \item{week}{A boolean, include the week number.}
 
 \item{year_week}{A boolean, include the year-week combination.}
-
-\item{week_date}{A boolean, include the date from which the week is
-obtained.}
 }
 \value{
 A \code{when} object.
 }
 \description{
 When the dimension is defined as a date type, using this function we can select
-the week level and its attributes to include in it: week, year_week and week_date.
+the week level and its attributes to include in it: week and year_week.
 }
 \details{
 The \code{include_all} and \code{exclude_all} parameters allow us to include or exclude
@@ -59,7 +55,7 @@ begins on Sunday.
 \examples{
 
 td <- when() |>
-  select_week_level(week_date = FALSE)
+  select_week_level(year_week = FALSE)
 
 }
 \seealso{

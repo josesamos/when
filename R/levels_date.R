@@ -171,7 +171,7 @@ select_year_level.when <-
 #' Configure week level
 #'
 #' When the dimension is defined as a date type, using this function we can select
-#' the week level and its attributes to include in it: week, year_week and week_date.
+#' the week level and its attributes to include in it: week and year_week.
 #'
 #' The `include_all` and `exclude_all` parameters allow us to include or exclude
 #' all attributes, and then specifically exclude or include the ones we need.
@@ -196,8 +196,6 @@ select_year_level.when <-
 #' @param exclude_all A boolean, exclude all fields of the level.
 #' @param week A boolean, include the week number.
 #' @param year_week A boolean, include the year-week combination.
-#' @param week_date A boolean, include the date from which the week is
-#' obtained.
 #'
 #' @return A `when` object.
 #'
@@ -206,7 +204,7 @@ select_year_level.when <-
 #' @examples
 #'
 #' td <- when() |>
-#'   select_week_level(week_date = FALSE)
+#'   select_week_level(year_week = FALSE)
 #'
 #' @export
 select_week_level <-
@@ -214,8 +212,7 @@ select_week_level <-
            include_all,
            exclude_all,
            week,
-           year_week,
-           week_date)
+           year_week)
     UseMethod("select_week_level")
 
 #' @rdname select_week_level
@@ -226,16 +223,14 @@ select_week_level.when <-
            include_all = FALSE,
            exclude_all = FALSE,
            week = NULL,
-           year_week = NULL,
-           week_date = NULL) {
+           year_week = NULL) {
     select_date_level_common(
       td,
       name = 'week',
       include_all,
       exclude_all,
       week = week,
-      year_week = year_week,
-      week_date = week_date
+      year_week = year_week
     )
   }
 

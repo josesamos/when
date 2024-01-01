@@ -50,7 +50,7 @@ when <- function(name = NULL,
   year_y <- c("year")
   year_n <- c("decade")
   week_y <- c("year_week", "week")
-  week_n <- c("week_date")
+  week_n <- NULL
   month_y <- c("year_month",
                "month",
                "month_name",

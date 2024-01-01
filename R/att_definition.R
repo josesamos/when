@@ -324,20 +324,6 @@ get_table_week <- function(table, values, ...) {
 #' @return A `tibble`.
 #'
 #' @keywords internal
-get_table_week_date <- function(table, values, ...) {
-  table[['week_date']] <- values
-  table
-}
-
-#' Get the table from values and fields
-#'
-#' @param table A `tibble`.
-#' @param values A vector of strings.
-#' @param ... Rest of configuration parameters.
-#'
-#' @return A `tibble`.
-#'
-#' @keywords internal
 get_table_year_semester <- function(table, values, ...) {
   table[['year_semester']] <- paste0(lubridate::year(values),
                                     '-',

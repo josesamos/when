@@ -5,8 +5,10 @@
 
 <!-- badges: start -->
 <!-- [![CRAN status](https://www.r-pkg.org/badges/version/when)](https://CRAN.R-project.org/package=when) -->
-<!-- [![R-CMD-check](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml) -->
-<!-- [![Codecov test coverage](https://codecov.io/gh/josesamos/when/branch/main/graph/badge.svg)](https://app.codecov.io/gh/josesamos/when?branch=main) -->
+
+[![R-CMD-check](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/josesamos/when/branch/main/graph/badge.svg)](https://app.codecov.io/gh/josesamos/when?branch=main)
 <!-- [![Downloads](http://cranlogs.r-pkg.org/badges/when?color=brightgreen)](https://www.r-pkg.org:443/pkg/when) -->
 <!-- [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/when?color=brightgreen)](https://www.r-pkg.org:443/pkg/when) -->
 <!-- badges: end -->
@@ -73,16 +75,16 @@ pander::pandoc.table(rbind(head(date, 5), tail(date, 5)),
 
 |  id  |    date    | month_day | week_day | day_name  | day_num_name | year_week | week | year_month | month | month_name | month_num_name | year |
 |:----:|:----------:|:---------:|:--------:|:---------:|:------------:|:---------:|:----:|:----------:|:-----:|:----------:|:--------------:|:----:|
-|  1   | 2023-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2023-53  |  53  |  2023-12   |  12   |  December  |  12-December   | 2023 |
-|  2   | 2024-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  3   | 2024-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  4   | 2024-01-03 |    03     |    3     | Wednesday | 3-Wednesday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  5   | 2024-01-04 |    04     |    4     | Thursday  |  4-Thursday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-| 1824 | 2028-12-27 |    27     |    3     | Wednesday | 3-Wednesday  |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
-| 1825 | 2028-12-28 |    28     |    4     | Thursday  |  4-Thursday  |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
-| 1826 | 2028-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
-| 1827 | 2028-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2028-53  |  53  |  2028-12   |  12   |  December  |  12-December   | 2028 |
-| 1828 | 2028-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2028-53  |  53  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+|  1   | 2024-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  2   | 2024-01-03 |    03     |    3     | Wednesday | 3-Wednesday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  3   | 2024-01-04 |    04     |    4     | Thursday  |  4-Thursday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  4   | 2024-01-05 |    05     |    5     |  Friday   |   5-Friday   |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  5   | 2024-01-06 |    06     |    6     | Saturday  |  6-Saturday  |  2024-01  |  01  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+| 1824 | 2028-12-29 |    29     |    5     |  Friday   |   5-Friday   |  2028-52  |  52  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1825 | 2028-12-30 |    30     |    6     | Saturday  |  6-Saturday  |  2028-53  |  53  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1826 | 2028-12-31 |    31     |    7     |  Sunday   |   7-Sunday   |  2028-53  |  53  |  2028-12   |  12   |  December  |  12-December   | 2028 |
+| 1827 | 2029-01-01 |    01     |    1     |  Monday   |   1-Monday   |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
+| 1828 | 2029-01-02 |    02     |    2     |  Tuesday  |  2-Tuesday   |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
 
 If we want a table with time, we indicate the type using a parameter. By
 default we get all the seconds of a day but we can also configure a

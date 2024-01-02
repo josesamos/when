@@ -52,15 +52,15 @@ has been generated, using this function we can obtain it in xlsx format."><meta 
 
     <div class="ref-description section level2">
     <p>Once all the configuration elements have been defined and the dimension table
-has been generated, using this function we can obtain it in xlsx format.</p>
+has been generated, using this function we can obtain it in <em>xlsx</em> format.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_table_xlsx</span><span class="op">(</span><span class="va">td</span>, <span class="va">file</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_table_xlsx</span><span class="op">(</span><span class="va">td</span>, <span class="va">dir</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for when</span></span>
-<span><span class="fu">get_table_xlsx</span><span class="op">(</span><span class="va">td</span>, file <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">get_table_xlsx</span><span class="op">(</span><span class="va">td</span>, dir <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -69,8 +69,8 @@ has been generated, using this function we can obtain it in xlsx format.</p>
 <dd><p>A <code>when</code> object.</p></dd>
 
 
-<dt>file</dt>
-<dd><p>A string, name of a file.</p></dd>
+<dt>dir</dt>
+<dd><p>A string, name of a dir.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -80,8 +80,12 @@ has been generated, using this function we can obtain it in xlsx format.</p>
 <p>A string, name of a file.</p>
     </div>
     <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>If no dir name is given, stores the table in a temporary one.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Other exporting results: 
+    <div class="dont-index"><p>Other getting results: 
 <code><a href="get_table_csv.html">get_table_csv</a>()</code>,
 <code><a href="get_table_rdb.html">get_table_rdb</a>()</code>,
 <code><a href="get_table.html">get_table</a>()</code></p></div>

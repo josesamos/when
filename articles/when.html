@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="when">
-<title>Generating the *When Dimension* based on date and time tables • when</title>
+<title>Generating the When Dimension based on date and time tables • when</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Generating the *When Dimension* based on date and time tables">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Generating the When Dimension based on date and time tables">
 <meta property="og:description" content="when">
 <meta property="og:image" content="https://josesamos.github.io/when/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -75,9 +75,9 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Generating the *When Dimension* based on date and time tables</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Generating the When Dimension based on date and time tables</h1>
             
-            <h4 data-toc-skip class="date">2023-12-26</h4>
+            <h4 data-toc-skip class="date">2024-01-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/josesamos/when/blob/HEAD/vignettes/when.Rmd" class="external-link"><code>vignettes/when.Rmd</code></a></small>
       <div class="d-none name"><code>when.Rmd</code></div>
@@ -94,14 +94,15 @@
 <p>This dimension corresponds to the generically called “Time
 Dimension”, as named in <span class="citation">Kimball (1996)</span> and
 <span class="citation">Adamson (2010)</span>. Later it has also been
-called “Date Dimension” or “Time Dimension” to express granularity <span class="citation">(Kimball and Ross 2013)</span>. We prefer to call it
+called “Date Dimension” (date-based dimension) and “Time Dimension”
+(time-of-day-based dimension) to express granularity <span class="citation">(Kimball and Ross 2013)</span>. We prefer to call it
 “When Dimension” because granularity is not involved in that term.</p>
 <p>Although conceptually the date and time can be represented together
 in a single dimension, in ROLAP (<em>Relational On-Line Analytical
-Processing</em>) systems, it is common to implement these concepts
-separately, sometimes in separate tables “to avoid a row count explosion
-in the date dimension” <span class="citation">(Kimball and Ross
-2013)</span> by adding the time for each day.</p>
+Processing</em>) star database systems, it is common to implement these
+concepts separately, sometimes in separate tables “to avoid a row count
+explosion in the date dimension” <span class="citation">(Kimball and
+Ross 2013)</span> by adding the time for each day.</p>
 <p>In <span class="citation">Kimball and Ross (2013)</span> these
 dimensions are considered <em>static dimensions</em>: they are built at
 the beginning of the project for the period under consideration and are
@@ -114,22 +115,28 @@ Multidimensional Systems implemented on a ROLAP star database,
 regardless of its granularity, with the following features:</p>
 <ul>
 <li><p>It supports the generation of tables with the granularity needed
-(second, minute, hour, date, week, month or year).</p></li>
-<li><p>We consider separate tables for <strong>time</strong> data and
-data obtained from <strong>date</strong> to avoid a row count explosion
-if a single table were used.</p></li>
+(second, minute, hour, date, week, month, quarter, semester or year)
+according to the relational star schema design criteria <span class="citation">(Kimball and Ross 2013)</span>.</p></li>
+<li><p>We consider separate tables for <strong>time-of-day</strong> data
+and data obtained from <strong>date</strong> to avoid a row count
+explosion if a single table were used.</p></li>
 <li><p>It can be used to generate tables <strong>statically</strong>,
 indicating a period, or <strong>dynamically</strong>, indicating data
 series.</p></li>
 <li><p>In addition to attributes at the selected granularity, other
-attributes can be added at coarser granularity to facilitate
-querying.</p></li>
+attributes can be added at coarser granularity to facilitate querying.
+We can also add a surrogate key.</p></li>
+<li><p>We can obtain the tables in <code>tibble</code> format and in
+other formats (<em>xlsx</em>, <em>csv</em> or <em>Relational DBMS</em>
+table).</p></li>
 </ul>
+<p>It relies on the functions offered by the <a href="https://CRAN.R-project.org/package=lubridate" class="external-link"><code>lubridate</code></a>
+package to obtain the components from the date and time.</p>
 <p>The rest of this document is structured as follows: First, the
-general process of defining these dimensions is presented. Next, a
-section is dedicated to showing examples of dimension definitions,
-time-based and date-based. Finally, the document ends with conclusions
-and bibliography.</p>
+general process of defining these dimensions is presented. Next, we
+present dimension-specific aspects that we can define, both for
+date-based and time-based dimensions. Finally, the document ends with
+conclusions and bibliography.</p>
 </div>
 <div class="section level2">
 <h2 id="definition-process">Definition process<a class="anchor" aria-label="anchor" href="#definition-process"></a>
@@ -137,11 +144,11 @@ and bibliography.</p>
 <p>The definition process consists of the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>Creating an object.</li>
-<li>Configuration of general aspects.</li>
+<li>Definition of general aspects.</li>
 <li>Definition of instances.</li>
-<li>Selection and definition of levels.</li>
+<li>Selection of levels and attributes.</li>
 <li>Generation of the result.</li>
-<li>Table export.</li>
+<li>Getting the dimension table.</li>
 </ol>
 <p>Steps 2, 3 and 4 can be done in any order, they can even be included
 in step 1.</p>
@@ -160,22 +167,34 @@ create it based on time by indicating it using the <code>type</code>
 parameter.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="configuration-of-general-aspects">Configuration of general aspects<a class="anchor" aria-label="anchor" href="#configuration-of-general-aspects"></a>
-</h3>
 <p>Virtually all configuration options can be defined using the object
 creation function. They can also be defined later using specific
-functions. For example, using the following combination of functions we
-obtain the same result.</p>
+functions, as shown in the following section.</p>
+</div>
+<div class="section level3">
+<h3 id="general_aspects">Definition of general aspects<a class="anchor" aria-label="anchor" href="#general_aspects"></a>
+</h3>
+<p>For example, using the following combination of functions we get the
+same result as defining the type when we create the object.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_time_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/configure_dimension.html">configure_dimension</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/define_characteristics.html">define_characteristics</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_time</span>, <span class="va">w_time_2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>By default it considers the system language. Since our system is
+Spanish, for the literals of day and month names to appear in English,
+we must configure it explicitly.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_characteristics.html">define_characteristics</a></span><span class="op">(</span>locale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/locales.html" class="external-link">Sys.setlocale</a></span><span class="op">(</span><span class="st">"LC_TIME"</span>, <span class="st">"English"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>In section <a href="#other_config_options">Other configuration
+options</a> we present the rest of the configuration options for
+dimension generation. For the examples that we are going to use, the
+default options of the package are enough.</p>
 <p>Next we have to select and configure the levels and define the
-instances. These operations can be carried out in any order.</p>
+instances. These operations, along with the current one, can be
+performed in any order.</p>
 </div>
 <div class="section level3">
 <h3 id="definition-of-instances">Definition of instances<a class="anchor" aria-label="anchor" href="#definition-of-instances"></a>
@@ -184,8 +203,7 @@ instances. These operations can be carried out in any order.</p>
 indicating the specific instances. The values in both cases will depend
 on the type of dimension (date-based or time-based).</p>
 <p>We can indicate these values at the time of creating the class object
-or through the <code><a href="../reference/define_instances.html">define_instances()</a></code> configuration
-function.</p>
+or through the <code><a href="../reference/define_instances.html">define_instances()</a></code> function.</p>
 <ul>
 <li><p>In the case of date, we can indicate a year, year and month (with
 the format <code>yyyy-mm</code>), or year month and day
@@ -196,30 +214,43 @@ the format <code>yyyy-mm</code>), or year month and day
 </ul>
 <p>In both cases we can use the string format, the one provided by the
 <a href="https://CRAN.R-project.org/package=lubridate" class="external-link"><code>lubridate</code></a>
-package or, when it is a single number (year or hour) we can use an
-integer value. Then it will be transformed appropriately.</p>
+package or, when it is a single number (year or hour), we can use an
+integer value.</p>
 <p>For example, below they are used with the format of
 <code>lubridate</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                   end <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">years</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>The following definition will be appropriate if we want to obtain the
-dimension at the year level, because we are indicating the specific
-values to consider (not a period).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">w_date_2</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<p>In the following definitions we configure the dimensions so that they
+consider only the indicated dates. The second will be appropriate if we
+want to obtain the dimension at the year level, because we are
+indicating the specific values to consider (not a period).</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_2_1</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span></span>
+<span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"2023-12-31"</span>,</span>
+<span>      <span class="st">"2023-01-01"</span>,</span>
+<span>      <span class="st">"2022-12-31"</span>,</span>
+<span>      <span class="st">"2022-01-01"</span>,</span>
+<span>      <span class="st">"2021-12-31"</span>,</span>
+<span>      <span class="st">"2021-01-01"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_date_2_2</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2030</span><span class="op">)</span></span></code></pre></div>
 <p>The following definition will be appropriate at any level of detail
 because we are giving the range of values to consider (dates between
 those two years).</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date_3</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fl">2020</span>, end <span class="op">=</span> <span class="fl">2030</span><span class="op">)</span></span></code></pre></div>
 <p>When only the year is indicated, it is considered its first day.
 Therefore the previous definition is equivalent to the following
 one.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date_4</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"2020-01-01"</span>, end <span class="op">=</span> <span class="st">"2030-01-01"</span><span class="op">)</span></span>
 <span></span>
@@ -227,25 +258,39 @@ one.</p>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>In the case of time, by default, it is considered at second level and
 all seconds of the day.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_time_3</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"00:00:00"</span>, end <span class="op">=</span> <span class="st">"23:59:59"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_time</span>, <span class="va">w_time_3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>We can also indicate a period or a set of times according to the
+indicated criteria. In the following example, the two definitions are
+equivalent.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_time_4</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fl">8</span>, end <span class="op">=</span> <span class="fl">17</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_time_5</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_instances.html">define_instances</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"08:00:00"</span>, end <span class="op">=</span> <span class="st">"17:00:00"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_time_4</span>, <span class="va">w_time_5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="selection-and-definition-of-levels">Selection and definition of levels<a class="anchor" aria-label="anchor" href="#selection-and-definition-of-levels"></a>
+<h3 id="selection-of-levels-and-attributes">Selection of levels and attributes<a class="anchor" aria-label="anchor" href="#selection-of-levels-and-attributes"></a>
 </h3>
 <p>In the definition, by default, the attributes that we have considered
 to be most frequently used have been included. We can consult them for
 each level using the <code><a href="../reference/get_level_attribute_names.html">get_level_attribute_names()</a></code> function
-with the parameter <code>selected = TRUE</code>. We can indicate the
-name of the level or, if we do not indicate any, it will obtain the
-attributes of all the levels. We obtain the level names using the
+with the parameter <code>selected = TRUE</code>. If we define the
+parameter as <code>selected = FALSE</code> (default option), it will
+return all available attributes. We can indicate the name of the level
+or, if we do not indicate any, it will obtain the attributes of all the
+levels. We obtain the level names using the
 <code><a href="../reference/get_level_names.html">get_level_names()</a></code> function. Below are examples of using
-these functions.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+these functions for the date-based dimension.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "date"           "month_day"      "week_day"       "day_name"      </span></span>
@@ -254,29 +299,40 @@ these functions.</p>
 <span></span>
 <span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/get_level_names.html">get_level_names</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "day"   "week"  "month" "year"</span></span>
+<span><span class="co">#&gt; [1] "day"      "week"     "month"    "quarter"  "semester" "year"</span></span>
 <span></span>
 <span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span>, selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
 <span></span>
-<span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
+<span><span class="co">#&gt; [5] "month_abbr"     "month_num_abbr"</span></span></code></pre></div>
+<p>Also for the time-based dimension.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "time"     "hour"     "minute"   "second"   "day_part"</span></span></code></pre></div>
-<p>There is a function to configure each level: the attributes defined
-by default are configured there. We can select or deselect each
-attribute individually using the attribute name as a boolean parameter
-of the function. For the levels associated with the date, we can also
-select all attributes defined at the level using the special
-<code>include_all</code> parameter; we can also include or uninclude a
-level using the <code>level</code> parameter of each function.</p>
+<span><span class="co">#&gt; [1] "time"     "hour"     "minute"   "second"   "day_part"</span></span>
+<span></span>
+<span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_names.html">get_level_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "time"</span></span></code></pre></div>
+<p>There is a function to configure each level. We can select or
+deselect each attribute individually using the attribute name as a
+boolean parameter of the function. We can also select or deselect all
+attributes defined at the level using the special
+<code>include_all</code> and <code>exclude_all</code> parameters: Once
+all the attributes have been updated with these special parameters, in
+the same function call, we can select or deselect the attributes we
+want.</p>
 <p>For example, if we do not want to include the name of the month, we
-can configure it using the <code><a href="../reference/include_month_level.html">include_month_level()</a></code> function
-or at the time of object creation with a parameter of the same name, as
+can configure it using the <code><a href="../reference/select_month_level.html">select_month_level()</a></code> function or
+at the time of object creation with a parameter of the same name, as
 shown below.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date_5</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/include_month_level.html">include_month_level</a></span><span class="op">(</span>month_name <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/select_month_level.html">select_month_level</a></span><span class="op">(</span>month_name <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">w_date_6</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span></span>
 <span>  start <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -290,36 +346,62 @@ shown below.</p>
 <span><span class="va">w_date_5</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span>, selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "year_month"     "month"          "month_num_name"</span></span></code></pre></div>
-<p>There is available a similar function for each level:
-<code><a href="../reference/include_time_level.html">include_time_level()</a></code>, <code><a href="../reference/include_day_level.html">include_day_level()</a></code>,
-<code><a href="../reference/include_week_level.html">include_week_level()</a></code>, <code><a href="../reference/include_month_level.html">include_month_level()</a></code>
-and <code><a href="../reference/include_year_level.html">include_year_level()</a></code>.</p>
-<p>For date-based levels, we can include or exclude them using the
-<code>level</code> parameter of each of those functions or using the
-<code><a href="../reference/include_date_levels.html">include_date_levels()</a></code> function.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>If we only want to include the name of the month, we can do it as
+follows.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date_7</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/include_month_level.html">include_month_level</a></span><span class="op">(</span>level <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">w_date_8</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/include_date_levels.html">include_date_levels</a></span><span class="op">(</span>month_level <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">w_date_7</span>, <span class="va">w_date_8</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span>
+<span>  <span class="fu"><a href="../reference/select_month_level.html">select_month_level</a></span><span class="op">(</span>exclude_all <span class="op">=</span> <span class="cn">TRUE</span>, month_name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">w_date_7</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span>, selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; character(0)</span></span></code></pre></div>
-<p>If we want to include the level with the default attributes again,
-just use the <code><a href="../reference/include_month_level.html">include_month_level()</a></code> function again with the
-default values of the parameters.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">w_date_9</span> <span class="op">&lt;-</span> <span class="va">w_date_7</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/include_month_level.html">include_month_level</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "month_name"</span></span></code></pre></div>
+<p>There is available a similar function for each level: time, date,
+week, month, quarter, semester and year.</p>
+<p>In the case of the date-based dimension levels, we can select or
+deselect them directly using the <code><a href="../reference/select_date_levels.html">select_date_levels()</a></code>
+function. It allows us to treat the levels globally in the same way that
+we have been treating the attributes. For example, to exclude the month
+level we can do the following.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_8</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/select_date_levels.html">select_date_levels</a></span><span class="op">(</span>month_level <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">w_date_9</span> <span class="op">|&gt;</span></span>
+<span><span class="va">w_date_8</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'month'</span>, selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "year_month"     "month"          "month_name"     "month_num_name"</span></span></code></pre></div>
+<span><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<p>We can also perform that same operation at object creation time, as
+shown below.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_date_9</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span></span>
+<span>  start <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  end <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">years</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span>
+<span>  month_level <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>In the case of a time-based dimension, as we have seen, we only
+consider one level called “time”, as shown again below.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_names.html">get_level_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "time"</span></span></code></pre></div>
+<p>We can configure the attributes it includes using the
+<code><a href="../reference/select_time_level.html">select_time_level()</a></code> function. The attribute called “hour”
+must always be included. If we do not include the “minute” attribute
+then “second” will not be included either. Below are some examples of
+definition and the result obtained.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w_time_6</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/select_time_level.html">select_time_level</a></span><span class="op">(</span>exclude_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_time_6</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "hour"</span></span>
+<span></span>
+<span><span class="va">w_time_7</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/select_time_level.html">select_time_level</a></span><span class="op">(</span>minute <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_time_7</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_level_attribute_names.html">get_level_attribute_names</a></span><span class="op">(</span>selected <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "time"     "hour"     "day_part"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="generation-of-the-result">Generation of the result<a class="anchor" aria-label="anchor" href="#generation-of-the-result"></a>
@@ -329,7 +411,7 @@ generate its table.</p>
 <p>Although we have not yet generated the dimension table, the following
 function returns the names of the attributes it will contain. They can
 be obtained as a string or as a vector of strings.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "id"             "date"           "month_day"      "week_day"      </span></span>
@@ -340,47 +422,1105 @@ be obtained as a string or as a vector of strings.</p>
 (<code>as_string = TRUE</code>, default option), the result can be used
 to easily change the name of the attributes, when the table is
 generated, using the <code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code> function,
-if deemed necessary.</p>
+if deemed necessary, as shown in section <a href="#rename_att">Renaming
+the attributes</a>.</p>
 <p>When we consider that the dimension is already properly defined, we
-can generate its corresponding table using the generate_table()
-function. We update the definition of the object; if it finds any errors
-it will notify us.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+can generate its corresponding table using the
+<code><a href="../reference/generate_table.html">generate_table()</a></code> function. We update the definition of the
+object. Any errors found will be notified to us.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w_date</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">w_time</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Once the table is generated, we can export it. If we want to access
+the table and it is not yet generated, it will send us an error
+message.</p>
+<p>If we make changes to the configuration, it is our responsibility to
+generate the table again.</p>
 </div>
 <div class="section level3">
-<h3 id="table-export">Table export<a class="anchor" aria-label="anchor" href="#table-export"></a>
+<h3 id="getting_dim_table">Getting the dimension table<a class="anchor" aria-label="anchor" href="#getting_dim_table"></a>
 </h3>
+<p>We can access the dimension table to work with it in R (for example
+using the <a href="https://CRAN.R-project.org/package=rolap" class="external-link"><code>rolap</code></a>
+package), or export it in the format that is most convenient for us to
+work with other tools.</p>
+<p>Next we access the generated tables and display them. First of all
+for the date.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t_date</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table.html">get_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>The first and last rows of the obtained result are shown below.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pander</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pandoc.table.return.html" class="external-link">pandoc.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">t_date</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">t_date</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                     split.table <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="4%">
+<col width="8%">
+<col width="8%">
+<col width="7%">
+<col width="8%">
+<col width="10%">
+<col width="8%">
+<col width="4%">
+<col width="8%">
+<col width="5%">
+<col width="8%">
+<col width="11%">
+<col width="4%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">id</th>
+<th align="center">date</th>
+<th align="center">month_day</th>
+<th align="center">week_day</th>
+<th align="center">day_name</th>
+<th align="center">day_num_name</th>
+<th align="center">year_week</th>
+<th align="center">week</th>
+<th align="center">year_month</th>
+<th align="center">month</th>
+<th align="center">month_name</th>
+<th align="center">month_num_name</th>
+<th align="center">year</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2024-01-02</td>
+<td align="center">02</td>
+<td align="center">2</td>
+<td align="center">Tuesday</td>
+<td align="center">2-Tuesday</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">2024-01-03</td>
+<td align="center">03</td>
+<td align="center">3</td>
+<td align="center">Wednesday</td>
+<td align="center">3-Wednesday</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">2024-01-04</td>
+<td align="center">04</td>
+<td align="center">4</td>
+<td align="center">Thursday</td>
+<td align="center">4-Thursday</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">2024-01-05</td>
+<td align="center">05</td>
+<td align="center">5</td>
+<td align="center">Friday</td>
+<td align="center">5-Friday</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">2024-01-06</td>
+<td align="center">06</td>
+<td align="center">6</td>
+<td align="center">Saturday</td>
+<td align="center">6-Saturday</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">1824</td>
+<td align="center">2028-12-29</td>
+<td align="center">29</td>
+<td align="center">5</td>
+<td align="center">Friday</td>
+<td align="center">5-Friday</td>
+<td align="center">2028-52</td>
+<td align="center">52</td>
+<td align="center">2028-12</td>
+<td align="center">12</td>
+<td align="center">December</td>
+<td align="center">12-December</td>
+<td align="center">2028</td>
+</tr>
+<tr class="odd">
+<td align="center">1825</td>
+<td align="center">2028-12-30</td>
+<td align="center">30</td>
+<td align="center">6</td>
+<td align="center">Saturday</td>
+<td align="center">6-Saturday</td>
+<td align="center">2028-53</td>
+<td align="center">53</td>
+<td align="center">2028-12</td>
+<td align="center">12</td>
+<td align="center">December</td>
+<td align="center">12-December</td>
+<td align="center">2028</td>
+</tr>
+<tr class="even">
+<td align="center">1826</td>
+<td align="center">2028-12-31</td>
+<td align="center">31</td>
+<td align="center">7</td>
+<td align="center">Sunday</td>
+<td align="center">7-Sunday</td>
+<td align="center">2028-53</td>
+<td align="center">53</td>
+<td align="center">2028-12</td>
+<td align="center">12</td>
+<td align="center">December</td>
+<td align="center">12-December</td>
+<td align="center">2028</td>
+</tr>
+<tr class="odd">
+<td align="center">1827</td>
+<td align="center">2029-01-01</td>
+<td align="center">01</td>
+<td align="center">1</td>
+<td align="center">Monday</td>
+<td align="center">1-Monday</td>
+<td align="center">2029-01</td>
+<td align="center">01</td>
+<td align="center">2029-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2029</td>
+</tr>
+<tr class="even">
+<td align="center">1828</td>
+<td align="center">2029-01-02</td>
+<td align="center">02</td>
+<td align="center">2</td>
+<td align="center">Tuesday</td>
+<td align="center">2-Tuesday</td>
+<td align="center">2029-01</td>
+<td align="center">01</td>
+<td align="center">2029-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2029</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s generate the dimension at the week level including all its
+attributes (if we change the definition, we have to generate the table
+again).</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t_date</span> <span class="op">&lt;-</span> <span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/select_date_levels.html">select_date_levels</a></span><span class="op">(</span>day_level <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/select_week_level.html">select_week_level</a></span><span class="op">(</span>include_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table.html">get_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>The first and last rows of the obtained result are shown below.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pander</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pandoc.table.return.html" class="external-link">pandoc.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">t_date</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">t_date</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                     split.table <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="7%">
+<col width="14%">
+<col width="8%">
+<col width="15%">
+<col width="9%">
+<col width="15%">
+<col width="20%">
+<col width="8%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">id</th>
+<th align="center">year_week</th>
+<th align="center">week</th>
+<th align="center">year_month</th>
+<th align="center">month</th>
+<th align="center">month_name</th>
+<th align="center">month_num_name</th>
+<th align="center">year</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">2024-02</td>
+<td align="center">02</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">2024-03</td>
+<td align="center">03</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">2024-04</td>
+<td align="center">04</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">2024-05</td>
+<td align="center">05</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">310</td>
+<td align="center">2028-50</td>
+<td align="center">50</td>
+<td align="center">2028-12</td>
+<td align="center">12</td>
+<td align="center">December</td>
+<td align="center">12-December</td>
+<td align="center">2028</td>
+</tr>
+<tr class="odd">
+<td align="center">311</td>
+<td align="center">2028-51</td>
+<td align="center">51</td>
+<td align="center">2028-12</td>
+<td align="center">12</td>
+<td align="center">December</td>
+<td align="center">12-December</td>
+<td align="center">2028</td>
+</tr>
+<tr class="even">
+<td align="center">312</td>
+<td align="center">2028-52</td>
+<td align="center">52</td>
+<td align="center">2028-12</td>
+<td align="center">12</td>
+<td align="center">December</td>
+<td align="center">12-December</td>
+<td align="center">2028</td>
+</tr>
+<tr class="odd">
+<td align="center">313</td>
+<td align="center">2028-53</td>
+<td align="center">53</td>
+<td align="center">2028-12</td>
+<td align="center">12</td>
+<td align="center">December</td>
+<td align="center">12-December</td>
+<td align="center">2028</td>
+</tr>
+<tr class="even">
+<td align="center">314</td>
+<td align="center">2029-01</td>
+<td align="center">01</td>
+<td align="center">2029-01</td>
+<td align="center">01</td>
+<td align="center">January</td>
+<td align="center">01-January</td>
+<td align="center">2029</td>
+</tr>
+</tbody>
+</table>
+<p>Next for the time.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t_time</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table.html">get_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>The start and end of the result table is shown below.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pander</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pandoc.table.return.html" class="external-link">pandoc.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">t_time</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">t_time</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                     split.table <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+<table style="width:76%;" class="table">
+<colgroup>
+<col width="11%">
+<col width="15%">
+<col width="9%">
+<col width="12%">
+<col width="12%">
+<col width="15%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">id</th>
+<th align="center">time</th>
+<th align="center">hour</th>
+<th align="center">minute</th>
+<th align="center">second</th>
+<th align="center">day_part</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">00:00:00</td>
+<td align="center">00</td>
+<td align="center">00</td>
+<td align="center">00</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">00:00:01</td>
+<td align="center">00</td>
+<td align="center">00</td>
+<td align="center">01</td>
+<td align="center">Night</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">00:00:02</td>
+<td align="center">00</td>
+<td align="center">00</td>
+<td align="center">02</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">00:00:03</td>
+<td align="center">00</td>
+<td align="center">00</td>
+<td align="center">03</td>
+<td align="center">Night</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">00:00:04</td>
+<td align="center">00</td>
+<td align="center">00</td>
+<td align="center">04</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">86396</td>
+<td align="center">23:59:55</td>
+<td align="center">23</td>
+<td align="center">59</td>
+<td align="center">55</td>
+<td align="center">Night</td>
+</tr>
+<tr class="odd">
+<td align="center">86397</td>
+<td align="center">23:59:56</td>
+<td align="center">23</td>
+<td align="center">59</td>
+<td align="center">56</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">86398</td>
+<td align="center">23:59:57</td>
+<td align="center">23</td>
+<td align="center">59</td>
+<td align="center">57</td>
+<td align="center">Night</td>
+</tr>
+<tr class="odd">
+<td align="center">86399</td>
+<td align="center">23:59:58</td>
+<td align="center">23</td>
+<td align="center">59</td>
+<td align="center">58</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">86400</td>
+<td align="center">23:59:59</td>
+<td align="center">23</td>
+<td align="center">59</td>
+<td align="center">59</td>
+<td align="center">Night</td>
+</tr>
+</tbody>
+</table>
+<p><code>day_part</code> is predefined in English. Literals or
+associated hours can be accessed and changed using the
+<code><a href="../reference/get_day_part.html">get_day_part()</a></code> and <code><a href="../reference/set_day_part.html">set_day_part()</a></code> functions,
+as shown in section <a href="#name_parts_day">Names of the parts of the
+day</a>.</p>
+<p>Now we are going to generate it at the minute level.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t_time</span> <span class="op">&lt;-</span> <span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/select_time_level.html">select_time_level</a></span><span class="op">(</span>second <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table.html">get_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>The start and end from the new result table is shown below.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pander</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pandoc.table.return.html" class="external-link">pandoc.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">t_time</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">t_time</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                     split.table <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+<table style="width:62%;" class="table">
+<colgroup>
+<col width="9%">
+<col width="15%">
+<col width="9%">
+<col width="12%">
+<col width="15%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">id</th>
+<th align="center">time</th>
+<th align="center">hour</th>
+<th align="center">minute</th>
+<th align="center">day_part</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">00:00:00</td>
+<td align="center">00</td>
+<td align="center">00</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">00:01:00</td>
+<td align="center">00</td>
+<td align="center">01</td>
+<td align="center">Night</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">00:02:00</td>
+<td align="center">00</td>
+<td align="center">02</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">00:03:00</td>
+<td align="center">00</td>
+<td align="center">03</td>
+<td align="center">Night</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">00:04:00</td>
+<td align="center">00</td>
+<td align="center">04</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">1436</td>
+<td align="center">23:55:00</td>
+<td align="center">23</td>
+<td align="center">55</td>
+<td align="center">Night</td>
+</tr>
+<tr class="odd">
+<td align="center">1437</td>
+<td align="center">23:56:00</td>
+<td align="center">23</td>
+<td align="center">56</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">1438</td>
+<td align="center">23:57:00</td>
+<td align="center">23</td>
+<td align="center">57</td>
+<td align="center">Night</td>
+</tr>
+<tr class="odd">
+<td align="center">1439</td>
+<td align="center">23:58:00</td>
+<td align="center">23</td>
+<td align="center">58</td>
+<td align="center">Night</td>
+</tr>
+<tr class="even">
+<td align="center">1440</td>
+<td align="center">23:59:00</td>
+<td align="center">23</td>
+<td align="center">59</td>
+<td align="center">Night</td>
+</tr>
+</tbody>
+</table>
+<p>We can take the generated tables to any Relational DBMS, as shown
+below, we just have to pass a connection to the database as a
+parameter.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_db</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_date</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_rdb.html">get_table_rdb</a></span><span class="op">(</span><span class="va">my_db</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">w_time</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_rdb.html">get_table_rdb</a></span><span class="op">(</span><span class="va">my_db</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html" class="external-link">dbListTables</a></span><span class="op">(</span><span class="va">my_db</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "date" "time"</span></span>
+<span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect</a></span><span class="op">(</span><span class="va">my_db</span><span class="op">)</span></span></code></pre></div>
+<p>In the previous example, since we have not explicitly defined any
+names for the tables in the configuration, they have been assigned as a
+name the element on which they are based (date or time). We can define
+these names, as shown in section <a href="#table_name">Table
+name</a>.</p>
+<p>Functions to get the tables in <em>xlsx</em> and <em>csv</em> format
+are also available: <code><a href="../reference/get_table_xlsx.html">get_table_xlsx()</a></code> and
+<code><a href="../reference/get_table_csv.html">get_table_csv()</a></code>.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="definition-examples">Definition examples<a class="anchor" aria-label="anchor" href="#definition-examples"></a>
+<h2 id="other_config_options">Other configuration options<a class="anchor" aria-label="anchor" href="#other_config_options"></a>
 </h2>
+<p>In section <a href="#general_aspects">Definition of general
+aspects</a> we have presented the necessary configuration options for
+the examples we have used. In particular, we have only needed to define
+the type on which the dimension is based (time or date) and the language
+for naming days and months (because it is different from the language of
+our operating system). The default options have been adequate for the
+examples shown.</p>
+<p>In this section we are going to show other configuration options that
+may be necessary to define our dimensions.</p>
 <div class="section level3">
-<h3 id="time-based-dimension">Time based dimension<a class="anchor" aria-label="anchor" href="#time-based-dimension"></a>
+<h3 id="dimension-table-features">Dimension table features<a class="anchor" aria-label="anchor" href="#dimension-table-features"></a>
 </h3>
+<p>The result of a definition operation performed with the
+<code>where</code> package is a table of a dimension at a given level of
+granularity, with the attributes selected for that level or associated
+coarser levels. So far we have focused on level attributes and table
+instances. In this section we are going to configure other
+characteristics of it.</p>
+<div class="section level4">
+<h4 id="table_name">Table name<a class="anchor" aria-label="anchor" href="#table_name"></a>
+</h4>
+<p>By default, the table is assigned the name of the base component used
+to generate the dimension: date or time. We have seen it in the tables
+that we have stored in the database, in the example of the section <a href="#getting_dim_table">Getting the dimension table</a>.</p>
+<p>We can define the name of the dimension at the time of object
+creation or through the <code><a href="../reference/define_characteristics.html">define_characteristics()</a></code> function,
+as shown below.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wd_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'dim_where'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wd_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_characteristics.html">define_characteristics</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'dim_where'</span><span class="op">)</span></span></code></pre></div>
+<p>This name is the one that will be assigned to the database table
+where we store it or to the files we obtain. Below is the case for a
+relational database.</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_db</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wd_1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_rdb.html">get_table_rdb</a></span><span class="op">(</span><span class="va">my_db</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html" class="external-link">dbListTables</a></span><span class="op">(</span><span class="va">my_db</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "dim_where"</span></span>
+<span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect</a></span><span class="op">(</span><span class="va">my_db</span><span class="op">)</span></span></code></pre></div>
+<p>Also the case of obtaining it in <em>csv</em> format (if we do not
+indicate a location, it stores it in one by default).</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wd_2</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_csv.html">get_table_csv</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp8JVHt0/dim_where.csv"</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="surrogate-key">Surrogate key<a class="anchor" aria-label="anchor" href="#surrogate-key"></a>
+</h4>
+<p>By default the dimension table will include a surrogate key. In some
+situations we may be interested in the table having the date itself as
+its primary key (for example if we want to partition the fact table by
+the date).</p>
+<p>Through the <code>surrogate_key</code> parameter, included in the
+<code><a href="../reference/define_characteristics.html">define_characteristics()</a></code> function and also the
+<code><a href="../reference/when.html">when()</a></code> function, we can indicate that a surrogate key is
+not created, as it’s shown in the following.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "id"             "date"           "month_day"      "week_day"      </span></span>
+<span><span class="co">#&gt;  [5] "day_name"       "day_num_name"   "year_week"      "week"          </span></span>
+<span><span class="co">#&gt;  [9] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
+<span><span class="co">#&gt; [13] "year"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>surrogate_key <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "date"           "month_day"      "week_day"       "day_name"      </span></span>
+<span><span class="co">#&gt;  [5] "day_num_name"   "year_week"      "week"           "year_month"    </span></span>
+<span><span class="co">#&gt;  [9] "month"          "month_name"     "month_num_name" "year"</span></span></code></pre></div>
+<p>The name of the surrogate key is <code>id</code>, is the first
+attribute of the table. If necessary, we can rename the attributes,
+including the surrogate key as shown in the next section.</p>
+</div>
+<div class="section level4">
+<h4 id="rename_att">Renaming the attributes<a class="anchor" aria-label="anchor" href="#rename_att"></a>
+</h4>
+<p>If we get a table in <code>tibble</code> format, we can rename its
+attributes using the functions of this class. But if we want to obtain
+it in a file or in a database, we may be interested in renaming its
+attributes before obtaining it.</p>
+<p>In order to rename the attributes, we first have to generate the
+table.</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wd_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>We can rename them using the <code><a href="../reference/set_table_attribute_names.html">set_table_attribute_names()</a></code>
+function, passing a name for each of the available attributes. To
+facilitate the operation, using the
+<code><a href="../reference/get_table_attribute_names.html">get_table_attribute_names()</a></code> function, we can obtain the
+attributes in string format. With this we only have to replace the names
+that we want to change, as shown below.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wd_3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "c('id', 'date', 'month_day', 'week_day', 'day_name', 'day_num_name', 'year_week', 'week', 'year_month', 'month', 'month_name', 'month_num_name', 'year')"</span></span>
+<span></span>
+<span><span class="va">wd_3</span> <span class="op">&lt;-</span> <span class="va">wd_3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/set_table_attribute_names.html">set_table_attribute_names</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">'id_when'</span>,</span>
+<span>      <span class="st">'date'</span>,</span>
+<span>      <span class="st">'month_day'</span>,</span>
+<span>      <span class="st">'week_day'</span>,</span>
+<span>      <span class="st">'day_name'</span>,</span>
+<span>      <span class="st">'day_num_name'</span>,</span>
+<span>      <span class="st">'year_week'</span>,</span>
+<span>      <span class="st">'week'</span>,</span>
+<span>      <span class="st">'year_month'</span>,</span>
+<span>      <span class="st">'month'</span>,</span>
+<span>      <span class="st">'month_name'</span>,</span>
+<span>      <span class="st">'month_num_name'</span>,</span>
+<span>      <span class="st">'year'</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">wd_3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span>as_string <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "id_when"        "date"           "month_day"      "week_day"      </span></span>
+<span><span class="co">#&gt;  [5] "day_name"       "day_num_name"   "year_week"      "week"          </span></span>
+<span><span class="co">#&gt;  [9] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
+<span><span class="co">#&gt; [13] "year"</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level3">
-<h3 id="date-based-dimension">Date based dimension<a class="anchor" aria-label="anchor" href="#date-based-dimension"></a>
+<h3 id="name_parts_day">Names of the parts of the day<a class="anchor" aria-label="anchor" href="#name_parts_day"></a>
 </h3>
+<p>We have associated each hour with the usual part of the day in
+English. We can consult them and change them if necessary (for example,
+to define them in another language) using the
+<code><a href="../reference/get_day_part.html">get_day_part()</a></code> and <code><a href="../reference/set_day_part.html">set_day_part()</a></code>
+functions.</p>
+<p>Below is an example where the definition is modified to consider only
+two parts in the day.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_day_part.html">get_day_part</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          00          01          02          03          04          05 </span></span>
+<span><span class="co">#&gt;     "Night"     "Night"     "Night"     "Night"     "Night"   "Morning" </span></span>
+<span><span class="co">#&gt;          06          07          08          09          10          11 </span></span>
+<span><span class="co">#&gt;   "Morning"   "Morning"   "Morning"   "Morning"   "Morning"   "Morning" </span></span>
+<span><span class="co">#&gt;          12          13          14          15          16          17 </span></span>
+<span><span class="co">#&gt; "Afternoon" "Afternoon" "Afternoon" "Afternoon" "Afternoon"   "Evening" </span></span>
+<span><span class="co">#&gt;          18          19          20          21          22          23 </span></span>
+<span><span class="co">#&gt;   "Evening"   "Evening"   "Evening"     "Night"     "Night"     "Night"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/set_day_part.html">set_day_part</a></span><span class="op">(</span>hour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">23</span>, <span class="fl">0</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"Night"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/set_day_part.html">set_day_part</a></span><span class="op">(</span>hour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span><span class="op">:</span><span class="fl">19</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"Day"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_day_part.html">get_day_part</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      00      01      02      03      04      05      06      07      08      09 </span></span>
+<span><span class="co">#&gt; "Night" "Night" "Night" "Night" "Night" "Night"   "Day"   "Day"   "Day"   "Day" </span></span>
+<span><span class="co">#&gt;      10      11      12      13      14      15      16      17      18      19 </span></span>
+<span><span class="co">#&gt;   "Day"   "Day"   "Day"   "Day"   "Day"   "Day"   "Day"   "Day"   "Day"   "Day" </span></span>
+<span><span class="co">#&gt;      20      21      22      23 </span></span>
+<span><span class="co">#&gt; "Night" "Night" "Night" "Night"</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="configuration-of-day-and-week-levels">Configuration of day and week levels<a class="anchor" aria-label="anchor" href="#configuration-of-day-and-week-levels"></a>
+</h3>
+<p>This section shows the configuration options available for the day
+and week levels.</p>
+<div class="section level4">
+<h4 id="the-first-day-of-the-week">The first day of the week<a class="anchor" aria-label="anchor" href="#the-first-day-of-the-week"></a>
+</h4>
+<p>For days, in addition to the language of the name of the day of the
+week, we can define the start day of the week. There are two
+possibilities: Monday or Sunday. This determines the numbering of the
+days.</p>
+<p>We can define it using the parameter <code>week_starts_monday</code>
+(which by default has the value TRUE) in the functions
+<code><a href="../reference/define_characteristics.html">define_characteristics()</a></code> or <code><a href="../reference/when.html">when()</a></code>, as shown
+below.</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wd_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>week_starts_monday <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wd_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_characteristics.html">define_characteristics</a></span><span class="op">(</span>week_starts_monday <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="numbering-of-weeks-in-the-year">Numbering of weeks in the year<a class="anchor" aria-label="anchor" href="#numbering-of-weeks-in-the-year"></a>
+</h4>
+<p>Using the value of the <code>type</code> parameter
+(<code>type = "date"</code> or <code>type = "time"</code>) in the
+<code><a href="../reference/define_characteristics.html">define_characteristics()</a></code> or <code><a href="../reference/when.html">when()</a></code> functions
+we can indicate whether the dimension is based on date or time.</p>
+<p>This parameter can additionally take two more values: “iso” and
+“epi”. Using these values (together with the “date” value) we can
+indicate the type of numbering of the weeks in the year. That is, the
+week number associated with each date depends on the type of date
+dimension selected:</p>
+<ul>
+<li><p>Default (<code>type = "date"</code>): It numbers blocks of 7 days
+beginning on January 1 (regardless of what day of the week it is). The
+last week of the year will last less than 7 days.</p></li>
+<li><p>ISO 8601 (<code>type = "iso"</code>): It numbers blocks of 7 days
+from Monday to Sunday. The first and last week of the year can contain
+days from the previous or next year.</p></li>
+<li><p>Epidemiological (<code>type = "epi"</code>): This week is like
+ISO 8601 only that it considers that the week begins on Sunday.</p></li>
+</ul>
+<p>For the first and last days of the year, the year associated with the
+week may be different from the year of the date, depending on the type
+selected (“iso” or “epi”).</p>
+<p>The “year” attribute (alone or in combination with other attributes)
+displays the year associated with the date, regardless of the type
+selected. Only the “year_week” attribute displays the year of the week
+according to the selected type.</p>
+<p>The next section shows how to obtain the attribute obtaining function
+and how to change it if we consider it necessary (for example, to get
+the different year types together).</p>
+</div>
+<div class="section level4">
+<h4 id="get-date-range-of-weeks">Get date range of weeks<a class="anchor" aria-label="anchor" href="#get-date-range-of-weeks"></a>
+</h4>
+<p>If we want to work with the dimension at the week level, we may be
+interested in having the start or end date for each week. To obtain them
+and be able to use them to generate the dimension, we have the
+<code><a href="../reference/get_week_date_range.html">get_week_date_range()</a></code> function.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_week_date_range.html">get_week_date_range</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"2024-01-01"</span>, end <span class="op">=</span> <span class="st">"2029-12-31"</span><span class="op">)</span></span></code></pre></div>
+<p>A period and the type of week numbering (“date”, “iso” or “epi”) are
+indicated (by default it is “date”). Returns the result in
+<code>tibble</code> form.</p>
+<p>The start and end from the new result is shown below.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pander</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pandoc.table.return.html" class="external-link">pandoc.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">t</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">t</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                     split.table <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+<table style="width:53%;" class="table">
+<colgroup>
+<col width="16%">
+<col width="18%">
+<col width="18%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">year_week</th>
+<th align="center">first</th>
+<th align="center">last</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">2024-01</td>
+<td align="center">2024-01-01</td>
+<td align="center">2024-01-07</td>
+</tr>
+<tr class="even">
+<td align="center">2024-02</td>
+<td align="center">2024-01-08</td>
+<td align="center">2024-01-14</td>
+</tr>
+<tr class="odd">
+<td align="center">2024-03</td>
+<td align="center">2024-01-15</td>
+<td align="center">2024-01-21</td>
+</tr>
+<tr class="even">
+<td align="center">2024-04</td>
+<td align="center">2024-01-22</td>
+<td align="center">2024-01-28</td>
+</tr>
+<tr class="odd">
+<td align="center">2024-05</td>
+<td align="center">2024-01-29</td>
+<td align="center">2024-02-04</td>
+</tr>
+<tr class="even">
+<td align="center">2029-49</td>
+<td align="center">2029-12-03</td>
+<td align="center">2029-12-09</td>
+</tr>
+<tr class="odd">
+<td align="center">2029-50</td>
+<td align="center">2029-12-10</td>
+<td align="center">2029-12-16</td>
+</tr>
+<tr class="even">
+<td align="center">2029-51</td>
+<td align="center">2029-12-17</td>
+<td align="center">2029-12-23</td>
+</tr>
+<tr class="odd">
+<td align="center">2029-52</td>
+<td align="center">2029-12-24</td>
+<td align="center">2029-12-30</td>
+</tr>
+<tr class="even">
+<td align="center">2029-53</td>
+<td align="center">2029-12-31</td>
+<td align="center">2029-12-31</td>
+</tr>
+</tbody>
+</table>
+<p>We can use the column of the dates that interest us to generate the
+dimension. Additionally, we leave only the date and the levels that
+interest us (week and year).</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">t</span><span class="op">[[</span><span class="st">"last"</span><span class="op">]</span><span class="op">]</span>, month_level <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/select_day_level.html">select_day_level</a></span><span class="op">(</span>exclude_all <span class="op">=</span> <span class="cn">TRUE</span>, date <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table.html">get_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>The start and end from the new result table is shown below.</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pander</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pandoc.table.return.html" class="external-link">pandoc.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tw</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">tw</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                     split.table <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+<table style="width:62%;" class="table">
+<colgroup>
+<col width="8%">
+<col width="18%">
+<col width="16%">
+<col width="9%">
+<col width="9%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">id</th>
+<th align="center">date</th>
+<th align="center">year_week</th>
+<th align="center">week</th>
+<th align="center">year</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2024-01-07</td>
+<td align="center">2024-01</td>
+<td align="center">01</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">2024-01-14</td>
+<td align="center">2024-02</td>
+<td align="center">02</td>
+<td align="center">2024</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">2024-01-21</td>
+<td align="center">2024-03</td>
+<td align="center">03</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">2024-01-28</td>
+<td align="center">2024-04</td>
+<td align="center">04</td>
+<td align="center">2024</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">2024-02-04</td>
+<td align="center">2024-05</td>
+<td align="center">05</td>
+<td align="center">2024</td>
+</tr>
+<tr class="even">
+<td align="center">314</td>
+<td align="center">2029-12-09</td>
+<td align="center">2029-49</td>
+<td align="center">49</td>
+<td align="center">2029</td>
+</tr>
+<tr class="odd">
+<td align="center">315</td>
+<td align="center">2029-12-16</td>
+<td align="center">2029-50</td>
+<td align="center">50</td>
+<td align="center">2029</td>
+</tr>
+<tr class="even">
+<td align="center">316</td>
+<td align="center">2029-12-23</td>
+<td align="center">2029-51</td>
+<td align="center">51</td>
+<td align="center">2029</td>
+</tr>
+<tr class="odd">
+<td align="center">317</td>
+<td align="center">2029-12-30</td>
+<td align="center">2029-52</td>
+<td align="center">52</td>
+<td align="center">2029</td>
+</tr>
+<tr class="even">
+<td align="center">318</td>
+<td align="center">2029-12-31</td>
+<td align="center">2029-53</td>
+<td align="center">53</td>
+<td align="center">2029</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section level3">
+<h3 id="change_def_function_att">Change the definition function of an attribute<a class="anchor" aria-label="anchor" href="#change_def_function_att"></a>
+</h3>
+<p>Each attribute is defined by a specific function. All definition
+functions have the same structure: they receive a <em>table</em>, a
+column with the date or time <em>values</em>, possibly additional
+configuration parameters, and return the <em>table</em> to which a new
+column with the attribute name and values has been added, calculated
+from the values.</p>
+<p>We can get the definition function of any attribute using the
+<code><a href="../reference/get_attribute_definition_function.html">get_attribute_definition_function()</a></code> function. Below is the
+function for the “year” attribute and also the function of the year and
+week combination, “year_week” attribute (it uses one of the additional
+parameters available, the dimension type).</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/when.html">when</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wd</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_attribute_definition_function.html">get_attribute_definition_function</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; function (table, values, ...) </span></span>
+<span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;     table[["year"]] &lt;- as.character(lubridate::year(values))</span></span>
+<span><span class="co">#&gt;     table</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x562d2c18fed8&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: namespace:when&gt;</span></span>
+<span></span>
+<span><span class="va">wd</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_attribute_definition_function.html">get_attribute_definition_function</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"year_week"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; function (table, values, ...) </span></span>
+<span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;     dots &lt;- list(...)</span></span>
+<span><span class="co">#&gt;     type &lt;- dots[["type"]]</span></span>
+<span><span class="co">#&gt;     switch(type, iso = {</span></span>
+<span><span class="co">#&gt;         year &lt;- lubridate::isoyear(values)</span></span>
+<span><span class="co">#&gt;         week &lt;- lubridate::isoweek(values)</span></span>
+<span><span class="co">#&gt;     }, epi = {</span></span>
+<span><span class="co">#&gt;         year &lt;- lubridate::epiyear(values)</span></span>
+<span><span class="co">#&gt;         week &lt;- lubridate::epiweek(values)</span></span>
+<span><span class="co">#&gt;     }, {</span></span>
+<span><span class="co">#&gt;         year &lt;- lubridate::year(values)</span></span>
+<span><span class="co">#&gt;         week &lt;- lubridate::week(values)</span></span>
+<span><span class="co">#&gt;     })</span></span>
+<span><span class="co">#&gt;     table[["year_week"]] &lt;- paste0(year, "-", sprintf("%02d", </span></span>
+<span><span class="co">#&gt;         week))</span></span>
+<span><span class="co">#&gt;     table</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x562d2c14dd28&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: namespace:when&gt;</span></span></code></pre></div>
+<p>In view of the functions, we can define one with the same structure
+and establish it as a new attribute definition function using the
+<code><a href="../reference/set_attribute_definition_function.html">set_attribute_definition_function()</a></code> function. For example,
+below shows how to change the year attribute definition function to get
+an additional attribute if the year associated with the week can be
+different from the year of the date.</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">table</span>, <span class="va">values</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
+<span>  <span class="va">type</span> <span class="op">&lt;-</span> <span class="va">dots</span><span class="op">[[</span><span class="st">'type'</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="va">table</span><span class="op">[[</span><span class="st">'year'</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'iso'</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">table</span><span class="op">[[</span><span class="st">'week_year'</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">isoyear</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'epi'</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">table</span><span class="op">[[</span><span class="st">'week_year'</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">epiyear</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="va">table</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="va">wd</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/set_attribute_definition_function.html">set_attribute_definition_function</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"year"</span>, <span class="va">f</span><span class="op">)</span></span></code></pre></div>
+<p>In this case, what we do is add two columns for the year: one with
+the year of the date and another with the year of the week if this can
+be different from the first. We can see the result by changing the type
+of the dimension and generating the table, as shown below (the two year
+attributes have been added).</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="va">wd</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_characteristics.html">define_characteristics</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/get_table.html">get_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "id"             "date"           "month_day"      "week_day"      </span></span>
+<span><span class="co">#&gt;  [5] "day_name"       "day_num_name"   "year_week"      "week"          </span></span>
+<span><span class="co">#&gt;  [9] "year_month"     "month"          "month_name"     "month_num_name"</span></span>
+<span><span class="co">#&gt; [13] "year"           "week_year"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="conclusions">Conclusions<a class="anchor" aria-label="anchor" href="#conclusions"></a>
 </h2>
-<p><code>when</code> package offers a set of operations that allow us to
-transform tables into star databases. From several star databases you
-can define a constellation with conformed dimensions.</p>
-<p>Operations have been designed to be intuitive and easy to use. The
-result greatly facilitates the data transformation process for the
-exposed situation.</p>
-<p>The implementation of the multidimensional database obtained can be
-exported to work with multidimensional analysis tools on spreadsheets or
-RDBMS.</p>
+<p>The <code>when</code> package offers a set of operations that allow
+us to generate the <em>When Dimension</em> based on date or time at the
+level of detail we need.</p>
+<p>We create an object of the <code>when</code> class and, from it, we
+configure the instances and characteristics of the levels and attributes
+of the dimension. To define the instances we can indicate a range of
+values or provide the specific values from which to generate the rest of
+the attributes.</p>
+<p>As a result, we can obtain tables for this dimension to work from R,
+for example with the <a href="https://CRAN.R-project.org/package=rolap" class="external-link"><code>rolap</code></a>
+package, or work in other environments, including Relational DBMSs.</p>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>

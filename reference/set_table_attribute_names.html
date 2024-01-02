@@ -91,8 +91,30 @@ to export the table, for example, to a database.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">set_table_attribute_names</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="when.html">when</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="generate_table.html">generate_table</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wd</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="get_table_attribute_names.html">get_table_attribute_names</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "c('id', 'date', 'month_day', 'week_day', 'day_name', 'day_num_name', 'year_week', 'week', 'year_month', 'month', 'month_name', 'month_num_name', 'year')"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="va">wd</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">set_table_attribute_names</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="st">'id_when'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'date'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'month_day'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'week_day'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'day_name'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'day_num_name'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'year_week'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'week'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'year_month'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'month'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'month_name'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'month_num_name'</span>,</span></span>
+<span class="r-in"><span>      <span class="st">'year'</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

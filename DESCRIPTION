@@ -28,6 +28,8 @@ Imports:
     xlsx
 Suggests: 
     dbplyr,
+    DiagrammeR,
+    DiagrammeRsvg,
     knitr,
     pander,
     rmarkdown,

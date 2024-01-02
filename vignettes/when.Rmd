@@ -293,10 +293,15 @@ If it is generated in the form of a string (`as_string = TRUE`, default option),
 
 When we consider that the dimension is already properly defined, we can generate its corresponding table using the `generate_table()` function. We update the definition of the object. Any errors found will be notified to us.
 
+
 ```{r}
 w_date <- w_date |>
   generate_table()
+```
 
+
+
+```{r}
 w_time <- w_time |>
   generate_table()
 ```

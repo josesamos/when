@@ -89,8 +89,8 @@ identical(w_time, w_time_2)
 By default it considers the system language. Since our system is Spanish, for the literals of day and month names to appear in English, we must configure it explicitly.
 
 ```{r}
-w_date <- w_date |>
-  define_characteristics(locale = Sys.setlocale("LC_TIME", "English"))
+# w_date <- w_date |>
+#   define_characteristics(locale = Sys.setlocale("LC_TIME", "English"))
 ```
 
 In section [Other configuration options](#other_config_options) we present the rest of the configuration options for dimension generation. For the examples that we are going to use, the default options of the package are enough.

@@ -552,13 +552,13 @@ The next section shows how to obtain the attribute obtaining function and how to
 
 ### Get date range of weeks
 
-If we want to work with the dimension at the week level, we may be interested in having the start or end date for each one. To obtain them and be able to use them to generate the dimension, we have the `get_week_date_range()` function.
+If we want to work with the dimension at the week level, we may be interested in having the start or end date for each week. To obtain them and be able to use them to generate the dimension, we have the `get_week_date_range()` function.
 
 ```{r}
 t <- get_week_date_range(start = "2024-01-01", end = "2029-12-31")
 ```
 
-A period and the type of week numbering ("date", "iso" or "epi") are indicated (by default it is "date"). Returns the result in "tibble" form.
+A period and the type of week numbering ("date", "iso" or "epi") are indicated (by default it is "date"). Returns the result in `tibble` form.
 
 The start and end from the new result is shown below.
 

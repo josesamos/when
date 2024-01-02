@@ -295,16 +295,18 @@ When we consider that the dimension is already properly defined, we can generate
 
 
 ```{r}
-w_date <- w_date |>
+w_time <- w_time |>
   generate_table()
 ```
 
 
 
 ```{r}
-w_time <- w_time |>
+w_date <- w_date |>
   generate_table()
 ```
+
+
 
 Once the table is generated, we can export it. If we want to access the table and it is not yet generated, it will send us an error message.
 

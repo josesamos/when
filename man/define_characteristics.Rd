@@ -19,7 +19,7 @@ define_characteristics(
   name = NULL,
   surrogate_key = NULL,
   type = NULL,
-  locale = Sys.getlocale("LC_TIME"),
+  locale = NULL,
   week_starts_monday = NULL
 )
 }

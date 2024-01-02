@@ -52,7 +52,7 @@ define_characteristics.when <- function(td,
                                         name = NULL,
                                         surrogate_key = NULL,
                                         type = NULL,
-                                        locale = Sys.getlocale("LC_TIME"),
+                                        locale = NULL,
                                         week_starts_monday = NULL) {
   if (!is.null(name)) {
     stopifnot("'name' must have a single value." = length(name) == 1)
@@ -69,7 +69,9 @@ define_characteristics.when <- function(td,
   td <- validate_type(td, type)
   td <- validate_start_end(td, td$start, td$end)
   td <- validate_values(td, td$values)
-  td$locale <- locale
+  if (!is.null(locale)) {
+    td$locale <- locale
+  }
   td
 }
 

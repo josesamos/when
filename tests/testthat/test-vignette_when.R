@@ -14,8 +14,8 @@ test_that("vignette_when", {
 
 
   ## ---------------------------------------------------------------------------------------------------------
-  w_date <- w_date |>
-    define_characteristics(locale = Sys.setlocale("LC_TIME", "English"))
+  # w_date <- w_date |>
+  #   define_characteristics(locale = Sys.setlocale("LC_TIME", "English"))
 
 
   ## ---------------------------------------------------------------------------------------------------------

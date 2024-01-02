@@ -38,7 +38,7 @@
 #' @export
 when <- function(name = NULL,
                  type = NULL,
-                 locale = Sys.getlocale("LC_TIME"),
+                 locale = NULL,
                  start = lubridate::today(),
                  end = lubridate::today(),
                  values = NULL,

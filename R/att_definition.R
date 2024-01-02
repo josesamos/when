@@ -164,12 +164,20 @@ get_table_week_day <- function(table, values, ...) {
 get_table_day_name <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  table[['day_name']] <- as.character(lubridate::wday(
-    values,
-    label = TRUE,
-    abbr = FALSE,
-    locale = locale
-  ))
+  if (is.null(locale)) {
+    table[['day_name']] <- as.character(lubridate::wday(
+      values,
+      label = TRUE,
+      abbr = FALSE
+    ))
+  } else {
+    table[['day_name']] <- as.character(lubridate::wday(
+      values,
+      label = TRUE,
+      abbr = FALSE,
+      locale = locale
+    ))
+  }
   table
 }
 
@@ -190,17 +198,30 @@ get_table_day_num_name <- function(table, values, ...) {
     v <- 7
   }
   locale <- dots[['locale']]
-  table[['day_num_name']] <- paste0(
-    lubridate::wday(values,
-                    week_start = getOption("lubridate.week.start", v)),
-    '-',
-    lubridate::wday(
-      values,
-      label = TRUE,
-      abbr = FALSE,
-      locale = locale
+  if (is.null(locale)){
+    table[['day_num_name']] <- paste0(
+      lubridate::wday(values,
+                      week_start = getOption("lubridate.week.start", v)),
+      '-',
+      lubridate::wday(
+        values,
+        label = TRUE,
+        abbr = FALSE
+      )
     )
-  )
+  } else {
+    table[['day_num_name']] <- paste0(
+      lubridate::wday(values,
+                      week_start = getOption("lubridate.week.start", v)),
+      '-',
+      lubridate::wday(
+        values,
+        label = TRUE,
+        abbr = FALSE,
+        locale = locale
+      )
+    )
+  }
   table
 }
 
@@ -216,14 +237,24 @@ get_table_day_num_name <- function(table, values, ...) {
 get_table_day_abbr <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  table[['day_abbr']] <- gsub("\\\\.", "", as.character(
-    lubridate::wday(
-      values,
-      label = TRUE,
-      abbr = TRUE,
-      locale = locale
-    )
-  ))
+  if (is.null(locale)){
+    table[['day_abbr']] <- gsub("\\\\.", "", as.character(
+      lubridate::wday(
+        values,
+        label = TRUE,
+        abbr = TRUE
+      )
+    ))
+  } else {
+    table[['day_abbr']] <- gsub("\\\\.", "", as.character(
+      lubridate::wday(
+        values,
+        label = TRUE,
+        abbr = TRUE,
+        locale = locale
+      )
+    ))
+  }
   table
 }
 
@@ -244,19 +275,34 @@ get_table_day_num_abbr <- function(table, values, ...) {
     v <- 7
   }
   locale <- dots[['locale']]
-  table[['day_num_abbr']] <- paste0(
-    lubridate::wday(values,
-                    week_start = getOption("lubridate.week.start", v)),
-    '-',
-    gsub("\\\\.", "", as.character(
-      lubridate::wday(
-        values,
-        label = TRUE,
-        abbr = TRUE,
-        locale = locale
-      )
-    ))
-  )
+  if (is.null(locale)){
+    table[['day_num_abbr']] <- paste0(
+      lubridate::wday(values,
+                      week_start = getOption("lubridate.week.start", v)),
+      '-',
+      gsub("\\\\.", "", as.character(
+        lubridate::wday(
+          values,
+          label = TRUE,
+          abbr = TRUE
+        )
+      ))
+    )
+  } else {
+    table[['day_num_abbr']] <- paste0(
+      lubridate::wday(values,
+                      week_start = getOption("lubridate.week.start", v)),
+      '-',
+      gsub("\\\\.", "", as.character(
+        lubridate::wday(
+          values,
+          label = TRUE,
+          abbr = TRUE,
+          locale = locale
+        )
+      ))
+    )
+  }
   table
 }
 
@@ -417,12 +463,20 @@ get_table_month <- function(table, values, ...) {
 get_table_month_name <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  table[['month_name']] <- as.character(lubridate::month(
-    values,
-    label = TRUE,
-    abbr = FALSE,
-    locale = locale
-  ))
+  if (is.null(locale)){
+    table[['month_name']] <- as.character(lubridate::month(
+      values,
+      label = TRUE,
+      abbr = FALSE
+    ))
+  } else {
+    table[['month_name']] <- as.character(lubridate::month(
+      values,
+      label = TRUE,
+      abbr = FALSE,
+      locale = locale
+    ))
+  }
   table
 }
 
@@ -438,16 +492,28 @@ get_table_month_name <- function(table, values, ...) {
 get_table_month_num_name <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  table[['month_num_name']] <- paste0(
-    sprintf("%02d", lubridate::month(values)),
-    '-',
-    lubridate::month(
-      values,
-      label = TRUE,
-      abbr = FALSE,
-      locale = locale
+  if (is.null(locale)){
+    table[['month_num_name']] <- paste0(
+      sprintf("%02d", lubridate::month(values)),
+      '-',
+      lubridate::month(
+        values,
+        label = TRUE,
+        abbr = FALSE
+      )
     )
-  )
+  } else {
+    table[['month_num_name']] <- paste0(
+      sprintf("%02d", lubridate::month(values)),
+      '-',
+      lubridate::month(
+        values,
+        label = TRUE,
+        abbr = FALSE,
+        locale = locale
+      )
+    )
+  }
   table
 }
 
@@ -463,12 +529,20 @@ get_table_month_num_name <- function(table, values, ...) {
 get_table_month_abbr <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  table[['month_abbr']] <- as.character(lubridate::month(
-    values,
-    label = TRUE,
-    abbr = TRUE,
-    locale = locale
-  ))
+  if (is.null(locale)){
+    table[['month_abbr']] <- as.character(lubridate::month(
+      values,
+      label = TRUE,
+      abbr = TRUE
+    ))
+  } else {
+    table[['month_abbr']] <- as.character(lubridate::month(
+      values,
+      label = TRUE,
+      abbr = TRUE,
+      locale = locale
+    ))
+  }
   table
 }
 
@@ -484,16 +558,28 @@ get_table_month_abbr <- function(table, values, ...) {
 get_table_month_num_abbr <- function(table, values, ...) {
   dots <- list(...)
   locale <- dots[['locale']]
-  table[['month_num_abbr']] <- paste0(
-    sprintf("%02d", lubridate::month(values)),
-    '-',
-    lubridate::month(
-      values,
-      label = TRUE,
-      abbr = TRUE,
-      locale = locale
+  if (is.null(locale)){
+    table[['month_num_abbr']] <- paste0(
+      sprintf("%02d", lubridate::month(values)),
+      '-',
+      lubridate::month(
+        values,
+        label = TRUE,
+        abbr = TRUE
+      )
     )
-  )
+  } else {
+    table[['month_num_abbr']] <- paste0(
+      sprintf("%02d", lubridate::month(values)),
+      '-',
+      lubridate::month(
+        values,
+        label = TRUE,
+        abbr = TRUE,
+        locale = locale
+      )
+    )
+  }
   table
 }
 

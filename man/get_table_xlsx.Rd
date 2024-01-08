@@ -25,11 +25,11 @@ has been generated, using this function we can obtain it in \emph{xlsx} format.
 If no dir name is given, stores the table in a temporary one.
 }
 \examples{
-
+\donttest{
 file <- when() |>
   generate_table() |>
   get_table_xlsx()
-
+}
 }
 \seealso{
 Other getting results: 

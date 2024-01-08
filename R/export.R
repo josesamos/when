@@ -105,11 +105,11 @@ get_table_rdb.when <- function(td, con, overwrite = FALSE) {
 #' @family getting results
 #'
 #' @examples
-#'
+#' \donttest{
 #' file <- when() |>
 #'   generate_table() |>
 #'   get_table_xlsx()
-#'
+#' }
 #' @export
 get_table_xlsx <- function(td, dir)
   UseMethod("get_table_xlsx")

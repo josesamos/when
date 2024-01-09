@@ -4,12 +4,13 @@
 # when <a href="https://josesamos.github.io/when/"><img src="man/figures/logo.png" align="right" height="139" alt="when website" /></a>
 
 <!-- badges: start -->
-<!-- [![CRAN status](https://www.r-pkg.org/badges/version/when)](https://CRAN.R-project.org/package=when) -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/when)](https://CRAN.R-project.org/package=when)
 [![R-CMD-check](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/josesamos/when/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/josesamos/when/branch/main/graph/badge.svg)](https://app.codecov.io/gh/josesamos/when?branch=main)
-<!-- [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/when?color=brightgreen)](https://www.r-pkg.org:443/pkg/when) -->
+[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/when?color=brightgreen)](https://www.r-pkg.org:443/pkg/when)
 <!-- badges: end -->
 
 The *When Dimension*[^1] plays a fundamental role in *Multidimensional
@@ -74,16 +75,16 @@ pander::pandoc.table(rbind(head(date, 5), tail(date, 5)),
 
 |  id  |    date    | month_day | week_day | day_name  | day_num_name | year_week | week | year_month | month | month_name | month_num_name | year |
 |:----:|:----------:|:---------:|:--------:|:---------:|:------------:|:---------:|:----:|:----------:|:-----:|:----------:|:--------------:|:----:|
-|  1   | 2024-01-08 |    08     |    1     |  Monday   |   1-Monday   |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  2   | 2024-01-09 |    09     |    2     |  Tuesday  |  2-Tuesday   |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  3   | 2024-01-10 |    10     |    3     | Wednesday | 3-Wednesday  |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  4   | 2024-01-11 |    11     |    4     | Thursday  |  4-Thursday  |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-|  5   | 2024-01-12 |    12     |    5     |  Friday   |   5-Friday   |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
-| 1824 | 2029-01-04 |    04     |    4     | Thursday  |  4-Thursday  |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
-| 1825 | 2029-01-05 |    05     |    5     |  Friday   |   5-Friday   |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
-| 1826 | 2029-01-06 |    06     |    6     | Saturday  |  6-Saturday  |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
-| 1827 | 2029-01-07 |    07     |    7     |  Sunday   |   7-Sunday   |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
-| 1828 | 2029-01-08 |    08     |    1     |  Monday   |   1-Monday   |  2029-02  |  02  |  2029-01   |  01   |  January   |   01-January   | 2029 |
+|  1   | 2024-01-09 |    09     |    2     |  Tuesday  |  2-Tuesday   |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  2   | 2024-01-10 |    10     |    3     | Wednesday | 3-Wednesday  |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  3   | 2024-01-11 |    11     |    4     | Thursday  |  4-Thursday  |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  4   | 2024-01-12 |    12     |    5     |  Friday   |   5-Friday   |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+|  5   | 2024-01-13 |    13     |    6     | Saturday  |  6-Saturday  |  2024-02  |  02  |  2024-01   |  01   |  January   |   01-January   | 2024 |
+| 1824 | 2029-01-05 |    05     |    5     |  Friday   |   5-Friday   |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
+| 1825 | 2029-01-06 |    06     |    6     | Saturday  |  6-Saturday  |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
+| 1826 | 2029-01-07 |    07     |    7     |  Sunday   |   7-Sunday   |  2029-01  |  01  |  2029-01   |  01   |  January   |   01-January   | 2029 |
+| 1827 | 2029-01-08 |    08     |    1     |  Monday   |   1-Monday   |  2029-02  |  02  |  2029-01   |  01   |  January   |   01-January   | 2029 |
+| 1828 | 2029-01-09 |    09     |    2     |  Tuesday  |  2-Tuesday   |  2029-02  |  02  |  2029-01   |  01   |  January   |   01-January   | 2029 |
 
 If we want a table with time, we indicate the type using a parameter. By
 default we get all the seconds of a day but we can also configure a
